@@ -1,11 +1,11 @@
 import { Routes } from '@angular/router';
-import { LoginComponent } from './login/login.component';
-import { CalendarComponent } from './calendar/calendar.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
-import { NotificationComponent } from './notification/notification.component';
-import { ProfileComponent } from './profile/profile.component';
-import { VacationPromotionComponent } from './vacation-promotion/vacation-promotion.component';
-import { AdminComponent } from './admin/admin.component';
+import { LoginComponent } from './pages/login/login.component';
+import { CalendarComponent } from './pages/calendar/calendar.component';
+import { DashboardComponent } from './pages/dashboard/dashboard.component';
+import { NotificationComponent } from './pages/notification/notification.component';
+import { ProfileComponent } from './pages/profile/profile.component';
+import { VacationPromotionComponent } from './pages/vacation-promotion/vacation-promotion.component';
+import { AdminComponent } from './pages/admin/admin.component';
 
 export const routes: Routes = [
   {
