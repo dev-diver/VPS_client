@@ -1,4 +1,14 @@
 <app-card title="제목">
   <div ngProjectAs="cardTitle"></div>
-  <button type="button">login works!</button>
+  <form class="text-start" style="width:18em">
+    <div class="mb-3">
+      <input type="email" class="form-control" id="email-form" aria-describedby="emailHelp" placeholder="Email">
+    </div>
+    <div class="mb-3">
+      <input type="password" class="form-control" id="password-form" placeholder="Password">
+    </div>
+    <div class="text-end">
+      <button type="submit">Submit</button>
+    </div>
+  </form>
 </app-card>
