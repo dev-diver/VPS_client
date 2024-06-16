@@ -10,5 +10,6 @@ import { CommonModule } from '@angular/common';
   styleUrl: './year-calendar.component.less'
 })
 export class YearCalendarComponent {
+  year : number = new Date().getFullYear()
   months: number[] = Array.from({ length: 12 }, (_, i) => i + 1);
 }
