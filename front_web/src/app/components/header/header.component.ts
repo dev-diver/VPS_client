@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { NavigationEnd, Router, RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -9,5 +9,17 @@ import { RouterModule } from '@angular/router';
   styleUrl: './header.component.scss'
 })
 export class HeaderComponent {
+  showNavigate: boolean = true;
 
+  constructor(private router: Router) {
+    this.router.events.subscribe((event) => {
+      if (event instanceof NavigationEnd) {
+        this.showNavigate = event.url !== '/login';
+      }
+    });
+  }
+
+  logout(){
+    this.router.navigate(['/login']);
+  }
 }
