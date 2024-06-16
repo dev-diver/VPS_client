@@ -1,0 +1,48 @@
+:host {
+  display: block;
+  width: 100%;
+  
+}
+
+/* 선택된 날짜 스타일 제거 */
+.my-mini-calendar{
+  .ant-picker-cell-selected .ant-picker-cell-inner,
+  .ant-picker-cell-selected:hover .ant-picker-cell-inner,
+  .ant-picker-cell-selected .ant-picker-cell-inner::before,
+  .ant-picker-cell-selected .ant-picker-cell-inner::after {
+    background-color: transparent !important;
+    border: none !important;
+    color: inherit !important;
+  }
+
+  /* 비활성화된 날짜 스타일 제거 */
+  .ant-picker-cell-disabled .ant-picker-cell-inner {
+    background: none !important;
+    background-color: transparent !important;
+    color: inherit !important;
+    opacity: 1 !important;
+  }
+
+}
+
+
+
+/* 커스텀 날짜 셀 스타일 */
+.custom-date-cell {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+.custom-content {
+  font-size: 12px;
+  color: #ff4d4f;
+  margin-top: 4px;
+}
+
+.date {
+  font-size: 14px;
+  font-weight: bold;
+}

@@ -1,0 +1,9 @@
+<div class="year-calendar">
+  @for (month of months; track month) {
+  <div class="calendar-container">
+    <app-mini-calendar [month]="month"></app-mini-calendar>
+  </div>
+  } @empty {
+  <li>There are no items.</li>
+  }
+</div>

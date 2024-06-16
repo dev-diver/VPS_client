@@ -1,9 +1,11 @@
-<div [ngStyle]="{ width: '300px', border: '1px solid #d9d9d9', borderRadius: '4px' }">
-  <nz-calendar [nzFullscreen]="false" [nzCustomHeader]="customHeader"></nz-calendar>
+<div class="my-mini-calendar"
+  [ngStyle]="{ width: '300px', border: '1px solid #d9d9d9', borderRadius: '4px', margin: '10px' }">
+  <nz-calendar [nzFullscreen]="false" [nzCustomHeader]="customHeader" [(ngModel)]="date"
+    [nzDisabledDate]="disableOtherMonths">
+  </nz-calendar>
+  <ng-template #customHeader>
+    <div style="padding: 8px">
+      <h4>{{getMonthName()}}</h4>
+    </div>
+  </ng-template>
 </div>
-
-<ng-template #customHeader>
-  <div style="padding: 8px">
-    <h4>Custom header</h4>
-  </div>
-</ng-template>

@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
-import { NzCalendarModule } from 'ng-zorro-antd/calendar';
+import { YearCalendarComponent } from '../../components/year-calendar/year-calendar.component';
+
 @Component({
   selector: 'app-calendar',
   standalone: true,
-  imports: [NzCalendarModule],
+  imports: [YearCalendarComponent],
   templateUrl: './calendar.component.html',
   styleUrl: './calendar.component.less'
 })
