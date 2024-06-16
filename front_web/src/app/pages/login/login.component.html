@@ -1,14 +1,23 @@
-<app-card title="제목">
-  <div ngProjectAs="cardTitle"></div>
-  <form class="text-start" style="width:18em">
-    <div class="mb-3">
-      <input type="email" class="form-control" id="email-form" aria-describedby="emailHelp" placeholder="Email">
-    </div>
-    <div class="mb-3">
-      <input type="password" class="form-control" id="password-form" placeholder="Password">
-    </div>
-    <div class="text-end">
-      <button (click)="login()" type="submit">Submit</button>
-    </div>
+<nz-card style="width:300px;" nzTitle="로그인">
+  <form nz-form [nzLayout]="'inline'" [formGroup]="validateForm" (ngSubmit)="submitForm()">
+    <nz-form-item>
+      <nz-form-control nzErrorTip="Please input your username!">
+        <nz-input-group nzPrefixIcon="user">
+          <input formControlName="userName" nz-input placeholder="Username" />
+        </nz-input-group>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-control nzErrorTip="Please input your Password!">
+        <nz-input-group nzPrefixIcon="lock">
+          <input formControlName="password" nz-input type="password" placeholder="Password" />
+        </nz-input-group>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-control>
+        <button nz-button nzType="primary" [disabled]="!validateForm.valid">Log in</button>
+      </nz-form-control>
+    </nz-form-item>
   </form>
-</app-card>
+</nz-card>

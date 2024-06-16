@@ -5,7 +5,7 @@ import { Component } from '@angular/core';
   standalone: true,
   imports: [],
   templateUrl: './vacation-promotion.component.html',
-  styleUrl: './vacation-promotion.component.scss'
+  styleUrl: './vacation-promotion.component.less'
 })
 export class VacationPromotionComponent {
 

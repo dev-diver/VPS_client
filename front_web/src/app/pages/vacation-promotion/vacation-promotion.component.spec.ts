@@ -11,7 +11,7 @@ describe('VacationPromotionComponent', () => {
       imports: [VacationPromotionComponent]
     })
     .compileComponents();
-
+    
     fixture = TestBed.createComponent(VacationPromotionComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

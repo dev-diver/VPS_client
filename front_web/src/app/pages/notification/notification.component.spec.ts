@@ -11,7 +11,7 @@ describe('NotificationComponent', () => {
       imports: [NotificationComponent]
     })
     .compileComponents();
-
+    
     fixture = TestBed.createComponent(NotificationComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

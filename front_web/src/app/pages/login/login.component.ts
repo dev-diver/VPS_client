@@ -1,19 +1,32 @@
 import { Component } from '@angular/core';
-import { CardComponent } from '../../components/card/card.component';
+import { NzCardModule } from 'ng-zorro-antd/card';
+import { NzButtonModule } from 'ng-zorro-antd/button';
+import { NzFormModule } from 'ng-zorro-antd/form';
+import { FormControl, FormGroup, NonNullableFormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [CardComponent],
+  imports: [NzCardModule, NzButtonModule, NzFormModule,ReactiveFormsModule],
   templateUrl: './login.component.html',
-  styleUrl: './login.component.scss'
+  styleUrl: './login.component.less'
 })
 export class LoginComponent {
+  validateForm: FormGroup<{
+    userName: FormControl<string>;
+    password: FormControl<string>;
+    remember: FormControl<boolean>;
+  }> = this.fb.group({
+    userName: ['', [Validators.required]],
+    password: ['', [Validators.required]],
+    remember: [true]
+  });
 
-  constructor(private router: Router) {}
-
-  login() {
+  submitForm(): void {
+    console.log('submit', this.validateForm.value);
     this.router.navigate(['/dashboard'])
   }
+  constructor(private router: Router, private fb: NonNullableFormBuilder) {}
 }
