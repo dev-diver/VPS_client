@@ -5,11 +5,11 @@ import { NzFormModule } from 'ng-zorro-antd/form';
 import { FormControl, FormGroup, NonNullableFormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
-
+import { NzFlexModule } from 'ng-zorro-antd/flex';
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [NzCardModule, NzButtonModule, NzFormModule,ReactiveFormsModule],
+  imports: [NzCardModule, NzButtonModule, NzFormModule,ReactiveFormsModule, NzFlexModule],
   templateUrl: './login.component.html',
   styleUrl: './login.component.less'
 })

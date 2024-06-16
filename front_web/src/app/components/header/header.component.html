@@ -1,20 +1,18 @@
-<div id="header">
-  Logo
-  <nav>
-    <ul nz-menu nzMode="horizontal">
-      <li nz-menu-item>
-        <a [routerLink]="['/calendar']">캘린더</a>
-      </li>
-      <li nz-menu-item>
-        <a [routerLink]="['/dashboard']">대시보드</a>
-      </li>
-      <li nz-menu-item>
-        <a [routerLink]="['/vacation-promotion']">연차촉진</a>
-      </li>
-      <li nz-menu-item>
-        <a [routerLink]="['/admin']">관리</a>
-      </li>
-    </ul>
-  </nav>
+<div class="header">
+  <div class="logo"></div>
+  <ul nz-menu nzTheme="dark" nzMode="horizontal">
+    <li nz-menu-item>
+      <a [routerLink]="['/calendar']">캘린더</a>
+    </li>
+    <li nz-menu-item>
+      <a [routerLink]="['/dashboard']">대시보드</a>
+    </li>
+    <li nz-menu-item>
+      <a [routerLink]="['/vacation-promotion']">연차촉진</a>
+    </li>
+    <li nz-menu-item>
+      <a [routerLink]="['/admin']">관리</a>
+    </li>
+  </ul>
   <button nz-button nzType="default" (click)="logout()">로그아웃</button>
 </div>
