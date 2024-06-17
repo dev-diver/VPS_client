@@ -1,9 +1,9 @@
 import { Component, Input } from '@angular/core';
 import { NzGridModule } from 'ng-zorro-antd/grid';
 import { NzListModule } from 'ng-zorro-antd/list';
-import { NameTagComponent } from '../name-tag/name-tag.component';
-import { GroupTagComponent } from '../group-tag/group-tag.component';
-import { Group } from '../../interfaces/group';
+import { NameTagComponent } from '../../name-tag/name-tag.component';
+import { GroupTagComponent } from '../../group-tag/group-tag.component';
+import { Group } from '../../../interfaces/group';
 import { NzCardModule } from 'ng-zorro-antd/card';
 
 @Component({

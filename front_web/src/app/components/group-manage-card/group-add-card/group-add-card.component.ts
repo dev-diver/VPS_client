@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { NzCardComponent } from 'ng-zorro-antd/card';
-import { ModalAddButtonComponent } from '../modal-add-button/modal-add-button.component';
+import { ModalAddButtonComponent } from '../../modal-add-button/modal-add-button.component';
 
 @Component({
   selector: 'app-group-add-card',

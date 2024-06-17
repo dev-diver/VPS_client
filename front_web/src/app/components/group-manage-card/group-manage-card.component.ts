@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { NzCardComponent } from 'ng-zorro-antd/card';
-import { GroupAddCardComponent } from '../group-add-card/group-add-card.component';
-import { GroupCardComponent } from '../group-card/group-card.component';
+import { GroupAddCardComponent } from './group-add-card/group-add-card.component';
+import { GroupCardComponent } from './group-card/group-card.component';
 import { Group } from '../../interfaces/group';
 
 @Component({

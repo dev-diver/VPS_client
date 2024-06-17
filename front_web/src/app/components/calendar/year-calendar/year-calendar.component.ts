@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { MiniCalendarComponent } from '../../components/mini-calendar/mini-calendar.component';
+import { MiniCalendarComponent } from '../mini-calendar/mini-calendar.component';
 import { CommonModule } from '@angular/common';
 
 @Component({
