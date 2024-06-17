@@ -1,18 +1,26 @@
-<div class="header">
-  <div class="logo"></div>
-  <ul nz-menu nzTheme="dark" nzMode="horizontal">
-    <li nz-menu-item>
-      <a [routerLink]="['/calendar']">캘린더</a>
-    </li>
-    <li nz-menu-item>
-      <a [routerLink]="['/dashboard']">대시보드</a>
-    </li>
-    <li nz-menu-item>
-      <a [routerLink]="['/vacation-promotion']">연차촉진</a>
-    </li>
-    <li nz-menu-item>
-      <a [routerLink]="['/admin']">관리</a>
-    </li>
-  </ul>
-  <button nz-button nzType="default" (click)="logout()">로그아웃</button>
+<div nz-row>
+  <div nz-col nzSpan="4">logo</div>
+  <div nz-col nzSpan="17">
+      <ul nz-menu nzTheme="dark" nzMode="horizontal">
+        <li nz-menu-item>
+          <a [routerLink]="['/calendar']">캘린더</a>
+        </li>
+        <li nz-menu-item>
+          <a [routerLink]="['/dashboard']">대시보드</a>
+        </li>
+        <li nz-menu-item>
+          <a [routerLink]="['/vacation-promotion']">연차촉진</a>
+        </li>
+        <li nz-menu-item>
+          <a [routerLink]="['/admin']">관리</a>
+        </li>
+      </ul>
+  </div>
+  <div nz-col nzSpan="3">
+    <nz-avatar nzText="U" style="color:#f56a00; background-color:#fde3cf;"></nz-avatar>
+    <nz-badge class="large-icon" [nzCount]="count">
+      <span nz-icon nzType="bell" nzTheme="twotone"></span>
+    </nz-badge>
+    <button nz-button nzType="default" (click)="logout()">로그아웃</button>
+  </div>
 </div>
