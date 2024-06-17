@@ -3,11 +3,12 @@ import { YearCalendarComponent } from '../../components/year-calendar/year-calen
 import { NzGridModule } from 'ng-zorro-antd/grid';
 import { VacationCardComponent } from '../../components/vacation-card/vacation-card.component';
 import { GroupFilterComponent } from '../../components/group-filter/group-filter.component';
+import { VacationReserveButtonComponent } from '../../components/vacation-reserve-button/vacation-reserve-button.component';
 
 @Component({
   selector: 'app-calendar',
   standalone: true,
-  imports: [YearCalendarComponent, NzGridModule, VacationCardComponent, GroupFilterComponent],
+  imports: [VacationReserveButtonComponent,YearCalendarComponent, NzGridModule, VacationCardComponent, GroupFilterComponent],
   templateUrl: './calendar.component.html',
   styleUrl: './calendar.component.less'
 })
