@@ -1,0 +1,41 @@
+<nz-card nzTitle="회사관리" [nzExtra]="extraTemplate">
+    <nz-form-item>
+        <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="company-name">회사명</nz-form-label>
+        <nz-form-control [nzSm]="6" [nzXs]="24">
+            <input nz-input formControlName="company-name" id="company-name" />
+        </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+        <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="accounting-day">회계일</nz-form-label>
+        <nz-form-control [nzSm]="6" [nzXs]="24">
+            <input nz-input formControlName="accounting-day" id="accounting-day" />
+        </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+            <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="accounting-day">연차 발생</nz-form-label>
+            <nz-form-control [nzSm]="3" [nzXs]="24">
+                <nz-select formControlName="phoneNumberPrefix" class="phone-select">
+                    <nz-option nzLabel="연차지급" nzValue=1></nz-option>
+                    <nz-option nzLabel="회계일지급" nzValue=2></nz-option>
+                </nz-select>
+            </nz-form-control>
+            <nz-form-label [nzSm]="3" [nzXs]="24" nzFor="accounting-day">1년차</nz-form-label>
+            <nz-form-control [nzSm]="3" [nzXs]="24">
+                <nz-select formControlName="phoneNumberPrefix" class="phone-select">
+                    <nz-option nzLabel="월 1일" nzValue=1></nz-option>
+                    <nz-option nzLabel="회계일 전 선부여" nzValue=2></nz-option>
+                    <nz-option nzLabel="입사일 11일 선부여" nzValue=3></nz-option>
+                </nz-select>
+            </nz-form-control>
+            <nz-form-label [nzSm]="3" [nzXs]="24" nzFor="accounting-day">1년 미만</nz-form-label>
+            <nz-form-control [nzSm]="3" [nzXs]="24">
+                <nz-select formControlName="phoneNumberPrefix" class="phone-select">
+                    <nz-option nzLabel="회계일 선부여" nzValue=1></nz-option>
+                    <nz-option nzLabel="회계일 비례부여" nzValue=2></nz-option>
+                </nz-select>
+            </nz-form-control>
+    </nz-form-item>
+</nz-card>
+<ng-template #extraTemplate>
+    <a>More</a>
+</ng-template>
