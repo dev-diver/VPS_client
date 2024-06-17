@@ -5,11 +5,12 @@ import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NameTagComponent } from '../name-tag/name-tag.component';
 import { NzListModule } from 'ng-zorro-antd/list';
 import { NzGridModule } from 'ng-zorro-antd/grid';
+import { FoldingCardComponent } from '../folding-card/folding-card.component';
 
 @Component({
   selector: 'app-company-members-card',
   standalone: true,
-  imports: [NzCardComponent, ModalAddButtonComponent, NzIconModule, NameTagComponent, NzListModule, NzGridModule],
+  imports: [NzCardComponent, ModalAddButtonComponent, NzIconModule, NameTagComponent, NzListModule, NzGridModule, FoldingCardComponent],
   templateUrl: './company-members-card.component.html',
   styleUrl: './company-members-card.component.less'
 })

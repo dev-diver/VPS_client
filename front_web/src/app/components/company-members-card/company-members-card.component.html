@@ -1,4 +1,4 @@
-<nz-card nzTitle="멤버 관리" [nzExtra]="extraTemplate">
+<app-folding-card title="멤버 관리">
     <nz-list nzGrid>
         <div nz-row [nzGutter]="16">
           @for (item of data; track item) {
@@ -11,7 +11,7 @@
         </div>
     </nz-list>
     <app-modal-add-button/>
-</nz-card>
+</app-folding-card>
 <ng-template #extraTemplate>
     <a><span nz-icon nzType="down"></span></a>
 </ng-template>

@@ -3,11 +3,12 @@ import { NzCardComponent } from 'ng-zorro-antd/card';
 import { GroupAddCardComponent } from './group-add-card/group-add-card.component';
 import { GroupCardComponent } from './group-card/group-card.component';
 import { Group } from '../../interfaces/group';
+import { FoldingCardComponent } from '../folding-card/folding-card.component';
 
 @Component({
   selector: 'app-group-manage-card',
   standalone: true,
-  imports: [NzCardComponent, GroupAddCardComponent, GroupCardComponent],
+  imports: [NzCardComponent, GroupAddCardComponent, GroupCardComponent, FoldingCardComponent],
   templateUrl: './group-manage-card.component.html',
   styleUrl: './group-manage-card.component.less'
 })
