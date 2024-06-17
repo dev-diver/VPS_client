@@ -1,1 +1,11 @@
-<p>dashboard works!</p>
+<div nz-row>
+    <div nz-col nzSpan="3">
+        <app-vacation-card [year]="year"/>
+    </div>
+    <div nz-col nzSpan="18">
+        <app-vacation-dashboard [year]="year"/>
+    </div>
+    <div nz-col nzSpan="3">
+        <app-group-filter />
+    </div>
+</div>
