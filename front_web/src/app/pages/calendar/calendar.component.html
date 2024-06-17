@@ -1,12 +1,12 @@
-<div nz-row>
-    <div nz-col nzSpan="3">
+<app-page-layout>
+    <div left>
         <app-vacation-card [year]="year"/>
     </div>
-    <div nz-col nzSpan="18">
+    <div>
         <app-year-calendar [year]="year"/>
     </div>
-    <div nz-col nzSpan="3">
+    <div right>
         <app-group-filter />
         <app-modal-add-button />
     </div>
-</div>
+</app-page-layout>
