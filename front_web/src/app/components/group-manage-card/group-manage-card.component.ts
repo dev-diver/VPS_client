@@ -18,10 +18,18 @@ export class GroupManageCardComponent {
     color : '#ffffff',
     member: [
       {
-        name:'소경현'
+        name: '소경현',
+        companyName: '싸이웰 시스템',
+        email: 'valentine@cywell.co.kr',
+        hireDate: new Date(2024,5,3),
+        isActivate: true
       },
       {
-        name:'김장겸'
+        name: '김장겸',
+        companyName: '싸이웰 시스템',
+        email: 'jk@cywell.co.kr',
+        hireDate: new Date(2022,3,3),
+        isActivate: true
       }
     ]
   }

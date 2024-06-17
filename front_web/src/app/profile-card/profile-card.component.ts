@@ -10,5 +10,11 @@ import { Member } from '../interfaces/member';
   styleUrl: './profile-card.component.less'
 })
 export class ProfileCardComponent {
-  @Input() member: Member = {name: '소경현'}
+  @Input() member: Member = {
+    name: '소경현',
+    companyName: '싸이웰 시스템',
+    email: 'valentine@cywell.co.kr',
+    hireDate: new Date(2022,3,3),
+    isActivate: true
+  }
 }
