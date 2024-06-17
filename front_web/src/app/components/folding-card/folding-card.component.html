@@ -1,0 +1,8 @@
+<nz-card [nzTitle]="title" [nzExtra]="extraTemplate">
+    <div [ngClass] = "{ 'hidden': !isContentVisible }">
+        <ng-content></ng-content>
+    </div>
+</nz-card>
+<ng-template #extraTemplate>
+    <a (click)="toggleContentVisibility()"><span nz-icon [nzType]="isContentVisible ? 'up' : 'down'"></span></a>
+</ng-template>
