@@ -1,8 +1,11 @@
 <div nz-row>
     <div nz-col nzSpan="3">
+        <app-vacation-card [year]="year"/>
     </div>
     <div nz-col nzSpan="18">
-        <app-year-calendar></app-year-calendar>
+        <app-year-calendar [year]="year"/>
     </div>
-    <div nz-col nzSpan="3"></div>
+    <div nz-col nzSpan="3">
+        
+    </div>
 </div>

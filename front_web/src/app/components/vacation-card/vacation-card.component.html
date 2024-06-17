@@ -1,0 +1,9 @@
+<nz-card style="max-width:300px;" nzTitle={{year}} [nzExtra]="extraTemplate">
+    <p>총: <span id="vacation-total">16</span>일</p>
+    <p>사용: <span id="vacation-used">2</span>일</p>
+    <p>신청: <span id="vacation-reserved">1</span>일</p>
+    <p>잔여: <span id="vacation-remain">13</span>일</p>
+</nz-card>
+<ng-template #extraTemplate>
+    <a>Detail</a>
+</ng-template>
