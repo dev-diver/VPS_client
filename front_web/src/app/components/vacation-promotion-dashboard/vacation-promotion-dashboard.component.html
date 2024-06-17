@@ -1,0 +1,9 @@
+<div class="vacation-dashboard">
+    <nz-list [nzDataSource]="data" nzBordered>
+        @for (item of data; track item) {
+        <nz-list-item>
+            {{ item }}
+        </nz-list-item>
+        }
+    </nz-list>
+</div>
