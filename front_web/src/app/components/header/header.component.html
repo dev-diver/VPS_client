@@ -17,9 +17,12 @@
       </ul>
   </div>
   <div nz-col nzSpan="3">
-    <nz-avatar nzText="U" style="color:#f56a00; background-color:#fde3cf;"></nz-avatar>
+    <a [routerLink]="['/profile']">
+      <nz-avatar class="avatar" nzText="U"></nz-avatar>
+    </a>
     <nz-badge class="large-icon" [nzCount]="count">
-      <span nz-icon nzType="bell" nzTheme="twotone"></span>
+      <a [routerLink]="['/notification']" 
+          nz-icon nzType="bell" nzTheme="twotone"></a>
     </nz-badge>
     <button nz-button nzType="default" (click)="logout()">로그아웃</button>
   </div>
