@@ -1,2 +1,22 @@
 <nz-card [nzTitle]="member.name">
+    <form nz-form>
+        <p>회사명 : {{member.companyName}}</p>
+        <p>Email : {{member.email}}</p>
+        <nz-form-item>
+            <nz-form-label nzFor="password">비밀번호</nz-form-label>
+            <nz-form-control>
+                <nz-input-group>
+                    <input nz-input name="password" type="password" id="password" [(ngModel)]="password"/>
+                </nz-input-group>
+            </nz-form-control>
+        </nz-form-item>
+        <p>입사일: {{member.hireDate | date: 'yyyy-MM-dd'}}</p>
+        <!-- <p>그룹 : {{member.groups}}</p> -->
+        <button nz-button nzType="default" (click)="deactivate()">퇴사</button>
+        <nz-form-item>
+            <nz-form-control>
+                <button nz-button nzType="primary" (click)="submitEdit()" [disabled]="!validateForm.valid">변경</button>
+            </nz-form-control>
+        </nz-form-item>
+    </form>
 </nz-card>
