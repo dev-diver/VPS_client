@@ -1,7 +1,7 @@
-<nz-card nzTitle="멤버 관리" [nzExtra]="extraTemplate">
+<nz-card [nzTitle]="titleTemplate">
     <nz-list nzGrid>
         <div nz-row [nzGutter]="16">
-          @for (item of data; track item) {
+          @for (item of group.member; track item) {
             <div nz-col [nzSpan]="2">
               <nz-list-item>
                 <app-name-tag [name]="item.name"/>
@@ -10,8 +10,7 @@
           }
         </div>
     </nz-list>
-    <app-modal-add-button/>
 </nz-card>
-<ng-template #extraTemplate>
-    <a><span nz-icon nzType="down"></span></a>
+<ng-template #titleTemplate>
+    <app-group-tag [group]="group"/>
 </ng-template>
