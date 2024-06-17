@@ -1,10 +1,12 @@
-<h3>{{year}}</h3>
 <div class="year-calendar">
-  @for (month of months; track month) {
-  <div class="calendar-container">
-    <app-mini-calendar [year]="year" [month]="month"></app-mini-calendar>
+  <h3>{{year}}</h3>
+  <div class="month-calendars">
+    @for (month of months; track month) {
+    <div class="calendar-container">
+      <app-mini-calendar [year]="year" [month]="month"></app-mini-calendar>
+    </div>
+    } @empty {
+    <li>There are no items.</li>
+    }
   </div>
-  } @empty {
-  <li>There are no items.</li>
-  }
 </div>
