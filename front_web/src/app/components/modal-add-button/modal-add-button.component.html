@@ -1,3 +1,21 @@
-<button nz-button nzType="primary" nzShape="circle">
+<button nz-button nzType="primary" nzShape="circle" (click)="showModal()">
     <span nz-icon nzType="plus" nzTheme="outline"></span>
 </button>
+<nz-modal
+    [(nzVisible)]="isVisible"
+    nzTitle="연차신청"
+    (nzOnCancel)="handleCancel()"
+    (nzOnOk)="handleOk()"
+    [nzOkLoading]="isOkLoading"
+>
+    <p *nzModalContent>
+        <nz-range-picker
+            [nzShowTime]="{ nzFormat: 'HH' }"
+            nzFormat="yyyy-MM-dd HH"
+            [(ngModel)]="dateRange"
+            (ngModelChange)="onChange($event)"
+            (nzOnCalendarChange)="onCalendarChange($event)"
+            (nzOnOk)="onOk($event)"
+        ></nz-range-picker>
+    </p>
+</nz-modal>
