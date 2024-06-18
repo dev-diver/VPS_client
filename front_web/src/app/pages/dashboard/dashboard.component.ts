@@ -4,10 +4,11 @@ import { GroupFilterComponent } from '../../components/group-manage-card/group-f
 import { VacationDashboardComponent } from '../../components/vacation-dashboard/vacation-dashboard.component';
 import { ModalAddButtonComponent } from '../../components/modal-add-button/modal-add-button.component';
 import { PageLayoutComponent } from '../../page-layout/page-layout.component';
+import { ApplyVacationComponent } from '../../apply-vacation/apply-vacation.component';
 @Component({
   selector: 'app-dashboard',
   standalone: true,
-  imports: [PageLayoutComponent, ModalAddButtonComponent, VacationCardComponent, GroupFilterComponent, VacationDashboardComponent],
+  imports: [ApplyVacationComponent,PageLayoutComponent, ModalAddButtonComponent, VacationCardComponent, GroupFilterComponent, VacationDashboardComponent],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.less'
 })

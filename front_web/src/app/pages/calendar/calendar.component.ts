@@ -4,11 +4,12 @@ import { VacationCardComponent } from '../../components/vacation-card/vacation-c
 import { GroupFilterComponent } from '../../components/group-manage-card/group-filter/group-filter.component';
 import { ModalAddButtonComponent } from '../../components/modal-add-button/modal-add-button.component';
 import { PageLayoutComponent } from '../../page-layout/page-layout.component';
+import { ApplyVacationComponent } from '../../apply-vacation/apply-vacation.component';
 
 @Component({
   selector: 'app-calendar',
   standalone: true,
-  imports: [PageLayoutComponent, ModalAddButtonComponent,YearCalendarComponent, VacationCardComponent, GroupFilterComponent],
+  imports: [ApplyVacationComponent, PageLayoutComponent,YearCalendarComponent, VacationCardComponent, GroupFilterComponent],
   templateUrl: './calendar.component.html',
   styleUrl: './calendar.component.less'
 })

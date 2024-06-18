@@ -2,20 +2,13 @@
     <span nz-icon nzType="plus" nzTheme="outline"></span>
 </button>
 <nz-modal
-    [(nzVisible)]="isVisible"
-    nzTitle="연차신청"
-    (nzOnCancel)="handleCancel()"
-    (nzOnOk)="handleOk()"
-    [nzOkLoading]="isOkLoading"
->
-    <p *nzModalContent>
-        <nz-range-picker
-            [nzShowTime]="{ nzFormat: 'HH' }"
-            nzFormat="yyyy-MM-dd HH"
-            [(ngModel)]="dateRange"
-            (ngModelChange)="onChange($event)"
-            (nzOnCalendarChange)="onCalendarChange($event)"
-            (nzOnOk)="onOk($event)"
-        ></nz-range-picker>
-    </p>
+      [(nzVisible)]="isVisible"
+      [nzTitle]="title"
+      (nzOnCancel)="handleCancel()"
+      (nzOnOk)="handleOk()"
+      [nzOkLoading]="isOkLoading"
+    >
+      <ng-container *nzModalContent>
+        <ng-content></ng-content>
+      </ng-container>
 </nz-modal>

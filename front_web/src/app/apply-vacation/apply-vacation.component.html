@@ -1,0 +1,13 @@
+<app-modal-add-button 
+    title="연차신청"
+    [okHandler]="handleOk"
+>
+    <nz-range-picker
+        [nzShowTime]="{ nzFormat: 'HH' }"
+        nzFormat="yyyy-MM-dd HH"
+        [(ngModel)]="dateRange"
+        (ngModelChange)="onChange($event)"
+        (nzOnCalendarChange)="onCalendarChange($event)"
+        (nzOnOk)="onOk($event)"
+    ></nz-range-picker>
+</app-modal-add-button>

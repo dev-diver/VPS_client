@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzModalModule } from 'ng-zorro-antd/modal';
@@ -13,35 +13,29 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './modal-add-button.component.less'
 })
 export class ModalAddButtonComponent {
+  @Input() title: string = '';
+  @Input() okHandler: () => Promise<void> = async () => {};
   isVisible = false;
   isOkLoading = false;
-  dateRange: Date[] = [];
-
+  
   showModal(): void {
     this.isVisible = true;
   }
 
-  handleOk(): void {
+  async handleOk(): Promise<void> {
     this.isOkLoading = true;
-    setTimeout(() => {
+    try {
+      await this.okHandler()
+    } catch (error) {
+      console.error('Error during handleOk', error);
+    } finally {
       this.isVisible = false;
       this.isOkLoading = false;
-    }, 3000);
+    }
   }
 
   handleCancel(): void {
     this.isVisible = false;
   }
 
-  onChange(result: Date[]): void {
-    console.log('Selected Time: ', result);
-  }
-
-  onOk(result: Date | Date[] | null): void {
-    console.log('onOk', result);
-  }
-
-  onCalendarChange(result: Array<Date | null>): void {
-    console.log('onCalendarChange', result);
-  }
 }
