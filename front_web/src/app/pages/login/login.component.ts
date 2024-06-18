@@ -26,7 +26,7 @@ export class LoginComponent {
 
   submitForm(): void {
     console.log('submit', this.validateForm.value);
-    this.router.navigate(['/dashboard'])
+    this.router.navigate(['/calendar'])
   }
   constructor(private router: Router, private fb: NonNullableFormBuilder) {}
 }
