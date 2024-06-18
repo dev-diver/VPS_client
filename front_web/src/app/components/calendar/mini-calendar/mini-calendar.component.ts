@@ -1,4 +1,4 @@
-import { Component, Input, ViewEncapsulation } from '@angular/core';
+import { Component, Input, SimpleChanges, ViewEncapsulation } from '@angular/core';
 import { NzCalendarModule } from 'ng-zorro-antd/calendar';
 import { CommonModule } from '@angular/common'; 
 import { FormsModule } from '@angular/forms';
@@ -26,12 +26,13 @@ export class MiniCalendarComponent {
   }
 
   updateDate(): void {
-    const year = new Date().getFullYear(); // 현재 연도
-    this.date = new Date(year, this.month - 1, 1); // 해당 달의 첫째 날
+    this.date = new Date(this.year, this.month - 1, 1); // 해당 달의 첫째 날
   }
 
-  ngOnChanges(): void {
-    this.updateDate();
+  ngOnChanges(changes: SimpleChanges): void {
+    if(changes['year']){
+      this.updateDate();
+    }
   }
 
   getMonthName(): string {
