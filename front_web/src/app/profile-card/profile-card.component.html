@@ -1,12 +1,11 @@
 <nz-card [nzTitle]="member.name">
-    <form nz-form>
+    <form nz-form [formGroup]="validateForm">
         <p>회사명 : {{member.companyName}}</p>
         <p>Email : {{member.email}}</p>
         <nz-form-item>
-            <nz-form-label nzFor="password">비밀번호</nz-form-label>
-            <nz-form-control>
-                <nz-input-group>
-                    <input nz-input name="password" type="password" id="password" [(ngModel)]="password"/>
+            <nz-form-control nzErrorTip="변경하려는 비밀번호를 입력해주세요">
+                <nz-input-group nzPrefixIcon="lock">
+                  <input type="password" nz-input formControlName="password" placeholder="Password" />
                 </nz-input-group>
             </nz-form-control>
         </nz-form-item>

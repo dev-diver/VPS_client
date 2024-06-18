@@ -3,13 +3,13 @@ import { NzCardComponent } from 'ng-zorro-antd/card';
 import { Member } from '../interfaces/member';
 import { NzFormModule } from 'ng-zorro-antd/form';
 import { NzButtonModule } from 'ng-zorro-antd/button';
-import { FormControl, FormGroup, FormsModule, NonNullableFormBuilder, Validators } from '@angular/forms';
+import { FormControl, FormGroup, FormsModule, NonNullableFormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-profile-card',
   standalone: true,
-  imports: [FormsModule, NzCardComponent, NzFormModule,CommonModule, NzButtonModule],
+  imports: [FormsModule, NzCardComponent, NzFormModule,CommonModule, NzButtonModule, ReactiveFormsModule],
   templateUrl: './profile-card.component.html',
   styleUrl: './profile-card.component.less'
 })
@@ -37,6 +37,6 @@ export class ProfileCardComponent {
   }
 
   submitEdit = () => {
-    alert('변경'+ this.validateForm.value.password)
+    alert('변경'+ this.validateForm.value)
   }
 }
