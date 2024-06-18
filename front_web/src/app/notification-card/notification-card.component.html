@@ -1,7 +1,5 @@
 <div class="vacation-dashboard">
-    <h3>{{year}}</h3>
     <nz-list [nzDataSource]="data" nzBordered>
-        <nz-list-header>휴가 신청 현황</nz-list-header>
         @for (item of data; track item) {
         <nz-list-item>
             {{ item }}
