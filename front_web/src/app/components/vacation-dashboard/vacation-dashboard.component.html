@@ -4,7 +4,7 @@
         <nz-list-header>휴가 신청 현황</nz-list-header>
         @for (item of data[year]; track item) {
         <nz-list-item>
-            {{ item }}
+            <app-dashboard-vacation-card [contents]="item"/>
         </nz-list-item>
         }
     </nz-list>
