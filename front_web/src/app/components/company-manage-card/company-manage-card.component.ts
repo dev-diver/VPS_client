@@ -4,7 +4,6 @@ import { NzCardComponent } from 'ng-zorro-antd/card';
 import { NzFormModule } from 'ng-zorro-antd/form';
 import { NzInputModule } from 'ng-zorro-antd/input';
 import { NzSelectModule } from 'ng-zorro-antd/select';
-import { FoldingCardComponent } from '../folding-card/folding-card.component';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 
 interface CompanyForm {
@@ -17,7 +16,7 @@ interface CompanyForm {
 @Component({
   selector: 'app-company-manage-card',
   standalone: true,
-  imports: [NzButtonModule, FormsModule, ReactiveFormsModule, NzCardComponent, NzFormModule, NzInputModule, NzSelectModule, FoldingCardComponent],
+  imports: [NzButtonModule, FormsModule, ReactiveFormsModule, NzCardComponent, NzFormModule, NzInputModule, NzSelectModule],
   templateUrl: './company-manage-card.component.html',
   styleUrl: './company-manage-card.component.less'
 })

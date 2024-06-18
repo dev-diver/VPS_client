@@ -4,11 +4,12 @@ import { CompanyMembersCardComponent } from '../../components/company-members-ca
 import { GroupManageCardComponent } from '../../components/group-manage-card/group-manage-card.component';
 import { ModalAddButtonComponent } from '../../components/modal-add-button/modal-add-button.component';
 import { PageLayoutComponent } from '../../page-layout/page-layout.component';
+import { FoldingCardComponent } from '../../components/folding-card/folding-card.component';
 
 @Component({
   selector: 'app-admin',
   standalone: true,
-  imports: [PageLayoutComponent,CompanyManageCardComponent, CompanyMembersCardComponent, GroupManageCardComponent, ModalAddButtonComponent],
+  imports: [FoldingCardComponent,PageLayoutComponent,CompanyManageCardComponent, CompanyMembersCardComponent, GroupManageCardComponent, ModalAddButtonComponent],
   templateUrl: './admin.component.html',
   styleUrl: './admin.component.less'
 })
