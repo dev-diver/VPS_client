@@ -1,13 +1,5 @@
 <div class="vacation-dashboard">
-    <h3>
-        <button nz-button (click)="decreaseYear()">
-            <span nz-icon nzType="left" nzTheme="outline"></span>
-        </button>
-        {{year}}
-        <button nz-button (click)="increaseYear()">
-            <span nz-icon nzType="right" nzTheme="outline"></span>
-        </button>
-    </h3>
+    <app-year-change [(year)]="year"/>
     <nz-list [nzDataSource]="data[year]" nzBordered>
         <nz-list-header>휴가 신청 현황</nz-list-header>
         @for (item of data[year]; track item) {

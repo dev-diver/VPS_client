@@ -1,16 +1,16 @@
-import { Component, Input, SimpleChanges } from '@angular/core';
+import { Component, Input, SimpleChanges, ViewEncapsulation } from '@angular/core';
 import { NzCardModule } from 'ng-zorro-antd/card';
 import { NzListModule } from 'ng-zorro-antd/list';
 import { CommonModule } from '@angular/common';
-import { NzIconModule } from 'ng-zorro-antd/icon';
-import { NzButtonModule } from 'ng-zorro-antd/button';
+import { YearChangeComponent } from '../../year-change/year-change.component';
 
 @Component({
   selector: 'app-vacation-dashboard',
   standalone: true,
-  imports: [NzButtonModule,NzIconModule, CommonModule, NzCardModule, NzListModule],
+  imports: [YearChangeComponent,CommonModule, NzCardModule, NzListModule],
   templateUrl: './vacation-dashboard.component.html',
-  styleUrl: './vacation-dashboard.component.less'
+  styleUrl: './vacation-dashboard.component.less',
+  encapsulation: ViewEncapsulation.None
 })
 export class VacationDashboardComponent {
   @Input() year: number = new Date().getFullYear()

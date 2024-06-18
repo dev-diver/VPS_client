@@ -1,13 +1,5 @@
 <div class="year-calendar">
-  <h3>
-    <button nz-button (click)="decreaseYear()">
-      <span nz-icon nzType="left" nzTheme="outline"></span>
-    </button>
-    {{year}}
-    <button nz-button (click)="increaseYear()">
-      <span nz-icon nzType="right" nzTheme="outline"></span>
-    </button>
-  </h3>
+  <app-year-change [(year)]="year"/>
   <div class="month-calendars">
     @for (month of months; track month) {
     <div class="calendar-container">
