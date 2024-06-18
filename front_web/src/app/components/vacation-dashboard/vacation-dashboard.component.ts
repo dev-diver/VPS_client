@@ -24,7 +24,7 @@ export class VacationDashboardComponent {
     ]
   }
 
-  updateDate(): void {
+  requestSituation(): void {
     this.data[2023] = [
       'Racing car sprays burning fuel into crowd.',
       'Japanese princess to wed commoner.',
@@ -33,7 +33,7 @@ export class VacationDashboardComponent {
 
   ngOnChanges(changes: SimpleChanges): void {
     if(changes['year']){
-      this.updateDate();
+      this.requestSituation();
     }
   }
 
