@@ -5,11 +5,12 @@ import { GroupManageCardComponent } from '../../components/group-manage-card/gro
 import { ModalAddButtonComponent } from '../../components/modal-add-button/modal-add-button.component';
 import { PageLayoutComponent } from '../../page-layout/page-layout.component';
 import { FoldingCardComponent } from '../../components/folding-card/folding-card.component';
+import { CompanyCardComponent } from '../../components/company-card/company-card.component';
 
 @Component({
   selector: 'app-admin',
   standalone: true,
-  imports: [FoldingCardComponent,PageLayoutComponent,CompanyManageCardComponent, CompanyMembersCardComponent, GroupManageCardComponent, ModalAddButtonComponent],
+  imports: [CompanyCardComponent, FoldingCardComponent,PageLayoutComponent,CompanyManageCardComponent, CompanyMembersCardComponent, GroupManageCardComponent, ModalAddButtonComponent],
   templateUrl: './admin.component.html',
   styleUrl: './admin.component.less'
 })
