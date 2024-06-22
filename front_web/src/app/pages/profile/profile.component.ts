@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { PageLayoutComponent } from '../../page-layout/page-layout.component';
-import { ProfileCardComponent } from '../../profile-card/profile-card.component';
+import { ProfileCardComponent } from '../../components/profile-card/profile-card.component';
 
 @Component({
   selector: 'app-profile',

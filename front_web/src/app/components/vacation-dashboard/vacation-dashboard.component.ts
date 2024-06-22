@@ -2,8 +2,8 @@ import { Component, Input, SimpleChanges, ViewEncapsulation } from '@angular/cor
 import { NzCardModule } from 'ng-zorro-antd/card';
 import { NzListModule } from 'ng-zorro-antd/list';
 import { CommonModule } from '@angular/common';
-import { YearChangeComponent } from '../../year-change/year-change.component';
-import { DashboardVacationCardComponent } from '../../dashboard-vacation-card/dashboard-vacation-card.component';
+import { YearChangeComponent } from '../year-change/year-change.component';
+import { DashboardVacationCardComponent } from '../dashboard-vacation-card/dashboard-vacation-card.component';
 import { VacationInfo } from '../../interfaces/vacation-info';
 
 @Component({

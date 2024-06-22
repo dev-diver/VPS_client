@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { PageLayoutComponent } from '../../page-layout/page-layout.component';
-import { NotificationCardComponent } from '../../notification-card/notification-card.component';
+import { NotificationCardComponent } from '../../components/notification-card/notification-card.component';
 
 @Component({
   selector: 'app-notification',

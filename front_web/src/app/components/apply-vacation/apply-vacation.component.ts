@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ModalAddButtonComponent } from '../components/modal-add-button/modal-add-button.component';
+import { ModalAddButtonComponent } from '../modal-add-button/modal-add-button.component';
 import { NzDatePickerModule } from 'ng-zorro-antd/date-picker';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';

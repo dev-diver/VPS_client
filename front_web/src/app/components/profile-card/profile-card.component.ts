@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { NzCardComponent } from 'ng-zorro-antd/card';
-import { Member } from '../interfaces/member';
+import { Member } from '../../interfaces/member';
 import { NzFormModule } from 'ng-zorro-antd/form';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { FormControl, FormGroup, FormsModule, NonNullableFormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';

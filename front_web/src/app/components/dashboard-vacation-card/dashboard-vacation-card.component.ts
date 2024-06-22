@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { VacationInfo } from '../interfaces/vacation-info';
+import { VacationInfo } from '../../interfaces/vacation-info';
 import { NzCardModule } from 'ng-zorro-antd/card';
 import { CommonModule } from '@angular/common';
 

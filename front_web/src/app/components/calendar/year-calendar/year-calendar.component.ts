@@ -1,7 +1,7 @@
 import { Component, Input, ViewEncapsulation } from '@angular/core';
 import { MiniCalendarComponent } from '../mini-calendar/mini-calendar.component';
 import { CommonModule } from '@angular/common';
-import { YearChangeComponent } from '../../../year-change/year-change.component';
+import { YearChangeComponent } from '../../year-change/year-change.component';
 @Component({
   selector: 'app-year-calendar',
   standalone: true,
