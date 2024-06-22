@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Company } from '../interfaces/company';
+import axios, { AxiosInstance } from 'axios';
 import { Member } from '../interfaces/member';
 import { environment } from '../../environments/environment';
 
@@ -8,18 +9,27 @@ import { environment } from '../../environments/environment';
 })
 export class CompanyService {
 
+  private axiosInstance: AxiosInstance;
   private baseUrl = environment.apiUrl;
 
+  constructor() {
+    this.axiosInstance = axios.create({
+      baseURL: environment.apiUrl,
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    });
+   }
+
   async getCompanyInfo(): Promise<Company> {
-    console.log("production", environment.production)
-    const data = await fetch(`${this.baseUrl}/companies/2`);
-    return await data.json() ?? [];
+    const response = await this.axiosInstance.get<Company>(`/companies/2`);
+    return response.data
   }
 
   async getCompanyMembers(): Promise<Member[]> {
-    const data = await fetch(`${this.baseUrl}/companies/2` + "/members");
-    return await data.json() ?? [];
+    const response = await this.axiosInstance.get<Member[]>(`/companies/2/members`);
+    return response.data
   }
 
-  constructor() { }
+  
 }
