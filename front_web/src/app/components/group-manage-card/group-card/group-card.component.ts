@@ -15,5 +15,5 @@ import { ModalAddButtonComponent } from '../../modal-add-button/modal-add-button
   styleUrl: './group-card.component.less'
 })
 export class GroupCardComponent {
-  @Input() group :Group = {name:'', color:'', member:[]}
+  @Input() group :Group = {name:'', color:'', members:[]}
 }

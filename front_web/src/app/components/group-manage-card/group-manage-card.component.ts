@@ -16,7 +16,7 @@ export class GroupManageCardComponent {
   group : Group = {
     name : '개발팀',
     color : '#ffffff',
-    member: [
+    members: [
       {
         name: '소경현',
         companyName: '싸이웰 시스템',

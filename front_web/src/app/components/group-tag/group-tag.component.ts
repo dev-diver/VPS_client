@@ -9,5 +9,5 @@ import { Group } from '../../interfaces/group';
   styleUrl: './group-tag.component.less'
 })
 export class GroupTagComponent {
-  @Input() group: Group = { color : '', name: '', member:[]}
+  @Input() group: Group = { color : '', name: '', members:[]}
 }
