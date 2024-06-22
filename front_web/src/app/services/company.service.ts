@@ -3,6 +3,7 @@ import { Company } from '../interfaces/company';
 import axios, { AxiosInstance } from 'axios';
 import { Member } from '../interfaces/member';
 import { environment } from '../../environments/environment';
+import { ID } from '../interfaces/id';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +11,6 @@ import { environment } from '../../environments/environment';
 export class CompanyService {
 
   private axiosInstance: AxiosInstance;
-  private baseUrl = environment.apiUrl;
 
   constructor() {
     this.axiosInstance = axios.create({
@@ -21,15 +21,14 @@ export class CompanyService {
     });
    }
 
-  async getCompanyInfo(): Promise<Company> {
-    const response = await this.axiosInstance.get<Company>(`/companies/2`);
+  async getCompanyInfo(companyId : ID): Promise<Company> {
+    const response = await this.axiosInstance.get<Company>(`/companies/${companyId}`);
     return response.data
   }
 
-  async getCompanyMembers(): Promise<Member[]> {
-    const response = await this.axiosInstance.get<Member[]>(`/companies/2/members`);
+  async getCompanyMembers(companyId : ID): Promise<Member[]> {
+    const response = await this.axiosInstance.get<Member[]>(`/companies/${companyId}/members`);
     return response.data
   }
-
   
 }

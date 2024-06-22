@@ -1,7 +1,8 @@
-import { Component, inject } from '@angular/core';
+import { Component, Input, inject } from '@angular/core';
 import { Company } from '../../interfaces/company';
 import { CompanyService } from '../../services/company.service';
 import { CommonModule } from '@angular/common';
+import { ID } from '../../interfaces/id';
 
 @Component({
   selector: 'app-company-card',
@@ -12,17 +13,22 @@ import { CommonModule } from '@angular/common';
 })
 export class CompanyCardComponent {
 
+  @Input() companyId : ID = 0;
+
   companyInfo : Company = {
     name :'',
     accounting_day: new Date(),
     vacation_generate_type_name: '',
     vacation_generate_type_description: ''
-  }
-  companyService : CompanyService = inject(CompanyService)
-  constructor() {
-    this.companyService.getCompanyInfo().then((data) => {
+  };
+
+  constructor(private companyService: CompanyService) {}
+
+  ngOnInit() {
+    this.companyService.getCompanyInfo(this.companyId).then((data) => {
       this.companyInfo = data;
     })
   }
+
 
 }
