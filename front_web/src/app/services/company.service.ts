@@ -1,21 +1,23 @@
 import { Injectable } from '@angular/core';
 import { Company } from '../interfaces/company';
 import { Member } from '../interfaces/member';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CompanyService {
 
-  url = "http://localhost:3000/api/companies/2"
+  private baseUrl = environment.apiUrl;
 
   async getCompanyInfo(): Promise<Company> {
-    const data = await fetch(this.url);
+    console.log("production", environment.production)
+    const data = await fetch(`${this.baseUrl}/companies/2`);
     return await data.json() ?? [];
   }
 
   async getCompanyMembers(): Promise<Member[]> {
-    const data = await fetch(this.url + "/members");
+    const data = await fetch(`${this.baseUrl}/companies/2` + "/members");
     return await data.json() ?? [];
   }
 

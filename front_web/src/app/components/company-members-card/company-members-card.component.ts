@@ -21,7 +21,6 @@ export class CompanyMembersCardComponent {
   companyService : CompanyService = inject(CompanyService)
   constructor() {
     this.companyService.getCompanyMembers().then((data) => {
-      console.log(data)
       this.members = data;
     })
   }
