@@ -7,7 +7,7 @@ export interface Vacation{
     end_date : Date,
     half_first: boolean,
     half_last: boolean,
-    process_state: Boolean
+    process_state: ID
 }
 
 export function createDefaultVacation(): Vacation {
@@ -18,6 +18,6 @@ export function createDefaultVacation(): Vacation {
         end_date: new Date(),
         half_first: false,
         half_last: false,
-        process_state: false
+        process_state: 1
     };
 }
