@@ -1,3 +1,7 @@
 <app-folding-card title="그룹 관리">
-    <app-group-card [group]="group"/>
+    @for (group of groups; track group) {
+    <div nz-col>
+        <app-group-card [group]="group" />
+    </div>
+    }
 </app-folding-card>
