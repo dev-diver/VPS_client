@@ -19,15 +19,7 @@ export function createDefaultVacationPlan(): VacationPlan {
     member_name: '',
     apply_date: new Date(),
     approve_date: new Date(),
-    vacations: [
-      {
-        teamName: '',
-        name: '',
-        startDatetime: new Date(),
-        endDatetime: new Date(),
-        process: true
-      }
-    ],
+    vacations: [],
     process_state: 0,
     cancel_state: 0
   };
