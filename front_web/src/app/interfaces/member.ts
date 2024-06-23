@@ -1,7 +1,7 @@
 export interface Member {
     name: string,
-    companyName: string, 
+    company_name: string, 
     email: string,
-    hireDate: Date,
-    isActivate: boolean
+    hire_date: Date,
+    is_activate: boolean
 }

@@ -15,11 +15,11 @@ import { CommonModule } from '@angular/common';
 })
 export class ProfileCardComponent {
   @Input() member: Member = {
-    name: '소경현',
-    companyName: '싸이웰 시스템',
-    email: 'valentine@cywell.co.kr',
-    hireDate: new Date(2022,3,3),
-    isActivate: true
+    name: '',
+    company_name: '',
+    email: '',
+    hire_date: new Date(),
+    is_activate: true
   }
 
   validateForm: FormGroup<{
