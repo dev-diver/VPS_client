@@ -1,8 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { ModalAddButtonComponent } from '../modal-add-button/modal-add-button.component';
 import { NzDatePickerModule } from 'ng-zorro-antd/date-picker';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { VacationService } from '../../services/vacation.service';
+import { ID } from '../../interfaces/id';
 
 @Component({
   selector: 'app-apply-vacation',
@@ -12,7 +14,12 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './apply-vacation.component.less'
 })
 export class ApplyVacationComponent {
+  
+  @Input() memberId : ID = 3;
   dateRange: Date[] = [];
+
+  constructor(private vacationService : VacationService) { }
+
   onChange(result: Date[]): void {
     console.log('Selected Time: ', result);
   }
@@ -26,8 +33,19 @@ export class ApplyVacationComponent {
   }
 
   handleOk = async () : Promise<void> => {
-    // 비동기 작업을 수행
-    await this.simulateAsyncOperation();
+    await this.vacationService.postVacationPlan(this.memberId, {
+      approver_1 : 1,
+      approver_final : 2,
+      vacations: [
+        {
+          start_date: this.dateRange[0],
+          end_date: this.dateRange[1],
+          half_first: false,
+          half_last: false,
+          vacation_type: 1
+        }
+      ]
+    });
   }
 
   private simulateAsyncOperation = (): Promise<void> => {
