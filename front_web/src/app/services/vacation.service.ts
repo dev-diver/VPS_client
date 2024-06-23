@@ -30,4 +30,14 @@ export class VacationService {
     const response = await this.axiosInstance.post(`/members/${memberId}/vacations/plans`, vacations);
     return response.data
   }
+
+  async rejectVacation(vacationId: ID): Promise<void> {
+    const response = await this.axiosInstance.post(`/vacations/${vacationId}/reject`)
+    return response.data
+  }
+
+  async cancelRejectVacation(vacationId: ID): Promise<void> {
+    const response = await this.axiosInstance.post(`/vacations/${vacationId}/cancel-reject`)
+    return response.data
+  }
 }
