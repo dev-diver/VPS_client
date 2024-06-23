@@ -1,4 +1,4 @@
-export interface VacationInfo{
+export interface Vacation{
     teamName : string,
     name: string,
     startDatetime : Date,

@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { VacationInfo } from '../../interfaces/vacation-info';
+import { Vacation } from '../../interfaces/vacation';
 import { NzCardModule } from 'ng-zorro-antd/card';
 import { CommonModule } from '@angular/common';
 
@@ -11,7 +11,7 @@ import { CommonModule } from '@angular/common';
   styleUrl: './dashboard-vacation-card.component.less'
 })
 export class DashboardVacationCardComponent {
-  @Input() contents : VacationInfo = {
+  @Input() contents : Vacation = {
     teamName : '',
     name: '',
     startDatetime : new Date(),

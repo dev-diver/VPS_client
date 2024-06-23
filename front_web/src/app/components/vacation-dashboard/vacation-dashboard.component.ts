@@ -4,7 +4,7 @@ import { NzListModule } from 'ng-zorro-antd/list';
 import { CommonModule } from '@angular/common';
 import { YearChangeComponent } from '../year-change/year-change.component';
 import { DashboardVacationCardComponent } from '../dashboard-vacation-card/dashboard-vacation-card.component';
-import { VacationInfo } from '../../interfaces/vacation-info';
+import { Vacation } from '../../interfaces/vacation';
 
 @Component({
   selector: 'app-vacation-dashboard',
@@ -16,7 +16,7 @@ import { VacationInfo } from '../../interfaces/vacation-info';
 })
 export class VacationDashboardComponent {
   @Input() year: number = new Date().getFullYear()
-  data: { [key:number]: VacationInfo[]} = {
+  data: { [key:number]: Vacation[]} = {
     2024: [
       {
         teamName: '개발팀',
