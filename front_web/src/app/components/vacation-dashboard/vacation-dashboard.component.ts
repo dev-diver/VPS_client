@@ -5,6 +5,8 @@ import { CommonModule } from '@angular/common';
 import { YearChangeComponent } from '../year-change/year-change.component';
 import { DashboardVacationPlanCardComponent } from '../dashboard-vacation-plan-card/dashboard-vacation-plan-card.component';
 import { VacationPlan } from '../../interfaces/vacation-plan';
+import { VacationService } from '../../services/vacation.service';
+import { ID } from '../../interfaces/id';
 
 @Component({
   selector: 'app-vacation-dashboard',
@@ -15,30 +17,17 @@ import { VacationPlan } from '../../interfaces/vacation-plan';
   encapsulation: ViewEncapsulation.None
 })
 export class VacationDashboardComponent {
+  @Input() companyId: ID = 2
   @Input() year: number = new Date().getFullYear()
-  data: VacationPlan[] = [
-    {
-      id: 1,
-      member_id: 1,
-      member_name: '소경현',
-      apply_date: new Date(),
-      approve_date: new Date(),
-      vacations: [
-        {
-          teamName: '개발팀',
-          name: '소경현',
-          startDatetime : new Date(),
-          endDatetime : new Date(),
-          process: true
-        }
-      ],
-      process_state: 1,
-      cancel_state: 1
-    }
-  ]
+  data: VacationPlan[] = []
+
+  constructor(private vacationService : VacationService) { }
 
   requestSituation(): void {
-    
+    this.vacationService.getCompanyVacationPlanWithYear(this.companyId, this.year).then((data) => {
+      console.log(data)
+      this.data = data
+    })
   }
 
   ngOnChanges(changes: SimpleChanges): void {
