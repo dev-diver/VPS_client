@@ -1,9 +1,9 @@
 <app-page-layout>
     <div left>
-        <app-vacation-card [year]="year"/>
+        <app-vacation-card [year]="year" />
     </div>
     <div>
-        <app-vacation-dashboard [year]="year"/>
+        <app-vacation-dashboard [year]="year" [yearChange]="onYearChange" />
     </div>
     <div right>
         <app-group-filter />

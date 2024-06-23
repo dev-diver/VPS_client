@@ -14,12 +14,10 @@ export class YearChangeComponent {
   @Output() yearChange = new EventEmitter<number>();
 
   decreaseYear = () => {
-    this.year-=1
-    this.yearChange.emit(this.year);
+    this.yearChange.emit(this.year-1);
   }
 
   increaseYear = () => {
-    this.year+=1
-    this.yearChange.emit(this.year);
+    this.yearChange.emit(this.year+1);
   }
 }

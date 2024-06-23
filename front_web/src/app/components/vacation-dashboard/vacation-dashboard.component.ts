@@ -19,29 +19,22 @@ import { ID } from '../../interfaces/id';
 export class VacationDashboardComponent {
   @Input() companyId: ID = 2
   @Input() year: number = new Date().getFullYear()
+  @Input() yearChange = (newYear:number): void => {}
   data: VacationPlan[] = []
 
   constructor(private vacationService : VacationService) { }
 
-  requestSituation(): void {
+  requestSituation = () : void => {
     this.vacationService.getCompanyVacationPlanWithYear(this.companyId, this.year).then((data) => {
       console.log(data)
       this.data = data
     })
   }
-
+  
   ngOnChanges(changes: SimpleChanges): void {
-    if(changes['year']){
+    if (changes['companyId'] || changes['year']) {
       this.requestSituation();
     }
-  }
-
-  decreaseYear = () => {
-    this.year-=1
-  }
-
-  increaseYear = () => {
-    this.year+=1
   }
 
 }
