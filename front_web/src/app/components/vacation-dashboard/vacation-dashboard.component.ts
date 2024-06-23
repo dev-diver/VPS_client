@@ -3,62 +3,42 @@ import { NzCardModule } from 'ng-zorro-antd/card';
 import { NzListModule } from 'ng-zorro-antd/list';
 import { CommonModule } from '@angular/common';
 import { YearChangeComponent } from '../year-change/year-change.component';
-import { DashboardVacationCardComponent } from '../dashboard-vacation-card/dashboard-vacation-card.component';
-import { Vacation } from '../../interfaces/vacation';
+import { DashboardVacationPlanCardComponent } from '../dashboard-vacation-plan-card/dashboard-vacation-plan-card.component';
+import { VacationPlan } from '../../interfaces/vacation-plan';
 
 @Component({
   selector: 'app-vacation-dashboard',
   standalone: true,
-  imports: [DashboardVacationCardComponent, YearChangeComponent,CommonModule, NzCardModule, NzListModule],
+  imports: [DashboardVacationPlanCardComponent, YearChangeComponent,CommonModule, NzCardModule, NzListModule],
   templateUrl: './vacation-dashboard.component.html',
   styleUrl: './vacation-dashboard.component.less',
   encapsulation: ViewEncapsulation.None
 })
 export class VacationDashboardComponent {
   @Input() year: number = new Date().getFullYear()
-  data: { [key:number]: Vacation[]} = {
-    2024: [
-      {
-        teamName: '개발팀',
-        name: '소경현',
-        startDatetime : new Date(),
-        endDatetime : new Date(),
-        process: true
-      },
-      {
-        teamName: '개발팀',
-        name: '김장겸',
-        startDatetime : new Date(),
-        endDatetime : new Date(),
-        process: true
-      },
-    ]
-  }
+  data: VacationPlan[] = [
+    {
+      id: 1,
+      member_id: 1,
+      member_name: '소경현',
+      apply_date: new Date(),
+      approve_date: new Date(),
+      vacations: [
+        {
+          teamName: '개발팀',
+          name: '소경현',
+          startDatetime : new Date(),
+          endDatetime : new Date(),
+          process: true
+        }
+      ],
+      process_state: 1,
+      cancel_state: 1
+    }
+  ]
 
   requestSituation(): void {
-    this.data[2023] = [
-      {
-        teamName: '개발팀',
-        name: '박소영',
-        startDatetime : new Date(),
-        endDatetime : new Date(),
-        process: true
-      },
-      {
-        teamName: '개발팀',
-        name: '김장겸',
-        startDatetime : new Date(),
-        endDatetime : new Date(),
-        process: true
-      },
-      {
-        teamName: '개발팀',
-        name: '소경현',
-        startDatetime : new Date(),
-        endDatetime : new Date(),
-        process: true
-      },
-    ]
+    
   }
 
   ngOnChanges(changes: SimpleChanges): void {

@@ -1,0 +1,10 @@
+<div class="vacation-dashboard">
+  <nz-list [nzDataSource]="vacationPlanData.vacations" nzBordered>
+    <nz-list-header>{{vacationPlanData.member_name}}</nz-list-header>
+    @for (item of vacationPlanData.vacations; track item) {
+    <nz-list-item>
+      <app-dashboard-vacation-card [contents]="item" />
+    </nz-list-item>
+    }
+  </nz-list>
+</div>

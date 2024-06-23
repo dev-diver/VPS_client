@@ -1,10 +1,10 @@
 <div class="vacation-dashboard">
-    <app-year-change [(year)]="year"/>
-    <nz-list [nzDataSource]="data[year]" nzBordered>
+    <app-year-change [(year)]="year" />
+    <nz-list [nzDataSource]="data" nzBordered>
         <nz-list-header>휴가 신청 현황</nz-list-header>
-        @for (item of data[year]; track item) {
+        @for (item of data; track item) {
         <nz-list-item>
-            <app-dashboard-vacation-card [contents]="item"/>
+            <app-dashboard-vacation-plan-card [vacationPlanData]="item" />
         </nz-list-item>
         }
     </nz-list>
