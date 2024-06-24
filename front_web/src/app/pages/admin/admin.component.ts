@@ -6,6 +6,8 @@ import { ModalAddButtonComponent } from '../../components/modal-add-button/modal
 import { PageLayoutComponent } from '../../page-layout/page-layout.component';
 import { FoldingCardComponent } from '../../components/folding-card/folding-card.component';
 import { CompanyCardComponent } from '../../components/company-card/company-card.component';
+import { Auth } from '../../interfaces/auth';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-admin',
@@ -15,5 +17,10 @@ import { CompanyCardComponent } from '../../components/company-card/company-card
   styleUrl: './admin.component.less'
 })
 export class AdminComponent {
+  auth: Auth = {} as Auth;
+
+  constructor(private authService: AuthService) {
+    this.auth = this.authService.auth;
+  }
 
 }

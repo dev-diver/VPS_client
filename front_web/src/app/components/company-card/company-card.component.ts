@@ -2,7 +2,7 @@ import { Component, Input } from '@angular/core';
 import { Company } from '../../interfaces/company';
 import { CompanyService } from '../../services/company.service';
 import { CommonModule } from '@angular/common';
-import { ID } from '../../interfaces/id';
+import { Auth } from '../../interfaces/auth';
 
 @Component({
   selector: 'app-company-card',
@@ -13,22 +13,15 @@ import { ID } from '../../interfaces/id';
 })
 export class CompanyCardComponent {
 
-  @Input() companyId : ID = 0;
-
-  companyInfo : Company = {
-    name :'',
-    accounting_day: new Date(),
-    vacation_generate_type_name: '',
-    vacation_generate_type_description: ''
-  };
+  @Input() auth : Auth = {} as Auth;
+  companyInfo : Company = {} as Company;
 
   constructor(private companyService: CompanyService) {}
 
   ngOnInit() {
-    this.companyService.getCompanyInfo(this.companyId).then((data) => {
+    this.companyService.getCompanyInfo(this.auth.company_id).then((data) => {
       this.companyInfo = data;
     })
   }
-
 
 }

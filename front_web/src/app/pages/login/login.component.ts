@@ -6,6 +6,7 @@ import { FormControl, FormGroup, NonNullableFormBuilder, Validators } from '@ang
 import { Router } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 import { NzFlexModule } from 'ng-zorro-antd/flex';
+import { AuthService } from '../../services/auth.service';
 @Component({
   selector: 'app-login',
   standalone: true,
@@ -14,6 +15,9 @@ import { NzFlexModule } from 'ng-zorro-antd/flex';
   styleUrl: './login.component.less'
 })
 export class LoginComponent {
+
+  constructor(private router: Router, private fb: NonNullableFormBuilder, private authService: AuthService) {}
+
   validateForm: FormGroup<{
     userName: FormControl<string>;
     password: FormControl<string>;
@@ -25,8 +29,10 @@ export class LoginComponent {
   });
 
   submitForm(): void {
+    const email = this.validateForm.value.userName as string;
+    const password = this.validateForm.value.password as string;
+    this.authService.login(email, password);
     console.log('submit', this.validateForm.value);
     this.router.navigate(['/calendar'])
   }
-  constructor(private router: Router, private fb: NonNullableFormBuilder) {}
 }

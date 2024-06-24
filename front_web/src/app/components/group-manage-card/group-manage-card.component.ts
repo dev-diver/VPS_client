@@ -7,6 +7,7 @@ import { FoldingCardComponent } from '../folding-card/folding-card.component';
 import { NzListModule } from 'ng-zorro-antd/list';
 import { NzGridModule } from 'ng-zorro-antd/grid';
 import { CompanyService } from '../../services/company.service';
+import { Auth } from '../../interfaces/auth';
 
 @Component({
   selector: 'app-group-manage-card',
@@ -17,13 +18,13 @@ import { CompanyService } from '../../services/company.service';
 })
 export class GroupManageCardComponent {
 
-  @Input() companyId : number = 0
+  @Input() auth : Auth = {} as Auth;
   groups : Group[] = []
 
   constructor(private companyService: CompanyService) {}
 
   ngOnInit() {
-    this.companyService.getCompanyGroups(this.companyId).then((data) => {
+    this.companyService.getCompanyGroups(this.auth.company_id).then((data) => {
       this.groups = data;
     })
   }
