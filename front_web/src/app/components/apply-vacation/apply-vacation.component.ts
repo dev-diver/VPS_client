@@ -15,7 +15,7 @@ import { ID } from '../../interfaces/id';
 })
 export class ApplyVacationComponent {
   
-  @Input() memberId : ID = 3;
+  @Input() memberId : ID = 0;
   dateRange: Date[] = [];
 
   constructor(private vacationService : VacationService) { }
@@ -48,13 +48,4 @@ export class ApplyVacationComponent {
     });
   }
 
-  private simulateAsyncOperation = (): Promise<void> => {
-    return new Promise<void>((resolve) => {
-      setTimeout(() => {
-        console.log(this.dateRange)
-        console.log('Async operation completed');
-        resolve();
-      }, 2000);
-    });
-  }
 }

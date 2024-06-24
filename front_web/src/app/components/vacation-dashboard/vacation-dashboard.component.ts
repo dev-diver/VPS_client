@@ -17,7 +17,7 @@ import { ID } from '../../interfaces/id';
   encapsulation: ViewEncapsulation.None
 })
 export class VacationDashboardComponent {
-  @Input() companyId: ID = 2
+  @Input() companyId: ID = 0
   @Input() year: number = new Date().getFullYear()
   @Input() yearChange = (newYear:number): void => {}
   data: VacationPlan[] = []
@@ -25,8 +25,7 @@ export class VacationDashboardComponent {
   constructor(private vacationService : VacationService) { }
 
   requestSituation = () : void => {
-    this.vacationService.getCompanyVacationPlanWithYear(this.companyId, this.year).then((data) => {
-      console.log(data)
+    this.vacationService.getCompanyVacationPlansWithYear(this.companyId, this.year).then((data) => {
       this.data = data
     })
   }

@@ -14,6 +14,7 @@ import { ApplyVacationComponent } from '../../components/apply-vacation/apply-va
 })
 export class DashboardComponent {
   @Input() year: number = new Date().getFullYear()
+  @Input() companyId: number = 1
 
   onYearChange = (newYear: number): void  => {
     this.year = newYear;

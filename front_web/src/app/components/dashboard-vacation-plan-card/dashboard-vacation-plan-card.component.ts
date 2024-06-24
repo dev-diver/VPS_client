@@ -16,8 +16,8 @@ import { NzButtonModule } from 'ng-zorro-antd/button';
   styleUrl: './dashboard-vacation-plan-card.component.less'
 })
 export class DashboardVacationPlanCardComponent {
-  approvalAuth: ApprovalAuth = {approval_state: 1, member_id: 1};
-  @Input() memberId: ID = 1;
+  approvalAuth: ApprovalAuth = {approval_state: 0, member_id: 0};
+  @Input() memberId: ID = 0;
   @Input() vacationPlanData: VacationPlan = createDefaultVacationPlan();
   disabled = false;
 
