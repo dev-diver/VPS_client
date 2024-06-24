@@ -1,29 +1,31 @@
 <div nz-row>
   <div nz-col nzSpan="4">logo</div>
-  <div nz-col nzSpan="17">
-      <ul nz-menu nzTheme="dark" nzMode="horizontal">
-        <li nz-menu-item>
-          <a [routerLink]="['/calendar']">캘린더</a>
-        </li>
-        <li nz-menu-item>
-          <a [routerLink]="['/dashboard']">신청현황</a>
-        </li>
-        <li nz-menu-item>
-          <a [routerLink]="['/vacation-promotion']">연차촉진</a>
-        </li>
-        <li nz-menu-item>
-          <a [routerLink]="['/admin']">관리</a>
-        </li>
-      </ul>
-  </div>
-  <div nz-col nzSpan="3">
-    <a [routerLink]="['/dashboard']">
-      <nz-avatar class="avatar" nzText="U"></nz-avatar>
-    </a>
-    <nz-badge class="large-icon" [nzCount]="count">
-      <a [routerLink]="['/notification']" 
-          nz-icon nzType="bell" nzTheme="twotone"></a>
-    </nz-badge>
-    <button nz-button nzType="default" (click)="logout()">로그아웃</button>
-  </div>
+  @if(auth.company_id){
+    <div nz-col nzSpan="17">
+        <ul nz-menu nzTheme="dark" nzMode="horizontal">
+          <li nz-menu-item>
+            <a [routerLink]="['/calendar']">캘린더</a>
+          </li>
+          <li nz-menu-item>
+            <a [routerLink]="['/dashboard']">신청현황</a>
+          </li>
+          <li nz-menu-item>
+            <a [routerLink]="['/vacation-promotion']">연차촉진</a>
+          </li>
+          <li nz-menu-item>
+            <a [routerLink]="['/admin']">관리</a>
+          </li>
+        </ul>
+    </div>
+    <div nz-col nzSpan="3">
+      <a [routerLink]="['/dashboard']">
+        <nz-avatar class="avatar" nzText="U"></nz-avatar>
+      </a>
+      <nz-badge class="large-icon" [nzCount]="notificationCount">
+        <a [routerLink]="['/notification']" 
+            nz-icon nzType="bell" nzTheme="twotone"></a>
+      </nz-badge>
+      <button nz-button nzType="default" (click)="logout()">로그아웃</button>
+    </div>
+  }
 </div>

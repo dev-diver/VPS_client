@@ -7,6 +7,8 @@ import { NzFlexModule } from 'ng-zorro-antd/flex';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzAvatarModule } from 'ng-zorro-antd/avatar';
 import { NzBadgeModule } from 'ng-zorro-antd/badge';
+import { Auth } from '../../interfaces/auth';
+import { AuthService } from '../../services/auth.service';
 @Component({
   selector: 'app-header',
   standalone: true,
@@ -15,10 +17,11 @@ import { NzBadgeModule } from 'ng-zorro-antd/badge';
   styleUrl: './header.component.less'
 })
 export class HeaderComponent {
+  auth: Auth = {} as Auth;
   showNavigate: boolean = true;
-  count : number = 1;
-
-  constructor(private router: Router) {
+  notificationCount : number = 1;
+  constructor(private router: Router, private authService: AuthService) {
+    this.auth = this.authService.auth;
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
         this.showNavigate = event.url !== '/login';
@@ -27,6 +30,7 @@ export class HeaderComponent {
   }
 
   logout(){
+    this.authService.logout();
     this.router.navigate(['/login']);
   }
 }
