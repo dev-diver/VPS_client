@@ -5,6 +5,7 @@ import { NzFormModule } from 'ng-zorro-antd/form';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { FormControl, FormGroup, FormsModule, NonNullableFormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { Auth } from '../../interfaces/auth';
 
 @Component({
   selector: 'app-profile-card',
@@ -14,13 +15,7 @@ import { CommonModule } from '@angular/common';
   styleUrl: './profile-card.component.less'
 })
 export class ProfileCardComponent {
-  @Input() member: Member = {
-    name: '',
-    company_name: '',
-    email: '',
-    hire_date: new Date(),
-    is_activate: true
-  }
+  @Input() auth: Auth = {} as Auth;
 
   validateForm: FormGroup<{
     password: FormControl<string>;

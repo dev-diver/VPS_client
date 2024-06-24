@@ -5,6 +5,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { VacationService } from '../../services/vacation.service';
 import { ID } from '../../interfaces/id';
+import { Auth } from '../../interfaces/auth';
 
 @Component({
   selector: 'app-apply-vacation',
@@ -15,7 +16,7 @@ import { ID } from '../../interfaces/id';
 })
 export class ApplyVacationComponent {
   
-  @Input() memberId : ID = 0;
+  @Input() auth : Auth = {} as Auth
   dateRange: Date[] = [];
 
   constructor(private vacationService : VacationService) { }
@@ -33,7 +34,7 @@ export class ApplyVacationComponent {
   }
 
   handleOk = async () : Promise<void> => {
-    await this.vacationService.postVacationPlan(this.memberId, {
+    await this.vacationService.postVacationPlan(this.auth.member.id, {
       approver_1 : 1,
       approver_final : 2,
       vacations: [

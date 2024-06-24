@@ -7,6 +7,7 @@ import { DashboardVacationPlanCardComponent } from '../dashboard-vacation-plan-c
 import { VacationPlan } from '../../interfaces/vacation-plan';
 import { VacationService } from '../../services/vacation.service';
 import { ID } from '../../interfaces/id';
+import { Auth } from '../../interfaces/auth';
 
 @Component({
   selector: 'app-vacation-dashboard',
@@ -17,22 +18,22 @@ import { ID } from '../../interfaces/id';
   encapsulation: ViewEncapsulation.None
 })
 export class VacationDashboardComponent {
-  @Input() companyId: ID = 0
-  @Input() year: number = new Date().getFullYear()
+  @Input() auth : Auth = {} as Auth
+  @Input() year: number = 0
   @Input() yearChange = (newYear:number): void => {}
   data: VacationPlan[] = []
 
   constructor(private vacationService : VacationService) { }
 
-  requestSituation = () : void => {
-    this.vacationService.getCompanyVacationPlansWithYear(this.companyId, this.year).then((data) => {
+  requestPeriodVacationPlans = () : void => {
+    this.vacationService.getCompanyVacationPlansWithYear(this.auth.company_id, this.year).then((data) => {
       this.data = data
     })
   }
   
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['companyId'] || changes['year']) {
-      this.requestSituation();
+      this.requestPeriodVacationPlans();
     }
   }
 

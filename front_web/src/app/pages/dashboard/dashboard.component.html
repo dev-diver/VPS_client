@@ -3,10 +3,10 @@
         <app-vacation-card [year]="year" />
     </div>
     <div>
-        <app-vacation-dashboard [year]="year" [yearChange]="onYearChange" [companyId]="companyId" />
+        <app-vacation-dashboard [year]="year" [yearChange]="onYearChange" [auth]="auth" />
     </div>
     <div right>
         <app-group-filter />
-        <app-apply-vacation [memberId]="6"/>
+        <app-apply-vacation [auth]="auth"/>
     </div>
 </app-page-layout>

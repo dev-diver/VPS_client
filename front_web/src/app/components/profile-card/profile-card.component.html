@@ -1,7 +1,7 @@
-<nz-card [nzTitle]="member.name">
+<nz-card [nzTitle]="auth.member.name">
     <form nz-form [formGroup]="validateForm">
-        <p>회사명 : {{member.company_name}}</p>
-        <p>Email : {{member.email}}</p>
+        <!-- <p>회사명 : {{auth.company.name}}</p> -->
+        <p>Email : {{auth.member.email}}</p>
         <nz-form-item>
             <nz-form-control nzErrorTip="변경하려는 비밀번호를 입력해주세요">
                 <nz-input-group nzPrefixIcon="lock">
@@ -9,7 +9,7 @@
                 </nz-input-group>
             </nz-form-control>
         </nz-form-item>
-        <p>입사일: {{member.hire_date | date: 'yyyy-MM-dd'}}</p>
+        <p>입사일: {{auth.member.hire_date | date: 'yyyy-MM-dd'}}</p>
         <!-- <p>그룹 : {{member.groups}}</p> -->
         <button nz-button nzType="default" (click)="deactivate()">퇴사</button>
         <nz-form-item>
