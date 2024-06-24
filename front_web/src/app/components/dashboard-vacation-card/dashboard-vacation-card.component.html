@@ -2,12 +2,13 @@
     <p [ngClass]="{'line-through': disabled}">
         {{contents.start_date | date: 'yyyy/MM/dd'}}~{{contents.end_date | date: 'yyyy/MM/dd'}}
     </p>
-    <button nz-button nzType="primary" [disabled]="disabled" (click)="onReject()">
-        반려
-    </button>
     @if (disabled) {
     <button nz-button nzType="primary" (click)="onCancelReject()">
         반려 취소
+    </button>
+    } @else {
+    <button nz-button nzType="primary" nzDanger [disabled]="disabled" (click)="onReject()">
+        반려
     </button>
     }
 </nz-card>
