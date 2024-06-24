@@ -42,7 +42,7 @@ export class AxiosInstanceService {
   }
 
   // Axios 인스턴스를 반환하는 메소드
-  getAxiosInstance(): AxiosInstance {
+  getAxiosInstance = (): AxiosInstance => {
     return this.axiosInstance;
   }
 }

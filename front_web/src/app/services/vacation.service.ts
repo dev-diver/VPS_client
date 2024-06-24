@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
-import axios, { AxiosInstance } from 'axios';
-import { environment } from '../../environments/environment';
+import { AxiosInstance } from 'axios';
 import { ID } from '../interfaces/id';
 import { VacationPlan } from '../interfaces/vacation-plan';
 import { VacationPlan as VacationPlanRequest } from '../interfaces/request/vacation-plan';
 import { ApprovalAuth } from '../interfaces/approval-auth';
+import { AxiosInstanceService } from './axios-instance.service';
 
 @Injectable({
   providedIn: 'root'
@@ -13,17 +13,14 @@ export class VacationService {
 
   private axiosInstance: AxiosInstance;
 
-  constructor() { 
-    this.axiosInstance = axios.create({
-      baseURL: environment.apiUrl,
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    });
+  constructor() {
+    this.axiosInstance = new AxiosInstanceService().getAxiosInstance()
   }
 
-  async getCompanyVacationPlanWithYear(companyId :ID, year: number): Promise<VacationPlan[]> {
+  async getCompanyVacationPlansWithYear(companyId :ID, year: number): Promise<VacationPlan[]> {
     const response = await this.axiosInstance.get(`/companies/${companyId}/vacations/plans?year=${year}`);
+    console.log(`/companies/${companyId}/vacations/plans?year=${year}`)
+    console.log(response.data)
     return response.data
   }
 

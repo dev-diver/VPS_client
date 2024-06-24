@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
 import { Company } from '../interfaces/company';
-import axios, { AxiosInstance } from 'axios';
+import { AxiosInstance } from 'axios';
 import { Member } from '../interfaces/member';
-import { environment } from '../../environments/environment';
 import { ID } from '../interfaces/id';
 import { Group } from '../interfaces/group';
+import { AxiosInstanceService } from './axios-instance.service';
+
 
 @Injectable({
   providedIn: 'root'
@@ -14,13 +15,8 @@ export class CompanyService {
   private axiosInstance: AxiosInstance;
 
   constructor() {
-    this.axiosInstance = axios.create({
-      baseURL: environment.apiUrl,
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    });
-   }
+    this.axiosInstance = new AxiosInstanceService().getAxiosInstance()
+  }
 
   async getCompanyInfo(companyId : ID): Promise<Company> {
     const response = await this.axiosInstance.get<Company>(`/companies/${companyId}`);
