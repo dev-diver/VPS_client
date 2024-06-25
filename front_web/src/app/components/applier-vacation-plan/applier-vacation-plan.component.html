@@ -1,0 +1,12 @@
+<nz-list [nzDataSource]="data" nzBordered>
+    <nz-list-header>내 휴가 신청 현황</nz-list-header>
+    @for (item of data; track item) {
+    <nz-list-item>
+        <app-applier-vacation-plan-card 
+            [vacationPlanData]="item" 
+            [onVacationPlanChange]="replaceVacationPlan"
+            (vacationPlanDelete)="deleteVacationPlan(item.id)"
+        />
+    </nz-list-item>
+    }
+</nz-list>

@@ -1,0 +1,8 @@
+<nz-list [nzDataSource]="data" nzBordered>
+    <nz-list-header>승인할 신청 현황</nz-list-header>
+    @for (item of data; track item) {
+    <nz-list-item>
+        <app-dashboard-vacation-plan-card [vacationPlanData]="item" />
+    </nz-list-item>
+    }
+</nz-list>

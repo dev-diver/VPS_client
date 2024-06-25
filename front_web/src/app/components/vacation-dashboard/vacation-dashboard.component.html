@@ -1,11 +1,5 @@
 <div class="vacation-dashboard">
     <app-year-change [year]="year" (yearChange)="yearChange($event)" />
-    <nz-list [nzDataSource]="data" nzBordered>
-        <nz-list-header>휴가 신청 현황</nz-list-header>
-        @for (item of data; track item) {
-        <nz-list-item>
-            <app-dashboard-vacation-plan-card [vacationPlanData]="item" />
-        </nz-list-item>
-        }
-    </nz-list>
+    <app-applier-vacation-plan [year]="year" [auth]="auth" />
+    <app-approver-vacation-plan [year]="year" [auth]="auth" />
 </div>
