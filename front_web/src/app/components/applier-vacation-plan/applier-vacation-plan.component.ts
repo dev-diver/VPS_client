@@ -3,7 +3,7 @@ import { NzListModule } from 'ng-zorro-antd/list';
 import { VacationPlan } from '../../interfaces/vacation-plan';
 import { VacationService } from '../../services/vacation.service';
 import { Auth } from '../../interfaces/auth';
-import { ApplierVacationPlanCardComponent } from '../applier-vacation-plan-card/applier-vacation-plan-card.component';
+import { ApplierVacationPlanCardComponent } from './applier-vacation-plan-card/applier-vacation-plan-card.component';
 
 @Component({
   selector: 'app-applier-vacation-plan',

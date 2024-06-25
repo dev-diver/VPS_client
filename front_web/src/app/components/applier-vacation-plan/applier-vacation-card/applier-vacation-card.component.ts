@@ -2,10 +2,10 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzCardModule } from 'ng-zorro-antd/card';
 import { CommonModule } from '@angular/common';
-import { Vacation } from '../../interfaces/vacation';
-import { Vacation as VacationRequest } from '../../interfaces/request/vacation';
-import { VacationService } from '../../services/vacation.service';
-import { ID } from '../../interfaces/id';
+import { Vacation } from '../../../interfaces/vacation';
+import { Vacation as VacationRequest } from '../../../interfaces/request/vacation';
+import { VacationService } from '../../../services/vacation.service';
+import { ID } from '../../../interfaces/id';
 
 @Component({
   selector: 'app-applier-vacation-card',

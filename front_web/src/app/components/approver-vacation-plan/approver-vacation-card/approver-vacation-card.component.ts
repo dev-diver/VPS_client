@@ -1,18 +1,18 @@
 import { Component, Input } from '@angular/core';
-import { Vacation } from '../../interfaces/vacation';
+import { Vacation } from '../../../interfaces/vacation';
 import { NzCardModule } from 'ng-zorro-antd/card';
 import { CommonModule } from '@angular/common';
 import { NzButtonModule } from 'ng-zorro-antd/button';
-import { VacationService } from '../../services/vacation.service';
+import { VacationService } from '../../../services/vacation.service';
 
 @Component({
-  selector: 'app-dashboard-vacation-card',
+  selector: 'app-approver-vacation-card',
   standalone: true,
   imports: [NzButtonModule,NzCardModule, CommonModule],
-  templateUrl: './dashboard-vacation-card.component.html',
-  styleUrl: './dashboard-vacation-card.component.less'
+  templateUrl: './approver-vacation-card.component.html',
+  styleUrl: './approver-vacation-card.component.less'
 })
-export class DashboardVacationCardComponent {
+export class ApproverVacationCardComponent {
   @Input() contents : Vacation = {} as Vacation;
   disabled = false;
 

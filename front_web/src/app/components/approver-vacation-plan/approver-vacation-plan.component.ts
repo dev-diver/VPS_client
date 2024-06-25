@@ -3,12 +3,12 @@ import { VacationService } from '../../services/vacation.service';
 import { Auth } from '../../interfaces/auth';
 import { VacationPlan } from '../../interfaces/vacation-plan';
 import { NzListModule } from 'ng-zorro-antd/list';
-import { DashboardVacationPlanCardComponent } from '../dashboard-vacation-plan-card/dashboard-vacation-plan-card.component';
+import { ApproverVacationPlanCardComponent } from './approver-vacation-plan-card/approver-vacation-plan-card.component';
 
 @Component({
   selector: 'app-approver-vacation-plan',
   standalone: true,
-  imports: [NzListModule, DashboardVacationPlanCardComponent],
+  imports: [NzListModule, ApproverVacationPlanCardComponent],
   templateUrl: './approver-vacation-plan.component.html',
   styleUrl: './approver-vacation-plan.component.less'
 })

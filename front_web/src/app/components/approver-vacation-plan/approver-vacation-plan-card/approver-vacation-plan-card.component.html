@@ -3,7 +3,7 @@
   <nz-list [nzDataSource]="vacationPlanData.vacations" nzBordered>
     @for (item of vacationPlanData.vacations; track item) {
     <nz-list-item>
-      <app-dashboard-vacation-card [contents]="item" />
+      <app-approver-vacation-card [contents]="item" />
     </nz-list-item>
     }
   </nz-list>

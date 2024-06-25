@@ -1,21 +1,21 @@
 import { Component, Input } from '@angular/core';
 import { NzListModule } from 'ng-zorro-antd/list';
-import { DashboardVacationCardComponent } from '../dashboard-vacation-card/dashboard-vacation-card.component';
-import { VacationPlan } from '../../interfaces/vacation-plan';
+import { ApproverVacationCardComponent } from '../approver-vacation-card/approver-vacation-card.component';
+import { VacationPlan } from '../../../interfaces/vacation-plan';
 import { NzCardModule } from 'ng-zorro-antd/card';
-import { VacationService } from '../../services/vacation.service';
-import { ApprovalAuth } from '../../interfaces/approval-auth';
-import { ID } from '../../interfaces/id';
+import { VacationService } from '../../../services/vacation.service';
+import { ApprovalAuth } from '../../../interfaces/approval-auth';
+import { ID } from '../../../interfaces/id';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 
 @Component({
-  selector: 'app-dashboard-vacation-plan-card',
+  selector: 'app-approver-vacation-plan-card',
   standalone: true,
-  imports: [NzButtonModule, NzCardModule, NzListModule, DashboardVacationCardComponent],
-  templateUrl: './dashboard-vacation-plan-card.component.html',
-  styleUrl: './dashboard-vacation-plan-card.component.less'
+  imports: [NzButtonModule, NzCardModule, NzListModule, ApproverVacationCardComponent],
+  templateUrl: './approver-vacation-plan-card.component.html',
+  styleUrl: './approver-vacation-plan-card.component.less'
 })
-export class DashboardVacationPlanCardComponent {
+export class ApproverVacationPlanCardComponent {
   approvalAuth: ApprovalAuth = {approval_state: 0, member_id: 0};
   @Input() memberId: ID = 0;
   @Input() vacationPlanData: VacationPlan = {} as VacationPlan;

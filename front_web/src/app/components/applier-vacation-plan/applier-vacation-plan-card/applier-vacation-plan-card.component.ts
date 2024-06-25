@@ -3,10 +3,10 @@ import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzCardModule } from 'ng-zorro-antd/card';
 import { NzListModule } from 'ng-zorro-antd/list';
 import { ApplierVacationCardComponent } from '../applier-vacation-card/applier-vacation-card.component';
-import { ApprovalAuth } from '../../interfaces/approval-auth';
-import { VacationPlan } from '../../interfaces/vacation-plan';
-import { VacationService } from '../../services/vacation.service';
-import { ID } from '../../interfaces/id';
+import { ApprovalAuth } from '../../../interfaces/approval-auth';
+import { VacationPlan } from '../../../interfaces/vacation-plan';
+import { VacationService } from '../../../services/vacation.service';
+import { ID } from '../../../interfaces/id';
 
 @Component({
   selector: 'app-applier-vacation-plan-card',
