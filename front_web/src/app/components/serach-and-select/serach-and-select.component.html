@@ -1,0 +1,10 @@
+<nz-list [nzHeader]="headerTemplate">
+    <ng-template #headerTemplate>
+    <app-search-input (search)="onSearch($event)" #searchInput></app-search-input>
+    </ng-template>
+    @for (item of items; track item) {
+        <nz-list-item (click)="selectItem(item)">
+          {{ item.name }}
+        </nz-list-item>
+    }
+</nz-list>
