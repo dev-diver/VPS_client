@@ -12,6 +12,7 @@ export class AuthService {
 
   private axiosInstance: AxiosInstance;
   public auth: Auth = {} as Auth;
+  public isLoggedIn = false;
 
   constructor(private router: Router, ) {
     this.axiosInstance = new AxiosInstanceService().getAxiosInstance()
@@ -25,14 +26,17 @@ export class AuthService {
 
   logout() {
     this.clearAuth();
+
   }
 
   private setAuth(auth: Auth) {
     this.auth = auth;
+    this.isLoggedIn = true;
   }
 
   private clearAuth() {
     this.auth = {} as Auth;
+    this.isLoggedIn = false;
   }
   
 }

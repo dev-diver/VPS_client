@@ -6,6 +6,7 @@ import { NotificationComponent } from './pages/notification/notification.compone
 import { ProfileComponent } from './pages/profile/profile.component';
 import { VacationPromotionComponent } from './pages/vacation-promotion/vacation-promotion.component';
 import { AdminComponent } from './pages/admin/admin.component';
+import { authGuard } from './auth/auth.guard';
 
 export const routes: Routes = [
   {
@@ -16,31 +17,37 @@ export const routes: Routes = [
   {
     path: 'calendar',
     component: CalendarComponent,
+    canActivate: [authGuard],
     title: '캘린더',
   },
   {
     path: 'dashboard',
     component: DashboardComponent,
+    canActivate: [authGuard],
     title: '대쉬보드',
   },
   {
     path: 'profile',
     component: ProfileComponent,
+    canActivate: [authGuard],
     title: '프로필',
   },
   {
     path: 'notification',
     component: NotificationComponent,
+    canActivate: [authGuard],
     title: '알림',
   },
   {
     path: 'admin',
     component: AdminComponent,
+    canActivate: [authGuard],
     title: '관리',
   },
   {
     path: 'vacation-promotion',
     component: VacationPromotionComponent,
+    canActivate: [authGuard],
     title: '휴가 촉진',
   },
 ];
