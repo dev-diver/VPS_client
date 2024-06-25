@@ -21,9 +21,9 @@ export class HeaderComponent {
   showNavigate: boolean = true;
   notificationCount : number = 1;
   constructor(private router: Router, private authService: AuthService) {
-    this.auth = this.authService.auth;
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
+        this.auth = this.authService.auth;
         this.showNavigate = event.url !== '/login';
       }
     });

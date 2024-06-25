@@ -3,7 +3,6 @@ import { NzCardModule } from 'ng-zorro-antd/card';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzFormModule } from 'ng-zorro-antd/form';
 import { FormControl, FormGroup, NonNullableFormBuilder, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 import { NzFlexModule } from 'ng-zorro-antd/flex';
 import { AuthService } from '../../services/auth.service';
@@ -16,7 +15,7 @@ import { AuthService } from '../../services/auth.service';
 })
 export class LoginComponent {
 
-  constructor(private router: Router, private fb: NonNullableFormBuilder, private authService: AuthService) {}
+  constructor(private fb: NonNullableFormBuilder, private authService: AuthService) {}
 
   validateForm: FormGroup<{
     userName: FormControl<string>;
@@ -32,7 +31,5 @@ export class LoginComponent {
     const email = this.validateForm.value.userName as string;
     const password = this.validateForm.value.password as string;
     this.authService.login(email, password);
-    console.log('submit', this.validateForm.value);
-    this.router.navigate(['/calendar'])
   }
 }

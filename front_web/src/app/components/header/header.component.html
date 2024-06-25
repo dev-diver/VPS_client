@@ -1,6 +1,6 @@
 <div nz-row>
   <div nz-col nzSpan="4">logo</div>
-  @if(auth.company_id){
+  @if(showNavigate){
     <div nz-col nzSpan="17">
         <ul nz-menu nzTheme="dark" nzMode="horizontal">
           <li nz-menu-item>
@@ -19,7 +19,7 @@
     </div>
     <div nz-col nzSpan="3">
       <a [routerLink]="['/dashboard']">
-        <nz-avatar class="avatar" nzText="U"></nz-avatar>
+        <nz-avatar class="avatar" [nzText]="auth.member.name"></nz-avatar>
       </a>
       <nz-badge class="large-icon" [nzCount]="notificationCount">
         <a [routerLink]="['/notification']" 
