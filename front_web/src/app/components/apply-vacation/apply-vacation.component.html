@@ -1,12 +1,20 @@
 <app-modal-add-button 
     title="연차신청"
     [okHandler]="handleOk"
->
-    <nz-range-picker
-        nzFormat="yyyy-MM-dd"
-        [(ngModel)]="dateRange"
-        (ngModelChange)="onChange($event)"
-        (nzOnCalendarChange)="onCalendarChange($event)"
-        (nzOnOk)="onOk($event)"
-    ></nz-range-picker>
+>   
+    <div id="vacation-pickers">
+        <div *ngFor="let vacation of vacations.controls; let i = index" [formGroup]="vacation">
+            <nz-range-picker
+                nzFormat="yyyy-MM-dd"
+                formControlName="dateRange"
+                (ngModelChange)="onChange($event, i)"
+                (nzOnCalendarChange)="onCalendarChange($event)"
+                (nzOnOk)="onOk($event)"
+            ></nz-range-picker>
+            @if(i!=0){
+                <button nz-button nzType="default" (click)="removeVacation(i)">삭제</button>
+            }
+        </div>
+    </div>
+    <button nz-button nzType="primary" (click)="addVacation()">추가</button>
 </app-modal-add-button>
