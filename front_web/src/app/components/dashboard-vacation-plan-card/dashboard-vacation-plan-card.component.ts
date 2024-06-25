@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { NzListModule } from 'ng-zorro-antd/list';
 import { DashboardVacationCardComponent } from '../dashboard-vacation-card/dashboard-vacation-card.component';
-import { VacationPlan, createDefaultVacationPlan } from '../../interfaces/vacation-plan';
+import { VacationPlan } from '../../interfaces/vacation-plan';
 import { NzCardModule } from 'ng-zorro-antd/card';
 import { VacationService } from '../../services/vacation.service';
 import { ApprovalAuth } from '../../interfaces/approval-auth';
@@ -18,7 +18,7 @@ import { NzButtonModule } from 'ng-zorro-antd/button';
 export class DashboardVacationPlanCardComponent {
   approvalAuth: ApprovalAuth = {approval_state: 0, member_id: 0};
   @Input() memberId: ID = 0;
-  @Input() vacationPlanData: VacationPlan = createDefaultVacationPlan();
+  @Input() vacationPlanData: VacationPlan = {} as VacationPlan;
   disabled = false;
 
   constructor(private vacationService : VacationService) {}

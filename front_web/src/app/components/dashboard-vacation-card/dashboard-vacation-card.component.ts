@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { Vacation, createDefaultVacation } from '../../interfaces/vacation';
+import { Vacation } from '../../interfaces/vacation';
 import { NzCardModule } from 'ng-zorro-antd/card';
 import { CommonModule } from '@angular/common';
 import { NzButtonModule } from 'ng-zorro-antd/button';
@@ -13,7 +13,7 @@ import { VacationService } from '../../services/vacation.service';
   styleUrl: './dashboard-vacation-card.component.less'
 })
 export class DashboardVacationCardComponent {
-  @Input() contents : Vacation = createDefaultVacation();
+  @Input() contents : Vacation = {} as Vacation;
   disabled = false;
 
   constructor(private vacationService : VacationService) {}
