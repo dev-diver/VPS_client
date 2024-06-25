@@ -3,8 +3,7 @@
     [okHandler]="handleOk"
 >
     <nz-range-picker
-        [nzShowTime]="{ nzFormat: 'HH' }"
-        nzFormat="yyyy-MM-dd HH"
+        nzFormat="yyyy-MM-dd"
         [(ngModel)]="dateRange"
         (ngModelChange)="onChange($event)"
         (nzOnCalendarChange)="onCalendarChange($event)"
