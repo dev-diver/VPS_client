@@ -21,7 +21,7 @@ export class ApproverVacationPlanComponent {
 
 
   requestPeriodVacationPlans = () : void => {
-    this.vacationService.getCompanyVacationPlansWithYear(this.auth.company_id, this.year).then((data) => {
+    this.vacationService.getApproverVacationPlansWithYear(this.auth.member.id, this.year).then((data) => {
       this.data = data
     })
   }

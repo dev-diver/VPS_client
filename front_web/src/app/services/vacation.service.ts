@@ -21,7 +21,12 @@ export class VacationService {
 
   async getCompanyVacationPlansWithYear(companyId :ID, year: number): Promise<VacationPlan[]> {
     const response = await this.axiosInstance.get(`/companies/${companyId}/vacations/plans?year=${year}`);
-    console.log(`/companies/${companyId}/vacations/plans?year=${year}`)
+    console.log(response.data)
+    return response.data
+  }
+
+  async getApproverVacationPlansWithYear(memberId :ID, year: number): Promise<VacationPlan[]> {
+    const response = await this.axiosInstance.get(`/vacations/plans?approverID=${memberId}&year=${year}`);
     console.log(response.data)
     return response.data
   }
