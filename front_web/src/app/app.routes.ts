@@ -24,7 +24,7 @@ export const routes: Routes = [
     path: 'dashboard',
     component: DashboardComponent,
     canActivate: [authGuard],
-    title: '대쉬보드',
+    title: '신청현황',
   },
   {
     path: 'profile',
