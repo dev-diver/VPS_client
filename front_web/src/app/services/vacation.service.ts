@@ -3,8 +3,10 @@ import { AxiosInstance } from 'axios';
 import { ID } from '../interfaces/id';
 import { VacationPlan } from '../interfaces/vacation-plan';
 import { VacationPlan as VacationPlanRequest } from '../interfaces/request/vacation-plan';
+import { Vacation as VacationRequest } from '../interfaces/request/vacation';
 import { ApprovalAuth } from '../interfaces/approval-auth';
 import { AxiosInstanceService } from './axios-instance.service';
+import { Vacation } from '../interfaces/vacation';
 
 @Injectable({
   providedIn: 'root'
@@ -24,8 +26,38 @@ export class VacationService {
     return response.data
   }
 
+  async getVacationPlanById(vacationPlanId: ID): Promise<VacationPlan> {
+    const response = await this.axiosInstance.get(`/vacations/plans/${vacationPlanId}`);
+    return response.data
+  }
+
+  async getVacationById(vacationId: ID): Promise<Vacation> {
+    const response = await this.axiosInstance.get(`/vacations/${vacationId}`);
+    return response.data
+  }
+
   async postVacationPlan(memberId :ID, vacations: VacationPlanRequest): Promise<VacationPlan> {
     const response = await this.axiosInstance.post(`/members/${memberId}/vacations/plans`, vacations);
+    return response.data
+  }
+
+  async changeVacationPlan(vacationPlanId: ID): Promise<VacationPlan> {
+    const response = await this.axiosInstance.patch(`/vacations/plans/${vacationPlanId}`);
+    return response.data
+  }
+
+  async cancelVacationPlan(vacationPlanId: ID): Promise<void> {
+    const response = await this.axiosInstance.delete(`/vacations/plans/${vacationPlanId}`);
+    return response.data
+  }
+
+  async changeVacation(vacationId: ID, vacation: VacationRequest): Promise<Vacation> {
+    const response = await this.axiosInstance.post(`/vacations/${vacationId}`, vacation);
+    return response.data
+  }
+
+  async cancelVacation(vacationId: ID): Promise<void> {
+    const response = await this.axiosInstance.delete(`/vacations/${vacationId}`);
     return response.data
   }
 
