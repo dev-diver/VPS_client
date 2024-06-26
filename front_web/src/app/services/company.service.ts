@@ -29,7 +29,7 @@ export class CompanyService {
   }
 
   async getCompanyMembersWithKeyword(companyId : ID, keyword : string): Promise<Member[]> {
-    const response = await this.axiosInstance.get<Member[]>(`/companies/${companyId}/members/search?${keyword}`);
+    const response = await this.axiosInstance.get<Member[]>(`/companies/${companyId}/members/search?keyword=${keyword}`);
     return response.data
   }
 
