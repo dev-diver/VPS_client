@@ -7,6 +7,7 @@ import { VacationService } from '../../services/vacation.service';
 import { Auth } from '../../interfaces/auth';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { SerachAndSelectComponent } from '../serach-and-select/serach-and-select.component';
+import { ID } from '../../interfaces/id';
 
 @Component({
   selector: 'app-apply-vacation',
@@ -18,6 +19,8 @@ import { SerachAndSelectComponent } from '../serach-and-select/serach-and-select
 export class ApplyVacationComponent {
   
   @Input() auth : Auth = {} as Auth
+  selectedApprover1: ID = 0;
+  selectedApproverFinal: ID = 0;
   vacations: FormArray<FormGroup>
 
   constructor(private fb: FormBuilder, private vacationService : VacationService) { 
@@ -65,8 +68,8 @@ export class ApplyVacationComponent {
     }));
 
     await this.vacationService.postVacationPlan(this.auth.member.id, {
-      approver_1: 1,
-      approver_final: 2,
+      approver_1: this.selectedApprover1,
+      approver_final: this.selectedApproverFinal,
       vacations: vacationPlans
     });
   }

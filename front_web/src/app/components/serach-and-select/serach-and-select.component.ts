@@ -1,10 +1,11 @@
-import { Component, Input, ViewChild } from '@angular/core';
+import { Component, EventEmitter, Input, Output, ViewChild } from '@angular/core';
 import { NzListModule } from 'ng-zorro-antd/list';
 import { SearchInputComponent } from '../serachAndselect/search-input/search-input.component';
 import { CompanyService } from '../../services/company.service';
 import { Auth } from '../../interfaces/auth';
 import { Member } from '../../interfaces/member';
 import { CommonModule } from '@angular/common';
+import { ID } from '../../interfaces/id';
 
 @Component({
   selector: 'app-serach-and-select',
@@ -16,6 +17,7 @@ import { CommonModule } from '@angular/common';
 export class SerachAndSelectComponent {
   @Input() auth: Auth = {} as Auth;
   @ViewChild('searchInput') searchInput!: SearchInputComponent;
+  @Output() memberSelected = new EventEmitter<ID>();
 
   items: Member[] = [];
 
@@ -31,5 +33,6 @@ export class SerachAndSelectComponent {
 
   selectItem(item: Member): void {
     this.searchInput.searchText = item.name;
+    this.memberSelected.emit(item.id);
   }
 }
