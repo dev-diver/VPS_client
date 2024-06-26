@@ -12,6 +12,7 @@ import { NzInputModule } from 'ng-zorro-antd/input';
 })
 export class SearchInputComponent {
   searchText: string = '';
+  placeholder: string = '이름 또는 메일';
   @Output() search = new EventEmitter<string>();
 
   onSearch() : void {

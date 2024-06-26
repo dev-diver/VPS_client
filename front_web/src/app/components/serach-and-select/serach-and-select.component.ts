@@ -27,7 +27,12 @@ export class SerachAndSelectComponent {
     console.log(searchText)
     this.companyService.getCompanyMembersWithKeyword(this.auth.company_id, searchText).then((data) => {
       console.log(data)
-      this.items = data
+      if(data?.length>0){
+        this.items = data
+      }else{
+        this.searchInput.placeholder = '검색 결과가 없습니다.'
+        this.searchInput.searchText = ''
+      }
     });
   }
 
