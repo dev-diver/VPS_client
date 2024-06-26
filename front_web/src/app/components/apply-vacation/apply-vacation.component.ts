@@ -45,17 +45,13 @@ export class ApplyVacationComponent {
     this.vacations.removeAt(index);
   }
 
-  onChange(result: Date[], index:number): void {
-    const control = this.vacations.at(index) as FormGroup;
-    this.vacations.at(index).get('dateRange')?.setValue(result);
-  }
-
   onOk(result: Date | Date[] | null): void {
     console.log('onOk', result);
   }
 
-  onCalendarChange(result: Array<Date | null>): void {
+  onCalendarChange(result: Array<Date | null>, index:number): void {
     console.log('onCalendarChange', result);
+    this.vacations.at(index).get('dateRange')?.setValue(result);
   }
 
   handleOk = async (): Promise<void> => {
