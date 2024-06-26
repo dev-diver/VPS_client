@@ -20,7 +20,7 @@ export class ApplierVacationPlanComponent {
   constructor(private vacationService : VacationService) { }
 
   requestPeriodVacationPlans = () : void => {
-    this.vacationService.getCompanyVacationPlansWithYear(this.auth.company_id, this.year).then((data) => {
+    this.vacationService.getMemberVacationPlansWithYear(this.auth.member.id, this.year).then((data) => {
       this.data = data
     })
   }
