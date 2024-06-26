@@ -6,11 +6,13 @@ import { Vacation } from '../../../interfaces/vacation';
 import { Vacation as VacationRequest } from '../../../interfaces/request/vacation';
 import { VacationService } from '../../../services/vacation.service';
 import { ID } from '../../../interfaces/id';
+import { ModalAddButtonComponent } from '../../modal-add-button/modal-add-button.component';
+import { NzDatePickerModule } from 'ng-zorro-antd/date-picker';
 
 @Component({
   selector: 'app-applier-vacation-card',
   standalone: true,
-  imports: [NzButtonModule,NzCardModule, CommonModule],
+  imports: [NzDatePickerModule,ModalAddButtonComponent,NzButtonModule,NzCardModule, CommonModule],
   templateUrl: './applier-vacation-card.component.html',
   styleUrl: './applier-vacation-card.component.less'
 })
@@ -41,4 +43,17 @@ export class ApplierVacationCardComponent {
       this.vacationChange.emit(this.contents.id);
     })
   }
+
+  //
+  handleOk = async (): Promise<void> => {
+  }
+
+  onOk= (result: Date | Date[] | null): void => {
+
+  }
+
+  onCalendarChange = (result: Array<Date | null>) => {
+
+  }
+
 }

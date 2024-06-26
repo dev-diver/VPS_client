@@ -3,9 +3,20 @@
         {{contents.start_date | date: 'yyyy/MM/dd'}}~{{contents.end_date | date: 'yyyy/MM/dd'}}
     </p>
     @if (!disabled) {
-        <button nz-button nzType="primary">            
-            변경
-        </button>
+        <app-modal-add-button
+            #modalAddButton
+            title="연차 변경"
+            [okHandler]="handleOk">
+            <nz-range-picker
+                nzFormat="yyyy-MM-dd"
+                formControlName="dateRange"
+                (nzOnCalendarChange)="onCalendarChange($event)"
+                (nzOnOk)="onOk($event)"
+            ></nz-range-picker>
+            <button class="submit-button" #submitButton nz-button nzType="primary" (click)="modalAddButton.showModal()">            
+                변경
+            </button>
+        </app-modal-add-button>
         <button nz-button nzType="primary" nzDanger (click)="onCancel()">
             취소
         </button>
