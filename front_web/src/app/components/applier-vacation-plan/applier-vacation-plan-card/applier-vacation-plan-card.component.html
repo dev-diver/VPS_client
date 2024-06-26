@@ -2,7 +2,7 @@
     <p>{{vacationPlanData.member_name}}</p>
     <p>1차 승인자:{{vacationPlanData.approver_1_name}}</p>
     <p>2차 승인자:{{vacationPlanData.approver_final_name}}</p>
-    <nz-list [nzDataSource]="vacationPlanData.vacations" nzBordered>
+    <nz-list [nzDataSource]="vacationPlanData.vacations">
       @for (item of vacationPlanData.vacations; track item) {
       <nz-list-item>
         <app-applier-vacation-card [vacationPlanId]="vacationPlanData.id" [contents]="item" 

@@ -1,6 +1,6 @@
 <nz-card>
   <p>{{vacationPlanData.member_name}}</p>
-  <nz-list [nzDataSource]="vacationPlanData.vacations" nzBordered>
+  <nz-list [nzDataSource]="vacationPlanData.vacations">
     @for (item of vacationPlanData.vacations; track item) {
     <nz-list-item>
       <app-approver-vacation-card [contents]="item" />
