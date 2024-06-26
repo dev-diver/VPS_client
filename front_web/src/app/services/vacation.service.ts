@@ -73,6 +73,7 @@ export class VacationService {
   }
 
   async approveVacationPlan(vacationPlanId: ID, approvalAuth : ApprovalAuth): Promise<void> {
+    console.log(approvalAuth)
     const response = await this.axiosInstance.post(`/vacations/plans/${vacationPlanId}/approve`, approvalAuth);
     console.log(response.data)
     return response.data

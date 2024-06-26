@@ -7,6 +7,7 @@ import { VacationService } from '../../../services/vacation.service';
 import { ApprovalAuth } from '../../../interfaces/approval-auth';
 import { ID } from '../../../interfaces/id';
 import { NzButtonModule } from 'ng-zorro-antd/button';
+import { Auth } from '../../../interfaces/auth';
 
 @Component({
   selector: 'app-approver-vacation-plan-card',
@@ -17,7 +18,7 @@ import { NzButtonModule } from 'ng-zorro-antd/button';
 })
 export class ApproverVacationPlanCardComponent {
   approvalAuth: ApprovalAuth = {approval_state: 0, member_id: 0};
-  @Input() memberId: ID = 0;
+  @Input() auth: Auth = {} as Auth;
   @Input() vacationPlanData: VacationPlan = {} as VacationPlan;
   disabled = false;
 
@@ -28,12 +29,12 @@ export class ApproverVacationPlanCardComponent {
       this.disabled = true
     }
 
-    if(this.memberId == this.vacationPlanData.approver_1) {
+    if(this.auth.member.id == this.vacationPlanData.approver_1) {
       this.approvalAuth.approval_state = 2
-      this.approvalAuth.member_id = this.memberId
-    }else if(this.memberId == this.vacationPlanData.approver_final) {
+      this.approvalAuth.member_id = this.auth.member.id
+    }else if(this.auth.member.id == this.vacationPlanData.approver_final) {
       this.approvalAuth.approval_state = 3
-      this.approvalAuth.member_id = this.memberId
+      this.approvalAuth.member_id = this.auth.member.id
     }
 
   }
