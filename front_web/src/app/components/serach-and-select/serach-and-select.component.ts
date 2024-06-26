@@ -34,5 +34,6 @@ export class SerachAndSelectComponent {
   selectItem(item: Member): void {
     this.searchInput.searchText = item.name;
     this.memberSelected.emit(item.id);
+    this.items = [];
   }
 }
