@@ -1,14 +1,14 @@
 <nz-card style="width:300px; margin: 200px auto" nzTitle="로그인">
   <form nz-form [nzLayout]="'inline'" [formGroup]="validateForm" (ngSubmit)="submitForm()">
     <nz-form-item>
-      <nz-form-control nzErrorTip="Please input your username!">
+      <nz-form-control nzErrorTip="이메일을 입력해주세요">
         <nz-input-group nzPrefixIcon="user">
-          <input formControlName="userName" nz-input placeholder="Username" />
+          <input formControlName="email" nz-input placeholder="email" />
         </nz-input-group>
       </nz-form-control>
     </nz-form-item>
     <nz-form-item>
-      <nz-form-control nzErrorTip="Please input your Password!">
+      <nz-form-control nzErrorTip="비밀번호를 입력해주세요">
         <nz-input-group nzPrefixIcon="lock">
           <input formControlName="password" nz-input type="password" placeholder="Password" />
         </nz-input-group>

@@ -18,17 +18,17 @@ export class LoginComponent {
   constructor(private fb: NonNullableFormBuilder, private authService: AuthService) {}
 
   validateForm: FormGroup<{
-    userName: FormControl<string>;
+    email: FormControl<string>;
     password: FormControl<string>;
     remember: FormControl<boolean>;
   }> = this.fb.group({
-    userName: ['', [Validators.required]],
+    email: ['', [Validators.required]],
     password: ['', [Validators.required]],
     remember: [true]
   });
 
   submitForm(): void {
-    const email = this.validateForm.value.userName as string;
+    const email = this.validateForm.value.email as string;
     const password = this.validateForm.value.password as string;
     this.authService.login(email, password);
   }
