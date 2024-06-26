@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, ContentChild, ElementRef, Input } from '@angular/core';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzModalModule } from 'ng-zorro-antd/modal';
@@ -15,8 +15,15 @@ import { FormsModule } from '@angular/forms';
 export class ModalAddButtonComponent {
   @Input() title: string = '';
   @Input() okHandler: () => Promise<void> = async () => {};
+  @ContentChild('submitButton', {static: false}) customButton: ElementRef | undefined;
+  hasCustomButton = false;
+
   isVisible = false;
   isOkLoading = false;
+
+  ngAfterContentInit(): void {
+    this.hasCustomButton = !!this.customButton;
+  }
   
   showModal(): void {
     this.isVisible = true;
