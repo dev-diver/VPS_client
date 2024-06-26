@@ -1,14 +1,16 @@
 <nz-card>
-    <p [ngClass]="{'line-through': disabled}">
+    <p [ngClass]="{'line-through': cancelable}">
         {{contents.start_date | date: 'yyyy/MM/dd'}}~{{contents.end_date | date: 'yyyy/MM/dd'}}
     </p>
-    @if (disabled) {
-    <button nz-button nzType="primary" (click)="onCancelReject()">
-        반려 취소
-    </button>
-    } @else {
-    <button nz-button nzType="primary" nzDanger [disabled]="disabled" (click)="onReject()">
-        반려
-    </button>
+    @if(!editable) {
+        @if (cancelable) {
+        <button nz-button nzType="primary" (click)="onCancelReject()">
+            반려 취소
+        </button>
+        } @else {
+        <button nz-button nzType="primary" nzDanger [disabled]="cancelable" (click)="onReject()">
+            반려
+        </button>
+        }
     }
 </nz-card>

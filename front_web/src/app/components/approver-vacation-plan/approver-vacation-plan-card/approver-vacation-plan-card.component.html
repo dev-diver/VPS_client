@@ -5,20 +5,22 @@
   <nz-list [nzDataSource]="vacationPlanData.vacations">
     @for (item of vacationPlanData.vacations; track item) {
     <nz-list-item>
-      <app-approver-vacation-card [contents]="item" />
+      <app-approver-vacation-card [cancelablePlan]="cancelable" [editablePlan]="editable" [contents]="item" />
     </nz-list-item>
     }
   </nz-list>
-  <button nz-button nzType="primary" [disabled]="disabled" (click)="onApprove()">
-    승인
-  </button>
-  @if (disabled) {
-  <button nz-button nzType="primary" (click)="onCancelReject()">
-    반려 취소
-  </button>
-  } @else {
-  <button nz-button nzType="primary" nzDanger [disabled]="disabled" (click)="onReject()">
-    반려
-  </button>
+  @if(editable) {
+    <button nz-button nzType="primary" [disabled]="cancelable" (click)="onApprove()">
+      승인
+    </button>
+    @if (cancelable) {
+    <button nz-button nzType="primary" (click)="onCancelReject()">
+      반려 취소
+    </button>
+    } @else {
+    <button nz-button nzType="primary" nzDanger (click)="onReject()">
+      반려
+    </button>
+    }
   }
 </nz-card>

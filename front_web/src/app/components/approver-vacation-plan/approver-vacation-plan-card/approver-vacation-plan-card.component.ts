@@ -5,7 +5,6 @@ import { VacationPlan } from '../../../interfaces/vacation-plan';
 import { NzCardModule } from 'ng-zorro-antd/card';
 import { VacationService } from '../../../services/vacation.service';
 import { ApprovalAuth } from '../../../interfaces/approval-auth';
-import { ID } from '../../../interfaces/id';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { Auth } from '../../../interfaces/auth';
 
@@ -20,15 +19,12 @@ export class ApproverVacationPlanCardComponent {
   approvalAuth: ApprovalAuth = {approval_state: 0, member_id: 0};
   @Input() auth: Auth = {} as Auth;
   @Input() vacationPlanData: VacationPlan = {} as VacationPlan;
-  disabled = false;
+  editable = false;
+  cancelable = false;
 
   constructor(private vacationService : VacationService) {}
 
   ngOnInit() {
-    if(this.vacationPlanData.process_state == 4) {
-      this.disabled = true
-    }
-
     if(this.auth.member.id == this.vacationPlanData.approver_1) {
       this.approvalAuth.approval_state = 2
       this.approvalAuth.member_id = this.auth.member.id
@@ -37,26 +33,33 @@ export class ApproverVacationPlanCardComponent {
       this.approvalAuth.member_id = this.auth.member.id
     }
 
+    if(this.vacationPlanData.process_state == 4) {
+      this.editable = true
+    }else if(this.vacationPlanData.process_state == this.approvalAuth.approval_state) {
+      this.editable = true
+      this.cancelable = true
+    }
+
   }
 
   onApprove = () => {
     this.vacationService.approveVacationPlan(this.vacationPlanData.id, this.approvalAuth).then((data) => {
       this.vacationPlanData.process_state = this.approvalAuth.approval_state
-      this.disabled = true
+      this.editable = true
     })
   }
 
   onReject = () => {
     this.vacationService.rejectVacationPlan(this.vacationPlanData.id, this.approvalAuth).then((data) => {
       this.vacationPlanData.process_state = 4
-      this.disabled = true
+      this.editable = true
     })
   }
 
   onCancelReject = () => {
     this.vacationService.cancelRejectVacationPlan(this.vacationPlanData.id, this.approvalAuth).then((data) => {
       this.vacationPlanData.process_state = this.approvalAuth.approval_state-1
-      this.disabled = false
+      this.editable = false
     })
   }
 }

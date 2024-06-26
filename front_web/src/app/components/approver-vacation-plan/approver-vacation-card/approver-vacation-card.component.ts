@@ -14,27 +14,31 @@ import { VacationService } from '../../../services/vacation.service';
 })
 export class ApproverVacationCardComponent {
   @Input() contents : Vacation = {} as Vacation;
-  disabled = false;
+  @Input() editablePlan = false;
+  @Input() cancelablePlan = false;
+  editable = false;
+  cancelable = false;
 
   constructor(private vacationService : VacationService) {}
 
   ngOnInit() {
-    if(this.contents.process_state == 4) {
-      this.disabled = true
+    if(this.contents.process_state == 4 || this.editablePlan || this.cancelablePlan) {
+      this.editable = true
+      this.cancelable = false
     }
   }
 
   onReject = () => {
     this.vacationService.rejectVacation(this.contents.id).then((data) => {
       this.contents.process_state = 4
-      this.disabled = true
+      this.editable = true
     })
   }
 
   onCancelReject = () => {
     this.vacationService.cancelRejectVacation(this.contents.id).then((data) => {
       this.contents.process_state = 1
-      this.disabled = false
+      this.editable = false
     })
   }
 
