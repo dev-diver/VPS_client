@@ -1,7 +1,7 @@
 <app-modal-add-button 
     title="연차신청"
     [okHandler]="handleOk"
->   <app-serach-and-select></app-serach-and-select>
+>   <app-serach-and-select [auth]="auth"/>
     <div id="vacation-pickers">
         <div *ngFor="let vacation of vacations.controls; let i = index" [formGroup]="vacation">
             <nz-range-picker
