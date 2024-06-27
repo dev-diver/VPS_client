@@ -23,7 +23,7 @@ export class HeaderComponent {
   constructor(private router: Router, private authService: AuthService) {
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
-        this.auth = this.authService.auth;
+        this.auth = this.authService.getAuth();
         this.showNavigate = event.url !== '/login';
       }
     });

@@ -20,7 +20,7 @@ export class AdminComponent {
   auth: Auth = {} as Auth;
 
   constructor(private authService: AuthService) {
-    this.auth = this.authService.auth;
+    this.auth = this.authService.getAuth();
   }
 
 }

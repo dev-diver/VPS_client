@@ -17,6 +17,6 @@ export class CalendarComponent {
   @Input() year: number =  new Date().getFullYear();
   auth: Auth = {} as Auth;
   constructor(private authService: AuthService) {
-    this.auth = this.authService.auth;
+    this.auth = this.authService.getAuth();
   }
 }

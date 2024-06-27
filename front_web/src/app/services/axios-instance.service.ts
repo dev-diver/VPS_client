@@ -11,6 +11,7 @@ export class AxiosInstanceService {
   constructor() {
     this.axiosInstance = axios.create({
       baseURL: environment.apiUrl,
+      withCredentials: true,
       headers: {
         'Content-Type': 'application/json'
       }

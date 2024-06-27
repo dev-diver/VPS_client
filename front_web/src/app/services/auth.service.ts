@@ -13,8 +13,6 @@ import { JwtHelperService } from '@auth0/angular-jwt';
 export class AuthService {
 
   private axiosInstance: AxiosInstance;
-  private auth: Auth = {} as Auth;
-  public isLoggedIn = false;
   private jwtHelper :JwtHelperService = new JwtHelperService();
 
   constructor(private router: Router, private cookieService : CookieService) {
@@ -24,11 +22,9 @@ export class AuthService {
 
   async login(email: string, password: string): Promise<void> {
     try{
-      const response = await this.axiosInstance.post('/auth/login', { email, password });
-      const token = this.cookieService.get('authToken_info')
-      if(token){
-        const decodedToken = this.jwtHelper.decodeToken(token)
-        this.setAuth(decodedToken)
+      await this.axiosInstance.post('/auth/login', { email, password });
+      const isLoggedin = this.getAuth()
+      if(isLoggedin){
         this.router.navigate(['/calendar'])
       }else{
         throw new Error('로그인 실패')
@@ -38,13 +34,10 @@ export class AuthService {
     }
   }
 
-  private setAuth(auth: Auth) {
-    this.auth = auth;
-    this.isLoggedIn = true;
-  }
-
   public getAuth(): Auth {
-    return this.auth;
+    const token = this.cookieService.get('authToken_info')
+    const decodedToken = this.jwtHelper.decodeToken(token)
+    return decodedToken.auth
   }
 
   async logout(): Promise<void> {
@@ -55,8 +48,6 @@ export class AuthService {
 
   private clearAuth() {
     this.cookieService.delete('authToken_info')
-    this.auth = {} as Auth;
-    this.isLoggedIn = false;
   }
   
 }

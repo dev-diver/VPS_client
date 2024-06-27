@@ -19,7 +19,7 @@ export class DashboardComponent {
   
   auth: Auth = {} as Auth;
   constructor(private authService: AuthService) {
-    this.auth = this.authService.auth;
+    this.auth = this.authService.getAuth();
   }
 
   onYearChange = (newYear: number): void  => {
