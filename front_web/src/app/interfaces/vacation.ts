@@ -7,5 +7,6 @@ export interface Vacation{
     end_date : Date,
     half_first: boolean,
     half_last: boolean,
-    process_state: ID
+    approve_stage: number,
+    reject_state: boolean,
 }

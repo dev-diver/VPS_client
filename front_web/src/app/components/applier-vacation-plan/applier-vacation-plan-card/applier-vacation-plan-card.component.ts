@@ -16,7 +16,7 @@ import { ID } from '../../../interfaces/id';
   styleUrl: './applier-vacation-plan-card.component.less'
 })
 export class ApplierVacationPlanCardComponent {
-  approvalAuth: ApprovalAuth = {approval_state: 0, member_id: 0};
+  approvalAuth: ApprovalAuth = {} as ApprovalAuth;
   @Input() memberId: ID = 0;
   @Input() vacationPlanData: VacationPlan = {} as VacationPlan;
   @Input() onVacationPlanChange = (id: number): void => {};
@@ -26,7 +26,7 @@ export class ApplierVacationPlanCardComponent {
   constructor(private vacationService : VacationService) {}
 
   ngOnInit() {
-    if(this.vacationPlanData.process_state != 1) {
+    if(this.vacationPlanData.approve_stage != 0) {
       this.disabled = true
     }
   }

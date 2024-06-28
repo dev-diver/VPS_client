@@ -27,7 +27,7 @@ export class ApplierVacationCardComponent {
   constructor(private vacationService : VacationService) {}
 
   ngOnInit() {
-    if(this.contents.process_state != 1) {
+    if(this.contents.approve_stage != 0) {
       this.disabled = true
     }
   }

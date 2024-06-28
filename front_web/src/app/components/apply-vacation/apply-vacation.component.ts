@@ -64,8 +64,7 @@ export class ApplyVacationComponent {
     }));
 
     await this.vacationService.postVacationPlan(this.auth.member.id, {
-      approver_1: this.selectedApprover1,
-      approver_final: this.selectedApproverFinal,
+      approvers: [this.selectedApprover1, this.selectedApproverFinal],
       vacations: vacationPlans
     });
   }

@@ -16,7 +16,7 @@ import { Auth } from '../../../interfaces/auth';
   styleUrl: './approver-vacation-plan-card.component.less'
 })
 export class ApproverVacationPlanCardComponent {
-  approvalAuth: ApprovalAuth = {approval_state: 0, member_id: 0};
+  approvalAuth: ApprovalAuth = {} as ApprovalAuth;
   @Input() auth: Auth = {} as Auth;
   @Input() vacationPlanData: VacationPlan = {} as VacationPlan;
   editable = false;
@@ -25,17 +25,17 @@ export class ApproverVacationPlanCardComponent {
   constructor(private vacationService : VacationService) {}
 
   ngOnInit() {
-    if(this.auth.member.id == this.vacationPlanData.approver_1) {
-      this.approvalAuth.approval_state = 2
-      this.approvalAuth.member_id = this.auth.member.id
-    }else if(this.auth.member.id == this.vacationPlanData.approver_final) {
-      this.approvalAuth.approval_state = 3
-      this.approvalAuth.member_id = this.auth.member.id
-    }
+    this.approvalAuth.member_id = this.auth.member.id
+    this.approvalAuth.approval_stage = this.vacationPlanData.approver_order.find((a) => a.member_id == this.auth.member.id)?.order || 0
 
-    if(this.vacationPlanData.process_state == 4) {
+
+    if(this.vacationPlanData.approve_stage == this.approvalAuth.approval_stage-1) {
       this.editable = true
-    }else if(this.vacationPlanData.process_state == this.approvalAuth.approval_state) {
+    }else if(
+      this.vacationPlanData.approve_stage == this.approvalAuth.approval_stage &&
+      this.vacationPlanData.reject_state == true
+    ) 
+    {
       this.editable = true
       this.cancelable = true
     }
@@ -44,21 +44,21 @@ export class ApproverVacationPlanCardComponent {
 
   onApprove = () => {
     this.vacationService.approveVacationPlan(this.vacationPlanData.id, this.approvalAuth).then((data) => {
-      this.vacationPlanData.process_state = this.approvalAuth.approval_state
+      this.vacationPlanData.approve_stage = this.approvalAuth.approval_stage
       this.editable = true
     })
   }
 
   onReject = () => {
     this.vacationService.rejectVacationPlan(this.vacationPlanData.id, this.approvalAuth).then((data) => {
-      this.vacationPlanData.process_state = 4
+      this.vacationPlanData.reject_state = true
       this.editable = true
     })
   }
 
   onCancelReject = () => {
     this.vacationService.cancelRejectVacationPlan(this.vacationPlanData.id, this.approvalAuth).then((data) => {
-      this.vacationPlanData.process_state = this.approvalAuth.approval_state-1
+      this.vacationPlanData.reject_state = false
       this.editable = false
     })
   }

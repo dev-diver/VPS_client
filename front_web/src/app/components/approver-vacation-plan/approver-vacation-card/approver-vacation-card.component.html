@@ -2,7 +2,7 @@
     <p [ngClass]="{'line-through': cancelable}">
         {{contents.start_date | date: 'yyyy/MM/dd'}}~{{contents.end_date | date: 'yyyy/MM/dd'}}
     </p>
-    @if(!editable) {
+    @if(editable) {
         @if (cancelable) {
         <button nz-button nzType="primary" (click)="onCancelReject()">
             반려 취소

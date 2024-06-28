@@ -7,11 +7,16 @@ export interface VacationPlan {
   member_name: string,
   apply_date: Date,
   approve_date: Date | null,
-  approver_1: ID,
-  approver_final: ID,
-  approver_1_name: string,
-  approver_final_name: string,
+  approver_order : Approver[],
   vacations: Vacation[],
-  process_state: number,
-  cancel_state: number
+  approve_stage: number,
+  reject_state: boolean
+}
+
+export interface Approver {
+  id: ID,
+  member_id: ID,
+  member_name: string,
+  order: number,
+  descision_date: Date | null,
 }

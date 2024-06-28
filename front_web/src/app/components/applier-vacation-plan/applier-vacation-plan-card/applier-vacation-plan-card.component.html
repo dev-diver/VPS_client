@@ -1,7 +1,8 @@
 <nz-card>
     <p>{{vacationPlanData.member_name}}</p>
-    <p>1차 승인자:{{vacationPlanData.approver_1_name}}</p>
-    <p>2차 승인자:{{vacationPlanData.approver_final_name}}</p>
+    @for (approver of vacationPlanData.approver_order; track approver) {
+        <p>{{approver.member_name}}</p>
+    }
     <nz-list [nzDataSource]="vacationPlanData.vacations">
       @for (item of vacationPlanData.vacations; track item) {
       <nz-list-item>
