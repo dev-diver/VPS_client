@@ -1,8 +1,16 @@
 <app-modal-add-button 
-    title="연차신청"
+    title="연차 신청"
     [okHandler]="handleOk"
->   <app-serach-and-select [auth]="auth" (memberSelected)="selectedApprover1 = $event"/>
-   <app-serach-and-select [auth]="auth" (memberSelected)="selectedApproverFinal = $event"/>
+>   
+    <div id="approver_order">
+        <div *ngFor="let approver of approver.controls; let i = index" [formGroup]="approver">
+            <app-serach-and-select [auth]="auth" (memberSelected)="selectedApprover(i, $event)"/>
+            @if(i!=0){
+                <button nz-button nzType="default" (click)="removeApprover(i)">삭제</button>
+            }
+        </div>
+    </div>
+    <button nz-button nzType="primary" (click)="addApprover()">추가</button>
     <div id="vacation-pickers">
         <div *ngFor="let vacation of vacations.controls; let i = index" [formGroup]="vacation">
             <nz-range-picker

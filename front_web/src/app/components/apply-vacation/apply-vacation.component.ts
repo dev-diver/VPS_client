@@ -19,9 +19,8 @@ import { ID } from '../../interfaces/id';
 export class ApplyVacationComponent {
   
   @Input() auth : Auth = {} as Auth
-  selectedApprover1: ID = 0;
-  selectedApproverFinal: ID = 0;
   vacations: FormArray<FormGroup>
+  approver: FormArray<FormGroup>
 
   constructor(private fb: FormBuilder, private vacationService : VacationService) { 
     this.vacations = this.fb.array([
@@ -29,6 +28,12 @@ export class ApplyVacationComponent {
         dateRange: [[]]
       })
     ])
+    this.approver = this.fb.array([
+      this.fb.group({
+        id: [0]
+      })
+    ])
+
   }
 
   createVacationFormGroup(): FormGroup {
@@ -43,6 +48,20 @@ export class ApplyVacationComponent {
 
   removeVacation(index: number) {
     this.vacations.removeAt(index);
+  }
+
+  addApprover() {
+    this.approver.push(this.fb.group({
+      id: []
+    }));
+  }
+
+  selectedApprover(index:number, id:number) {
+    this.approver.at(index).get('id')?.setValue(id);
+  }
+
+  removeApprover(index: number) {
+    this.approver.removeAt(index);
   }
 
   onOk(result: Date | Date[] | null): void {
@@ -64,9 +83,8 @@ export class ApplyVacationComponent {
     }));
 
     await this.vacationService.postVacationPlan(this.auth.member.id, {
-      approvers: [this.selectedApprover1, this.selectedApproverFinal],
+      approvers: this.approver.value.map((approver: any) => approver.id),
       vacations: vacationPlans
     });
   }
-
 }
