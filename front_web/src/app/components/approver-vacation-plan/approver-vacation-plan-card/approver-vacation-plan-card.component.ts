@@ -28,38 +28,35 @@ export class ApproverVacationPlanCardComponent {
     this.approvalAuth.member_id = this.auth.member.id
     this.approvalAuth.approval_stage = this.vacationPlanData.approver_order.find((a) => a.member_id == this.auth.member.id)?.order || 0
 
+    console.log(this.vacationPlanData.approve_stage, this.approvalAuth.approval_stage)
 
     if(this.vacationPlanData.approve_stage == this.approvalAuth.approval_stage-1) {
       this.editable = true
-    }else if(
-      this.vacationPlanData.approve_stage == this.approvalAuth.approval_stage &&
-      this.vacationPlanData.reject_state == true
-    ) 
-    {
-      this.editable = true
-      this.cancelable = true
+      if(this.vacationPlanData.reject_state) {
+        this.cancelable = true
+      }
     }
-
   }
 
   onApprove = () => {
     this.vacationService.approveVacationPlan(this.vacationPlanData.id, this.approvalAuth).then((data) => {
       this.vacationPlanData.approve_stage = this.approvalAuth.approval_stage
-      this.editable = true
+      this.editable = false
+      //승인된 연차 빼기
     })
   }
 
   onReject = () => {
     this.vacationService.rejectVacationPlan(this.vacationPlanData.id, this.approvalAuth).then((data) => {
       this.vacationPlanData.reject_state = true
-      this.editable = true
+      this.cancelable = true
     })
   }
 
   onCancelReject = () => {
     this.vacationService.cancelRejectVacationPlan(this.vacationPlanData.id, this.approvalAuth).then((data) => {
       this.vacationPlanData.reject_state = false
-      this.editable = false
+      this.cancelable = false
     })
   }
 }
