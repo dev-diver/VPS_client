@@ -17,7 +17,6 @@
                 nzFormat="yyyy-MM-dd"
                 formControlName="dateRange"
                 (nzOnCalendarChange)="onCalendarChange($event, i)"
-                (nzOnOk)="onOk($event)"
             ></nz-range-picker>
             @if(i!=0){
                 <button nz-button nzType="default" (click)="removeVacation(i)">삭제</button>

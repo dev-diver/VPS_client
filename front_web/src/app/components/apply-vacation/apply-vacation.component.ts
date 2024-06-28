@@ -2,7 +2,7 @@ import { Component, Input } from '@angular/core';
 import { ModalAddButtonComponent } from '../modal-add-button/modal-add-button.component';
 import { NzDatePickerModule } from 'ng-zorro-antd/date-picker';
 import { CommonModule } from '@angular/common';
-import { FormArray, FormBuilder, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormArray, FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { VacationService } from '../../services/vacation.service';
 import { Auth } from '../../interfaces/auth';
 import { NzButtonModule } from 'ng-zorro-antd/button';
@@ -24,21 +24,23 @@ export class ApplyVacationComponent {
 
   constructor(private fb: FormBuilder, private vacationService : VacationService) { 
     this.vacations = this.fb.array([
-      this.fb.group({
-        dateRange: [[]]
-      })
+      this.createVacationFormGroup()
     ])
     this.approver = this.fb.array([
-      this.fb.group({
-        id: [0]
-      })
+      this.createApproverFormGroup()
     ])
 
   }
 
   createVacationFormGroup(): FormGroup {
     return this.fb.group({
-      dateRange: [[]]
+      dateRange: [[], Validators.required]
+    });
+  }
+
+  createApproverFormGroup(): FormGroup {
+    return this.fb.group({
+      id: [null, Validators.required]
     });
   }
 
@@ -51,21 +53,15 @@ export class ApplyVacationComponent {
   }
 
   addApprover() {
-    this.approver.push(this.fb.group({
-      id: []
-    }));
-  }
-
-  selectedApprover(index:number, id:number) {
-    this.approver.at(index).get('id')?.setValue(id);
+    this.approver.push(this.createApproverFormGroup());
   }
 
   removeApprover(index: number) {
     this.approver.removeAt(index);
   }
 
-  onOk(result: Date | Date[] | null): void {
-    console.log('onOk', result);
+  selectedApprover(index:number, id:number) {
+    this.approver.at(index).get('id')?.setValue(id);
   }
 
   onCalendarChange(result: Array<Date | null>, index:number): void {
@@ -74,6 +70,15 @@ export class ApplyVacationComponent {
   }
 
   handleOk = async (): Promise<void> => {
+
+    if (this.approver.invalid) {
+      throw new Error('결재자를 다 채워주세요');
+    }
+
+    if (this.vacations.invalid) {
+      throw new Error('휴가 범위를 다 채워주세요');
+    }
+
     const vacationPlans = this.vacations.value.map((vacation: any) => ({
       start_date: vacation.dateRange[0],
       end_date: vacation.dateRange[1],
@@ -82,9 +87,15 @@ export class ApplyVacationComponent {
       vacation_type: 1
     }));
 
-    await this.vacationService.postVacationPlan(this.auth.member.id, {
-      approvers: this.approver.value.map((approver: any) => approver.id),
-      vacations: vacationPlans
-    });
+    try{
+      await this.vacationService.postVacationPlan(this.auth.member.id, {
+        approvers: this.approver.value.map((approver: any) => approver.id),
+        vacations: vacationPlans
+      });
+    }catch(error : any){
+      if(error instanceof Error){
+        throw new Error('휴가 신청에 실패했습니다. : '+ error.message);
+      }
+    }
   }
 }
