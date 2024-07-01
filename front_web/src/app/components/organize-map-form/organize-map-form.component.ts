@@ -7,13 +7,14 @@ import { SelectOrganizeCardComponent } from '../organize-map/select-organize-car
 import { Member } from '../../interfaces/member';
 import { ModalButtonComponent } from '../modal-button/modal-button.component';
 import { NzButtonModule } from 'ng-zorro-antd/button';
+import { OrganizeMapComponent } from '../organize-map/organize-map.component';
 
 @Component({
   selector: 'app-organize-map-form',
   standalone: true,
   imports: [
     NzButtonModule,
-    SelectOrganizeCardComponent, ModalButtonComponent
+    OrganizeMapComponent,SelectOrganizeCardComponent, ModalButtonComponent
   ],
   templateUrl: './organize-map-form.component.html',
   styleUrl: './organize-map-form.component.less'

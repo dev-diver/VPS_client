@@ -1,14 +1,15 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { CompanyService } from '../../services/company.service';
 import { Auth } from '../../interfaces/auth';
 import { AuthService } from '../../services/auth.service';
 import { Organize } from '../../interfaces/organize';
-import { OrganizeCardComponent } from './organize-card/organize-card.component';
+import { SelectOrganizeCardComponent } from './select-organize-card/select-organize-card.component';
+import { Member } from '../../interfaces/member';
 
 @Component({
   selector: 'app-organize-map',
   standalone: true,
-  imports: [OrganizeCardComponent],
+  imports: [SelectOrganizeCardComponent],
   templateUrl: './organize-map.component.html',
   styleUrl: './organize-map.component.less'
 })
@@ -16,6 +17,7 @@ export class OrganizeMapComponent {
 
   auth : Auth =  {} as Auth
   organize : Organize = {} as Organize
+  @Input() onSelectMember: (member: Member) => void = () => {}
 
   constructor(private authService: AuthService, private companyService: CompanyService) {
     this.auth = this.authService.getAuth()

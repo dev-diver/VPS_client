@@ -1,8 +1,0 @@
-<nz-card [nzBordered]="false" [nzTitle]="organize.organize_name">
-    <app-member-list [members]="organize.members"></app-member-list>
-    <div class="organize-children">
-        @for (child of organize.children; track child){
-            <app-organize-card [organize]="child"></app-organize-card>
-        }
-    </div>
-</nz-card>
