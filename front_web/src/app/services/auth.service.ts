@@ -25,7 +25,7 @@ export class AuthService {
       await this.axiosInstance.post('/auth/login', { email, password });
       const isLoggedin = this.getAuth()
       if(isLoggedin){
-        this.router.navigate(['/calendar'])
+        this.router.navigate(['/dashboard'])
       }else{
         throw new Error('로그인 실패')
       }

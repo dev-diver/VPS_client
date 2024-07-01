@@ -32,6 +32,12 @@ export const routes: Routes = [
     title: '신청현황',
   },
   {
+    path: 'approve',
+    component: DashboardComponent,
+    canActivate: [authGuard],
+    title: '결재',
+  },
+  {
     path: 'profile',
     component: ProfileComponent,
     canActivate: [authGuard],
