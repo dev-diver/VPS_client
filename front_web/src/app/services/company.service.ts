@@ -5,6 +5,7 @@ import { Member } from '../interfaces/member';
 import { ID } from '../interfaces/id';
 import { Group } from '../interfaces/group';
 import { AxiosInstanceService } from './axios-instance.service';
+import { Organize } from '../interfaces/organize';
 
 
 @Injectable({
@@ -35,6 +36,11 @@ export class CompanyService {
 
   async getCompanyGroups(companyId : ID): Promise<Group[]> {
     const response = await this.axiosInstance.get<Group[]>(`/companies/${companyId}/groups`);
+    return response.data
+  }
+
+  async getCompanyOrganizes(companyId : ID): Promise<Organize[]> {
+    const response = await this.axiosInstance.get<Organize[]>(`/companies/${companyId}/organizes`);
     return response.data
   }
   
