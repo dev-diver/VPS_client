@@ -1,6 +1,5 @@
 import { Component, Input } from '@angular/core';
 import { NzCardModule } from 'ng-zorro-antd/card';
-import { NzGridModule } from 'ng-zorro-antd/grid';
 import { NzListModule } from 'ng-zorro-antd/list';
 import { NameTagComponent } from '../name-tag/name-tag.component';
 import { Member } from '../../interfaces/member';
