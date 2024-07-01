@@ -1,0 +1,12 @@
+<app-folding-card [title]="organize.organize_name" [nzBordered]="false">
+    <app-member-list 
+        [members]="organize.members" 
+        [onMemberSelected]="onMemberSelected"
+    >
+    </app-member-list>
+    <div class="organize-children">
+        @for (child of organize.children; track child){
+            <app-select-organize-card [organize]="child"></app-select-organize-card>
+        }
+    </div>
+</app-folding-card>

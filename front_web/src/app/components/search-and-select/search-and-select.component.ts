@@ -6,11 +6,14 @@ import { Auth } from '../../interfaces/auth';
 import { Member } from '../../interfaces/member';
 import { CommonModule } from '@angular/common';
 import { ID } from '../../interfaces/id';
+import { OrganizeMapFormComponent } from '../organize-map-form/organize-map-form.component';
 
 @Component({
   selector: 'app-search-and-select',
   standalone: true,
-  imports: [CommonModule,NzListModule, SearchInputComponent],
+  imports: [
+    CommonModule,NzListModule, 
+    SearchInputComponent, OrganizeMapFormComponent],
   templateUrl: './search-and-select.component.html',
   styleUrl: './search-and-select.component.less'
 })
@@ -36,7 +39,7 @@ export class SearchAndSelectComponent {
     });
   }
 
-  selectItem(item: Member): void {
+  selectItem = (item: Member): void => {
     this.searchInput.searchText = item.name;
     this.memberSelected.emit(item.id);
     this.items = [];

@@ -1,7 +1,8 @@
 <nz-list [nzHeader]="headerTemplate">
     <ng-template #headerTemplate>
     <app-search-input (search)="onSearch($event)" #searchInput></app-search-input>
-    </ng-template>
+    <app-organize-map-form [selectHandler]="selectItem"></app-organize-map-form>
+  </ng-template>
     @for (item of items; track item) {
         <nz-list-item (click)="selectItem(item)">
           {{ item.name }}

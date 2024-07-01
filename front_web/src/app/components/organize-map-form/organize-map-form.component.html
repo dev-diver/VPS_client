@@ -1,0 +1,17 @@
+<app-modal-button 
+    title="조직 선택"
+    #modalButton
+    [nzFooter]="null"
+    >
+    <div class="organize-children">
+        @for (child of organize.children; track child){
+            <app-select-organize-card 
+                [organize]="child"
+                [onMemberSelected]="onSelectMember"
+            ></app-select-organize-card>
+        }
+    </div>
+    <button class="submit-button" #submitButton nz-button nzType="primary" (click)="modalButton.showModal()">            
+        조직도
+    </button>
+</app-modal-button>
