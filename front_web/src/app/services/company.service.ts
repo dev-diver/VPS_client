@@ -39,8 +39,8 @@ export class CompanyService {
     return response.data
   }
 
-  async getCompanyOrganizes(companyId : ID): Promise<Organize[]> {
-    const response = await this.axiosInstance.get<Organize[]>(`/companies/${companyId}/organizes`);
+  async getCompanyOrganizes(companyId : ID): Promise<Organize> {
+    const response = await this.axiosInstance.get<Organize>(`/companies/${companyId}/organizes`);
     return response.data
   }
   

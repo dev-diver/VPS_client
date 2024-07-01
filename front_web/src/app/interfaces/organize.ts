@@ -1,9 +1,9 @@
 import { Member } from "./member";
 
 export interface Organize {
-    id: number;
+    organize_id: number;
     parent_id: number;
-    name: string;
+    organize_name: string;
     children: Organize[];
     members: Member[];
 }
