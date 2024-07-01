@@ -7,13 +7,13 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { NzTypographyModule } from 'ng-zorro-antd/typography';
 @Component({
-  selector: 'app-modal-add-button',
+  selector: 'app-modal-button',
   standalone: true,
   imports: [NzTypographyModule, FormsModule, CommonModule, NzDatePickerModule, NzButtonModule, NzIconModule, NzModalModule],
-  templateUrl: './modal-add-button.component.html',
-  styleUrl: './modal-add-button.component.less'
+  templateUrl: './modal-button.component.html',
+  styleUrl: './modal-button.component.less'
 })
-export class ModalAddButtonComponent {
+export class ModalButtonComponent {
   @Input() title: string = '';
   @Input() okHandler: () => Promise<void> = async () => {};
   @ContentChild('submitButton', {static: false}) customButton: ElementRef | undefined;

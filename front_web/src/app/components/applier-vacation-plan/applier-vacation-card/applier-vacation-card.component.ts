@@ -6,13 +6,13 @@ import { Vacation } from '../../../interfaces/vacation';
 import { Vacation as VacationRequest } from '../../../interfaces/request/vacation';
 import { VacationService } from '../../../services/vacation.service';
 import { ID } from '../../../interfaces/id';
-import { ModalAddButtonComponent } from '../../modal-add-button/modal-add-button.component';
+import { ModalButtonComponent } from '../../modal-button/modal-button.component';
 import { NzDatePickerModule } from 'ng-zorro-antd/date-picker';
 
 @Component({
   selector: 'app-applier-vacation-card',
   standalone: true,
-  imports: [NzDatePickerModule,ModalAddButtonComponent,NzButtonModule,NzCardModule, CommonModule],
+  imports: [NzDatePickerModule,ModalButtonComponent,NzButtonModule,NzCardModule, CommonModule],
   templateUrl: './applier-vacation-card.component.html',
   styleUrl: './applier-vacation-card.component.less'
 })

@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { ModalAddButtonComponent } from '../modal-add-button/modal-add-button.component';
+import { ModalButtonComponent } from '../modal-button/modal-button.component';
 import { NzDatePickerModule } from 'ng-zorro-antd/date-picker';
 import { CommonModule } from '@angular/common';
 import { FormArray, FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
@@ -12,7 +12,7 @@ import { ID } from '../../interfaces/id';
 @Component({
   selector: 'app-apply-vacation',
   standalone: true,
-  imports: [SerachAndSelectComponent,ReactiveFormsModule,NzButtonModule, FormsModule, ModalAddButtonComponent, NzDatePickerModule, CommonModule],
+  imports: [SerachAndSelectComponent,ReactiveFormsModule,NzButtonModule, FormsModule, ModalButtonComponent, NzDatePickerModule, CommonModule],
   templateUrl: './apply-vacation.component.html',
   styleUrl: './apply-vacation.component.less'
 })

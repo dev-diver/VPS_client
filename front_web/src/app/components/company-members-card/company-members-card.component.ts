@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { NzCardComponent } from 'ng-zorro-antd/card';
-import { ModalAddButtonComponent } from '../modal-add-button/modal-add-button.component';
+import { ModalButtonComponent } from '../modal-button/modal-button.component';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NameTagComponent } from '../name-tag/name-tag.component';
 import { NzListModule } from 'ng-zorro-antd/list';
@@ -13,7 +13,7 @@ import { Auth } from '../../interfaces/auth';
 @Component({
   selector: 'app-company-members-card',
   standalone: true,
-  imports: [NzCardComponent, ModalAddButtonComponent, NzIconModule, NameTagComponent, NzListModule, NzGridModule, FoldingCardComponent],
+  imports: [NzCardComponent, ModalButtonComponent, NzIconModule, NameTagComponent, NzListModule, NzGridModule, FoldingCardComponent],
   templateUrl: './company-members-card.component.html',
   styleUrl: './company-members-card.component.less'
 })

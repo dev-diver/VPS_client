@@ -2,7 +2,7 @@ import { Component, Input } from '@angular/core';
 import { VacationCardComponent } from '../../components/vacation-card/vacation-card.component';
 import { GroupFilterComponent } from '../../components/group-manage-card/group-filter/group-filter.component';
 import { VacationDashboardComponent } from '../../components/vacation-dashboard/vacation-dashboard.component';
-import { ModalAddButtonComponent } from '../../components/modal-add-button/modal-add-button.component';
+import { ModalButtonComponent } from '../../components/modal-button/modal-button.component';
 import { PageLayoutComponent } from '../../page-layout/page-layout.component';
 import { ApplyVacationComponent } from '../../components/apply-vacation/apply-vacation.component';
 import { Auth } from '../../interfaces/auth';
@@ -12,7 +12,7 @@ import { ApproverVacationPlanComponent } from '../../components/approver-vacatio
 @Component({
   selector: 'app-approve',
   standalone: true,
-  imports: [ApproverVacationPlanComponent,YearChangeComponent,ApplyVacationComponent,PageLayoutComponent, ModalAddButtonComponent, VacationCardComponent, GroupFilterComponent, VacationDashboardComponent],
+  imports: [ApproverVacationPlanComponent,YearChangeComponent,ApplyVacationComponent,PageLayoutComponent, ModalButtonComponent, VacationCardComponent, GroupFilterComponent, VacationDashboardComponent],
   templateUrl: './approve.component.html',
   styleUrl: './approve.component.less'
 })

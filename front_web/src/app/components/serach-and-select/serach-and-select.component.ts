@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, Output, ViewChild } from '@angular/core';
 import { NzListModule } from 'ng-zorro-antd/list';
-import { SearchInputComponent } from '../serachAndselect/search-input/search-input.component';
+import { SearchInputComponent } from './search-input/search-input.component';
 import { CompanyService } from '../../services/company.service';
 import { Auth } from '../../interfaces/auth';
 import { Member } from '../../interfaces/member';
