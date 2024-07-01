@@ -1,4 +1,4 @@
-<nz-card [nzTitle]="title" [nzExtra]="extraTemplate">
+<nz-card [nzTitle]="title" [nzExtra]="extraTemplate" [nzBordered]="nzBordered">
     <div [ngClass] = "{ 'hidden': !isContentVisible }">
         <ng-content></ng-content>
     </div>

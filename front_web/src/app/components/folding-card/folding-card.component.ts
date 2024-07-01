@@ -12,6 +12,7 @@ import { CommonModule } from '@angular/common';
   styleUrl: './folding-card.component.less'
 })
 export class FoldingCardComponent {
+  @Input() nzBordered = true
   @Input() title :string = ''
   isContentVisible = true;
 
