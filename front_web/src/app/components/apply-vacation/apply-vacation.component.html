@@ -4,7 +4,7 @@
 >   
     <div id="approver_order">
         <div *ngFor="let approver of approver.controls; let i = index" [formGroup]="approver">
-            <app-serach-and-select [auth]="auth" (memberSelected)="selectedApprover(i, $event)"/>
+            <app-search-and-select [auth]="auth" (memberSelected)="selectedApprover(i, $event)"/>
             @if(i!=0){
                 <button nz-button nzType="default" (click)="removeApprover(i)">삭제</button>
             }

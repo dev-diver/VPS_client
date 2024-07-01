@@ -8,13 +8,13 @@ import { CommonModule } from '@angular/common';
 import { ID } from '../../interfaces/id';
 
 @Component({
-  selector: 'app-serach-and-select',
+  selector: 'app-search-and-select',
   standalone: true,
   imports: [CommonModule,NzListModule, SearchInputComponent],
-  templateUrl: './serach-and-select.component.html',
-  styleUrl: './serach-and-select.component.less'
+  templateUrl: './search-and-select.component.html',
+  styleUrl: './search-and-select.component.less'
 })
-export class SerachAndSelectComponent {
+export class SearchAndSelectComponent {
   @Input() auth: Auth = {} as Auth;
   @ViewChild('searchInput') searchInput!: SearchInputComponent;
   @Output() memberSelected = new EventEmitter<ID>();

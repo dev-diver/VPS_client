@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { SerachAndSelectComponent } from './serach-and-select.component';
+import { SearchAndSelectComponent } from './search-and-select.component';
 
-describe('SerachAndSelectComponent', () => {
-  let component: SerachAndSelectComponent;
-  let fixture: ComponentFixture<SerachAndSelectComponent>;
+describe('SearchAndSelectComponent', () => {
+  let component: SearchAndSelectComponent;
+  let fixture: ComponentFixture<SearchAndSelectComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [SerachAndSelectComponent]
+      imports: [SearchAndSelectComponent]
     })
     .compileComponents();
     
-    fixture = TestBed.createComponent(SerachAndSelectComponent);
+    fixture = TestBed.createComponent(SearchAndSelectComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
