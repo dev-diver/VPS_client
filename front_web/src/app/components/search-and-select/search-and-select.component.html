@@ -1,17 +1,14 @@
-<nz-list [nzHeader]="headerTemplate">
-  <ng-template #headerTemplate>
-    <div nz-row [nzGutter]="18">
-      <div nz-col [nzSpan]="14">
-        <app-search-input (search)="onSearch($event)" #searchInput></app-search-input>
-      </div>
-      <div nz-col [nzSpan]="4" >
-        <app-organize-map-form [selectHandler]="selectItem"></app-organize-map-form>
-      </div>
-    </div>
-  </ng-template>
-  @for (item of items; track item) {
-      <nz-list-item (click)="selectItem(item)">
-        {{ item.name }}
-      </nz-list-item>
-  }
-</nz-list>
+<div nz-row [nzGutter]="18">
+  <div nz-col [nzSpan]="14">
+    <app-search-input 
+      (search)="onSearch($event)" 
+      placeholder="이름 또는 이메일"
+      [selectHandler]="selectItem"
+      [items]="items"
+      #searchInput
+    ></app-search-input>
+  </div>
+  <div nz-col [nzSpan]="4" >
+    <app-organize-map-form [selectHandler]="selectItem"></app-organize-map-form>
+  </div>
+</div>
