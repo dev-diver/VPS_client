@@ -7,12 +7,13 @@ import { Member } from '../../interfaces/member';
 import { CommonModule } from '@angular/common';
 import { ID } from '../../interfaces/id';
 import { OrganizeMapFormComponent } from '../organize-map-form/organize-map-form.component';
+import { NzGridModule } from 'ng-zorro-antd/grid';
 
 @Component({
   selector: 'app-search-and-select',
   standalone: true,
   imports: [
-    CommonModule,NzListModule, 
+    CommonModule,NzListModule, NzGridModule,
     SearchInputComponent, OrganizeMapFormComponent],
   templateUrl: './search-and-select.component.html',
   styleUrl: './search-and-select.component.less'
