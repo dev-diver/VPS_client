@@ -1,9 +1,10 @@
 <app-page-layout>
     <div left>
-        <app-vacation-card [year]="year" />
+        <!-- <app-vacation-card [year]="year" /> -->
     </div>
     <div>
-        <app-vacation-dashboard [year]="year" [yearChange]="onYearChange" [auth]="auth" />
+        <app-year-change [year]="year" (yearChange)="onYearChange($event)" />
+    <app-applier-vacation-plan [year]="year" [auth]="auth" />
     </div>
     <div right>
         <app-apply-vacation [auth]="auth"/>

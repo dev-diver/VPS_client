@@ -7,10 +7,12 @@ import { PageLayoutComponent } from '../../page-layout/page-layout.component';
 import { ApplyVacationComponent } from '../../components/apply-vacation/apply-vacation.component';
 import { Auth } from '../../interfaces/auth';
 import { AuthService } from '../../services/auth.service';
+import { YearChangeComponent } from '../../components/year-change/year-change.component';
+import { ApplierVacationPlanComponent } from '../../components/applier-vacation-plan/applier-vacation-plan.component';
   @Component({
   selector: 'app-dashboard',
   standalone: true,
-  imports: [ApplyVacationComponent,PageLayoutComponent, ModalAddButtonComponent, VacationCardComponent, GroupFilterComponent, VacationDashboardComponent],
+imports: [ApplierVacationPlanComponent,YearChangeComponent, ApplyVacationComponent,PageLayoutComponent, ModalAddButtonComponent, VacationCardComponent, GroupFilterComponent, VacationDashboardComponent],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.less'
 })
