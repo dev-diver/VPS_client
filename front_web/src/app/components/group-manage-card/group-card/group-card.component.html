@@ -1,15 +1,5 @@
 <nz-card [nzTitle]="titleTemplate">
-  <nz-list nzGrid>
-    <div nz-row [nzGutter]="16">
-      @for (item of group.members; track item) {
-      <div nz-col [nzSpan]="2">
-        <nz-list-item>
-          <app-name-tag [name]="item.name" />
-        </nz-list-item>
-      </div>
-      }
-    </div>
-  </nz-list>
+  <app-member-list [members]="group.members" />
 </nz-card>
 <ng-template #titleTemplate>
   <app-group-tag [group]="group" />
