@@ -1,0 +1,7 @@
+<nz-list nz-flex nzGap="middle" nzWrap="wrap">
+    @for (item of members; track item) {
+    <nz-list-item>
+        <app-name-tag [name]="item.name" />
+    </nz-list-item>
+    }
+</nz-list>
