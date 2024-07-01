@@ -1,5 +1,11 @@
 <div nz-flex nzGap="middle" nzWrap="wrap">
     @for (item of members; track item) {
-        <app-name-tag [name]="item.name" />
+        <app-name-tag 
+            [name]="item.name"
+            (mouseover)="onMouseOver(item)"
+            (mouseleave)="onMouseLeave()"
+            [ngClass]="{'highlight': item.id === highlightId}"
+            (click)="onMemberSelected(item)" 
+        />
     }
 </div>
