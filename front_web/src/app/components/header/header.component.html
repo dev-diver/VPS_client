@@ -1,8 +1,8 @@
-<div nz-row>
-  <div nz-col nzSpan="4">logo</div>
+<div nz-row nzAlign="middle" nzJustify="space-between">
+  <div nz-col nzFlex="1 1 10rem">logo</div>
   @if(showNavigate){
-    <div nz-col nzSpan="17">
-        <ul nz-menu nzTheme="dark" nzMode="horizontal">
+    <div nz-col nzFlex="1 1 auto">
+        <ul nz-menu nzTheme="dark" nzMode="horizontal" nz-row nzAlign="middle" nzJustify="space-between">
           <li nz-menu-item>
             <a [routerLink]="['/calendar']">캘린더</a>
           </li>
@@ -17,15 +17,17 @@
           </li>
         </ul>
     </div>
-    <div nz-col nzSpan="3">
-      <a [routerLink]="['/dashboard']">
-        <nz-avatar class="avatar" [nzText]="auth.member.name"></nz-avatar>
-      </a>
-      <nz-badge class="large-icon" [nzCount]="notificationCount">
-        <a [routerLink]="['/notification']" 
-            nz-icon nzType="bell" nzTheme="twotone"></a>
-      </nz-badge>
-      <button nz-button nzType="default" (click)="logout()">로그아웃</button>
+    <div nz-col nzFlex="1 1 10rem">
+      <div nz-row nzAlign="middle" nzJustify="end">
+        <a [routerLink]="['/dashboard']">
+          <nz-avatar class="avatar" [nzText]="auth.member.name"></nz-avatar>
+        </a>
+        <nz-badge class="large-icon" [nzCount]="notificationCount">
+          <a [routerLink]="['/notification']" 
+              nz-icon nzType="bell" nzTheme="twotone"></a>
+        </nz-badge>
+        <button nz-button nzType="default" (click)="logout()">로그아웃</button>
+      </div>
     </div>
   }
 </div>
