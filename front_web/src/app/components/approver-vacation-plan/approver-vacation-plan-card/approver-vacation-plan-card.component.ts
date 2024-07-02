@@ -46,6 +46,13 @@ export class ApproverVacationPlanCardComponent {
     })
   }
 
+  onCancelApprove = () => {
+    this.vacationService.cancelApproveVacationPlan(this.vacationPlanData.id, this.approvalAuth).then((data) => {
+      this.vacationPlanData.approve_stage = this.approvalAuth.approval_stage - 1
+      this.editable = true
+    })
+  }
+
   onReject = () => {
     this.vacationService.rejectVacationPlan(this.vacationPlanData.id, this.approvalAuth).then((data) => {
       this.vacationPlanData.reject_state = true
