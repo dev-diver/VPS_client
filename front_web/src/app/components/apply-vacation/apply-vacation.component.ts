@@ -7,12 +7,15 @@ import { VacationService } from '../../services/vacation.service';
 import { Auth } from '../../interfaces/auth';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { SearchAndSelectComponent } from '../search-and-select/search-and-select.component';
-import { ID } from '../../interfaces/id';
 
 @Component({
   selector: 'app-apply-vacation',
   standalone: true,
-  imports: [SearchAndSelectComponent,ReactiveFormsModule,NzButtonModule, FormsModule, ModalButtonComponent, NzDatePickerModule, CommonModule],
+  imports: [
+    CommonModule, FormsModule, ReactiveFormsModule,
+    NzButtonModule, NzDatePickerModule,
+    SearchAndSelectComponent, ModalButtonComponent,
+  ],
   templateUrl: './apply-vacation.component.html',
   styleUrl: './apply-vacation.component.less'
 })
