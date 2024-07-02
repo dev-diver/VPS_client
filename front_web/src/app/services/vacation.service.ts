@@ -79,6 +79,11 @@ export class VacationService {
     return response.data
   }
 
+  async cancelApproveVacationPlan(vacationPlanId: ID, approvalAuth : ApprovalAuth): Promise<void> {
+    const response = await this.axiosInstance.post(`/vacations/plans/${vacationPlanId}/cancel-approve`, approvalAuth);
+    return response.data
+  }
+
   async rejectVacationPlan(vacationPlanId: ID, approvalAuth : ApprovalAuth): Promise<void> {
     const response = await this.axiosInstance.post(`/vacations/plans/${vacationPlanId}/reject`, approvalAuth);
     console.log(response.data)
