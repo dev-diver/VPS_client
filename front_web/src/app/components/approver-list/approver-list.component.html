@@ -1,0 +1,20 @@
+<nz-list nzBordered nzSize="small">
+    <nz-list-header>결재</nz-list-header>
+    @for (i of approverList.keys(); track i) {
+        <nz-list-item
+        >   
+        <span 
+            nz-typography
+            [nzType]="approveState[i]"
+        >   
+            @if(i==approvingIndex){
+                <strong>
+                    {{approverList[i].member_name}}
+                </strong>
+            } @else {
+                {{approverList[i].member_name}}
+            }
+        </span>
+        </nz-list-item>
+    }
+</nz-list>
