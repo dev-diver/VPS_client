@@ -28,4 +28,4 @@ jobs:
           context: .
           file: ./Dockerfile
           push: true
-          tags: valentine92exp/vacation_promotion_client:latest
+          tags: devdiver/vacation_promotion_client:latest
