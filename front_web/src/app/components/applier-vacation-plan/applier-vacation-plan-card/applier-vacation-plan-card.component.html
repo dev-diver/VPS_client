@@ -17,9 +17,9 @@
       }
     </nz-list>
     @if (!disabled) {
-        <button nz-button nzType="primary" (click)="onChange()">
-            변경
-        </button>
+        <app-change-vacation-plan-button
+            [vacationPlanData]="vacationPlanData"
+        />
         <button nz-button nzType="primary" nzDanger (click)="onCancel()">
             취소
         </button>

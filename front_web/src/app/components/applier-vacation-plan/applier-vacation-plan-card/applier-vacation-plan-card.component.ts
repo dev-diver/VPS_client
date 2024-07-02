@@ -8,13 +8,14 @@ import { VacationPlan } from '../../../interfaces/vacation-plan';
 import { VacationService } from '../../../services/vacation.service';
 import { ID } from '../../../interfaces/id';
 import { ApproverListComponent } from '../../approver-list/approver-list.component';
+import { ChangeVacationPlanButtonComponent } from '../change-vacation-plan-button/change-vacation-plan-button.component';
 
 @Component({
   selector: 'app-applier-vacation-plan-card',
   standalone: true,
   imports: [
     NzButtonModule, NzCardModule, NzListModule, 
-    ApplierVacationCardComponent, ApproverListComponent
+    ApplierVacationCardComponent, ApproverListComponent, ChangeVacationPlanButtonComponent
   ],
   templateUrl: './applier-vacation-plan-card.component.html',
   styleUrl: './applier-vacation-plan-card.component.less'
@@ -38,12 +39,6 @@ export class ApplierVacationPlanCardComponent {
   onCancel = () => {
     this.vacationService.cancelVacationPlan(this.vacationPlanData.id).then((data) => {
       this.vacationPlanDelete.emit(this.vacationPlanData.id);
-    })
-  }
-
-  onChange = () => {
-    this.vacationService.changeVacationPlan(this.vacationPlanData.id).then((data) => {
-      this.onVacationPlanChange(this.vacationPlanData.id);
     })
   }
 
