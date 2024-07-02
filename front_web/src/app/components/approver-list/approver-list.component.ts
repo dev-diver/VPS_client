@@ -25,6 +25,10 @@ export class ApproverListComponent {
   ngOnInit(){
     this.updateApproveState()
   }
+
+  ngOnChanges(){
+    this.updateApproveState()
+  }
   
   updateApproveState(){
     this.approveState = this.approverList.map((a,i) => {
