@@ -15,7 +15,16 @@ import { NzTypographyModule } from 'ng-zorro-antd/typography';
 })
 export class ModalButtonComponent {
   @Input() title: string = '';
-  @Input() nzFooter = null;
+
+  @Input() nzFooter: any = [{
+    label: '확인',
+    type: 'primary',
+    onClick: () => this.handleOk()
+  }, {
+    label: '취소',
+    onClick: () => this.handleCancel()
+  }];
+
   @Input() okHandler: () => Promise<void> = async () => {};
   @ContentChild('submitButton', {static: false}) customButton: ElementRef | undefined;
 
@@ -38,7 +47,7 @@ export class ModalButtonComponent {
     this.isVisible = false;
   }
 
-  async handleOk(): Promise<void> {
+  handleOk = async (): Promise<void> => {
     this.isOkLoading = true;
     try {
       await this.okHandler()
@@ -54,7 +63,7 @@ export class ModalButtonComponent {
     }
   }
 
-  handleCancel(): void {
+  handleCancel = (): void => {
     this.isVisible = false;
   }
 
