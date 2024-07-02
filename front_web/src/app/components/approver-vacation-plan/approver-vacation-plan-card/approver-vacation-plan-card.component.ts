@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, SimpleChanges } from '@angular/core';
 import { NzListModule } from 'ng-zorro-antd/list';
 import { ApproverVacationCardComponent } from '../approver-vacation-card/approver-vacation-card.component';
 import { VacationPlan } from '../../../interfaces/vacation-plan';
@@ -20,50 +20,71 @@ export class ApproverVacationPlanCardComponent {
   @Input() auth: Auth = {} as Auth;
   @Input() vacationPlanData: VacationPlan = {} as VacationPlan;
   editable = false;
-  cancelable = false;
+  approveCancelable = false;
+  rejectCancelable = false;
+  private initialized: boolean = false;
 
   constructor(private vacationService : VacationService) {}
 
   ngOnInit() {
-    this.approvalAuth.member_id = this.auth.member.id
-    this.approvalAuth.approval_stage = this.vacationPlanData.approver_order.find((a) => a.member_id == this.auth.member.id)?.order || 0
+    this.initializeApprovalAuth();
+  }
 
-    console.log(this.vacationPlanData.approve_stage, this.approvalAuth.approval_stage)
-
-    if(this.vacationPlanData.approve_stage == this.approvalAuth.approval_stage-1) {
-      this.editable = true
-      if(this.vacationPlanData.reject_state) {
-        this.cancelable = true
-      }
+  ngOnChanges() {
+    if (!this.initialized) {
+      this.initializeApprovalAuth();
+      this.initialized = true;
     }
+    this.updateState();
+  }
+
+  private initializeApprovalAuth() {
+    this.approvalAuth.member_id = this.auth.member.id;
+    this.approvalAuth.approval_stage = this.vacationPlanData.approver_order.find((a) => a.member_id == this.auth.member.id)?.order || 0;
+  }
+
+  private updateState(){
+      if(this.vacationPlanData.approve_stage == this.approvalAuth.approval_stage-1) {
+        this.editable = true
+        this.approveCancelable = false
+      }else if(this.vacationPlanData.approve_stage == this.approvalAuth.approval_stage){
+        this.editable = true
+        this.approveCancelable = true
+      }else{
+        this.editable = false
+      }
+      if(this.vacationPlanData.reject_state) {
+        this.rejectCancelable = true
+      }else{
+        this.rejectCancelable = false
+      }
   }
 
   onApprove = () => {
     this.vacationService.approveVacationPlan(this.vacationPlanData.id, this.approvalAuth).then((data) => {
       this.vacationPlanData.approve_stage = this.approvalAuth.approval_stage
-      this.editable = false
-      //승인된 연차 빼기
+      this.updateState();
     })
   }
 
   onCancelApprove = () => {
     this.vacationService.cancelApproveVacationPlan(this.vacationPlanData.id, this.approvalAuth).then((data) => {
       this.vacationPlanData.approve_stage = this.approvalAuth.approval_stage - 1
-      this.editable = true
+      this.updateState();
     })
   }
 
   onReject = () => {
     this.vacationService.rejectVacationPlan(this.vacationPlanData.id, this.approvalAuth).then((data) => {
       this.vacationPlanData.reject_state = true
-      this.cancelable = true
+      this.updateState();
     })
   }
 
   onCancelReject = () => {
     this.vacationService.cancelRejectVacationPlan(this.vacationPlanData.id, this.approvalAuth).then((data) => {
       this.vacationPlanData.reject_state = false
-      this.cancelable = false
+      this.updateState();
     })
   }
 }

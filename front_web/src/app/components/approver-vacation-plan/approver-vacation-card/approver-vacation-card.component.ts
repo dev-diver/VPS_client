@@ -14,39 +14,43 @@ import { VacationService } from '../../../services/vacation.service';
 })
 export class ApproverVacationCardComponent {
   @Input() contents : Vacation = {} as Vacation;
-  @Input() editablePlan = false;
-  @Input() cancelablePlan = false;
+  @Input() planEditable = false;
+  @Input() planRejectCancelable = false;
+  @Input() planApproveCancelable = false;
+
   editable = true;
-  cancelable = false;
+  rejectCancelable = false;
 
   constructor(private vacationService : VacationService) {}
 
-  ngOnInit() {
-    if(!this.editablePlan){
-      this.editable = false
-    }
-    if(this.cancelablePlan && this.contents.reject_state){
-      this.cancelable = true
-    }
+  ngOnChanges() {
+    this.updateState()
   }
 
-  ngOnChanges() {
-    if(this.cancelablePlan || !this.editablePlan){
+  private updateState(){
+    if(!this.planEditable || this.planApproveCancelable || this.planRejectCancelable){
       this.editable = false
+    }else{
+      this.editable = true
+    }
+    if(this.contents.reject_state){
+      this.rejectCancelable = true
+    }else{
+      this.rejectCancelable = false
     }
   }
 
   onReject = () => {
     this.vacationService.rejectVacation(this.contents.id).then((data) => {
       this.contents.reject_state = true
-      this.cancelable = true
+      this.updateState()
     })
   }
 
   onCancelReject = () => {
     this.vacationService.cancelRejectVacation(this.contents.id).then((data) => {
       this.contents.reject_state = false
-      this.cancelable = false
+      this.updateState()
     })
   }
 
