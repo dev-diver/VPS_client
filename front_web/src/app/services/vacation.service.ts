@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { AxiosInstance } from 'axios';
 import { ID } from '../interfaces/id';
 import { VacationPlan } from '../interfaces/vacation-plan';
-import { VacationPlan as VacationPlanRequest } from '../interfaces/request/vacation-plan';
+import { EditVacationPlan, VacationPlan as VacationPlanRequest } from '../interfaces/request/vacation-plan';
 import { Vacation as VacationRequest } from '../interfaces/request/vacation';
 import { ApprovalAuth } from '../interfaces/approval-auth';
 import { AxiosInstanceService } from './axios-instance.service';
@@ -52,8 +52,8 @@ export class VacationService {
     return response.data
   }
 
-  async changeVacationPlan(vacationPlanId: ID): Promise<VacationPlan> {
-    const response = await this.axiosInstance.patch(`/vacations/plans/${vacationPlanId}`);
+  async changeVacationPlan(vacationPlanId: ID, editVacationPlan: EditVacationPlan): Promise<VacationPlan> {
+    const response = await this.axiosInstance.patch(`/vacations/plans/${vacationPlanId}`, editVacationPlan);
     return response.data
   }
 
