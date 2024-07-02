@@ -20,4 +20,9 @@ RUN npm install --force
 
 RUN ng build
 
-CMD ["bin/true"]
+FROM busybox
+
+# 빌드 단계에서 빌드된 애플리케이션 복사
+COPY --from=build /app/front_web/dist /data/front_web/dist
+
+CMD ["true"]
