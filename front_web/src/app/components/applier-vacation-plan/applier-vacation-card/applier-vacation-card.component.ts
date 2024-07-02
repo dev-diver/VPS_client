@@ -8,6 +8,7 @@ import { VacationService } from '../../../services/vacation.service';
 import { ID } from '../../../interfaces/id';
 import { ModalButtonComponent } from '../../modal-button/modal-button.component';
 import { NzDatePickerModule } from 'ng-zorro-antd/date-picker';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-applier-vacation-card',
@@ -22,9 +23,15 @@ export class ApplierVacationCardComponent {
   @Input() contents : Vacation = {} as Vacation;
   @Output() vacationChange = new EventEmitter<number>();
   @Output() vacationPlanChange = new EventEmitter<number>();
+  
+  vacation: FormGroup;
   disabled = false;
 
-  constructor(private vacationService : VacationService) {}
+  constructor(private fb: FormBuilder, private vacationService : VacationService) {
+    this.vacation = this.fb.group({
+      dateRange: [[], Validators.required]
+    });
+  }
 
   ngOnInit() {
     if(this.contents.approve_stage != 0) {
@@ -38,22 +45,28 @@ export class ApplierVacationCardComponent {
     })
   }
 
-  onChange = (vacation: VacationRequest) => {
-    this.vacationService.changeVacation(this.contents.id, vacation).then((data) => {
-      this.vacationChange.emit(this.contents.id);
-    })
+  onCalendarChange(result: Array<Date | null>): void {
+    console.log('onCalendarChange', result);
+    this.vacation.get('dateRange')?.setValue(result);
   }
 
-  //
   handleOk = async (): Promise<void> => {
-  }
-
-  onOk= (result: Date | Date[] | null): void => {
-
-  }
-
-  onCalendarChange = (result: Array<Date | null>) => {
-
+    try{
+      let vacation: VacationRequest = {
+        start_date: this.vacation.value.dateRange[0],
+        end_date: this.vacation.value.dateRange[1],
+        half_first: false,
+        half_last: false,
+        vacation_type: 0
+      }
+      await this.vacationService.changeVacation(this.contents.id, vacation).then((data) => {
+        this.vacationChange.emit(this.contents.id);
+      })
+    }catch(error: any){
+      if(error instanceof Error){
+        throw new Error('휴가 신청에 실패했습니다. : ' + error.message)
+      }
+    }
   }
 
 }

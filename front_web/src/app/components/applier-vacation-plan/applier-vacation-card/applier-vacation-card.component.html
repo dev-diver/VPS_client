@@ -11,7 +11,6 @@
                 nzFormat="yyyy-MM-dd"
                 formControlName="dateRange"
                 (nzOnCalendarChange)="onCalendarChange($event)"
-                (nzOnOk)="onOk($event)"
             ></nz-range-picker>
             <button class="submit-button" #submitButton nz-button nzType="primary" (click)="modalAddButton.showModal()">            
                 변경
