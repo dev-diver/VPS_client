@@ -30,6 +30,12 @@ export class ApproverVacationCardComponent {
     }
   }
 
+  ngOnChanges() {
+    if(this.cancelablePlan || !this.editablePlan){
+      this.editable = false
+    }
+  }
+
   onReject = () => {
     this.vacationService.rejectVacation(this.contents.id).then((data) => {
       this.contents.reject_state = true
