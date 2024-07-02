@@ -89,7 +89,7 @@ export class ApplyVacationComponent {
 
     try{
       await this.vacationService.postVacationPlan(this.auth.member.id, {
-        approvers: this.approver.value.map((approver: any) => approver.id),
+        approver_order: this.approver.value.map((approver: any) => approver.id),
         vacations: vacationPlans
       });
     }catch(error : any){

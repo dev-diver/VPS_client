@@ -2,6 +2,6 @@ import { ID } from "../id";
 import { Vacation } from "../request/vacation";
 
 export interface VacationPlan {
-  approvers: ID[],
+  approver_order: ID[],
   vacations: Vacation[],
 }
