@@ -7,6 +7,7 @@ import { ProfileComponent } from './pages/profile/profile.component';
 import { VacationPromotionComponent } from './pages/vacation-promotion/vacation-promotion.component';
 import { AdminComponent } from './pages/admin/admin.component';
 import { authGuard } from './auth/auth.guard';
+import { ApproveComponent } from './pages/approve/approve.component';
 
 export const routes: Routes = [
   {
@@ -33,7 +34,7 @@ export const routes: Routes = [
   },
   {
     path: 'approve',
-    component: DashboardComponent,
+    component: ApproveComponent,
     canActivate: [authGuard],
     title: '결재',
   },
