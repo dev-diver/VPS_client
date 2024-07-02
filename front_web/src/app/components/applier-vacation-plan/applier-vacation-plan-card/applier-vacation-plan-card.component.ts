@@ -7,11 +7,15 @@ import { ApprovalAuth } from '../../../interfaces/approval-auth';
 import { VacationPlan } from '../../../interfaces/vacation-plan';
 import { VacationService } from '../../../services/vacation.service';
 import { ID } from '../../../interfaces/id';
+import { ApproverListComponent } from '../../approver-list/approver-list.component';
 
 @Component({
   selector: 'app-applier-vacation-plan-card',
   standalone: true,
-  imports: [NzButtonModule, NzCardModule, NzListModule, ApplierVacationCardComponent],
+  imports: [
+    NzButtonModule, NzCardModule, NzListModule, 
+    ApplierVacationCardComponent, ApproverListComponent
+  ],
   templateUrl: './applier-vacation-plan-card.component.html',
   styleUrl: './applier-vacation-plan-card.component.less'
 })

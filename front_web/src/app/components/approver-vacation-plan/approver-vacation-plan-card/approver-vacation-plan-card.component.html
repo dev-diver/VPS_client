@@ -1,8 +1,11 @@
 <nz-card>
   <p>{{vacationPlanData.member_name}}</p>
-  @for (approver of vacationPlanData.approver_order; track approver) {
-    <p>{{approver.member_name}}</p>
-  }
+  <app-approver-list 
+    [approverList]="vacationPlanData.approver_order"
+    [approveStage]="vacationPlanData.approve_stage"
+    [rejectState]="vacationPlanData.reject_state"
+    [approvalAuth]="approvalAuth"
+  ></app-approver-list>
   <nz-list [nzDataSource]="vacationPlanData.vacations">
     @for (item of vacationPlanData.vacations; track item) {
     <nz-list-item>
