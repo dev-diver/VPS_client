@@ -25,4 +25,4 @@ FROM busybox
 # 빌드 단계에서 빌드된 애플리케이션 복사
 COPY --from=build /app/front_web/dist /app/front_web/dist
 
-CMD ["true"]
+CMD ["sh", "-c", "while :; do sleep 10; done"]
