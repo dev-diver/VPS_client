@@ -26,6 +26,7 @@ export class ApplierVacationCardComponent {
   
   vacation: FormGroup;
   disabled = false;
+  rejected = false;
 
   constructor(private fb: FormBuilder, private vacationService : VacationService) {
     this.vacation = this.fb.group({
@@ -37,6 +38,10 @@ export class ApplierVacationCardComponent {
     if(this.contents.approve_stage != 0) {
       this.disabled = true
     }
+    if(this.contents.reject_state) {
+      this.rejected = true
+    }
+
   }
 
   onCancel = () => {

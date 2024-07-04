@@ -1,8 +1,11 @@
 <nz-card>
-    <p [ngClass]="{'line-through': disabled}">
+    <p [ngClass]="{'line-through': rejected}">
         {{contents.start_date | date: 'yyyy/MM/dd'}}~{{contents.end_date | date: 'yyyy/MM/dd'}}
     </p>
-    @if (!disabled) {
+    @if(rejected){
+        <p class="rejected">반려</p>
+    }
+    @if (!disabled && !rejected) {
         <app-modal-button
             #modalAddButton
             title="연차 변경"
