@@ -10,7 +10,8 @@ export interface VacationPlan {
   approver_order : Approver[],
   vacations: Vacation[],
   approve_stage: number,
-  reject_state: boolean
+  reject_state: boolean,
+  complete_state: boolean,
 }
 
 export interface Approver {

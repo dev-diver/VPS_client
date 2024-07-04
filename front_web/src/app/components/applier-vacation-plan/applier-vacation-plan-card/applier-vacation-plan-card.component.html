@@ -3,6 +3,8 @@
     @if(disabled){
         @if (rejected) {
             <p nz-typography nzType="danger">반려됨</p>
+        } @else if (completed) {
+            <p nz-typography nzType="success">결재완료</p>
         } @else {
             <p nz-typography nzType="success">결재중</p>
         } 

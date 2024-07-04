@@ -30,6 +30,7 @@ export class ApplierVacationPlanCardComponent {
   
   disabled = false;
   rejected = false;
+  completed = false;
 
   constructor(private vacationService : VacationService) {}
 
@@ -42,6 +43,10 @@ export class ApplierVacationPlanCardComponent {
     if(this.vacationPlanData.reject_state) {
       this.disabled = true
       this.rejected = true
+    }
+    if(this.vacationPlanData.complete_state) {
+      this.disabled = true
+      this.completed = true
     }
   }
 
