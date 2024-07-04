@@ -1,4 +1,8 @@
-<app-folding-card [title]="organize.organize_name" [nzBordered]="false">
+<app-folding-card
+    [title]="organize.organize_name" 
+    [nzBordered]="false"
+    [defaultFoldState]="true"
+>
     <app-member-list 
         [members]="organize.members" 
         [onMemberSelected]="onMemberSelected"

@@ -14,7 +14,12 @@ import { CommonModule } from '@angular/common';
 export class FoldingCardComponent {
   @Input() nzBordered = true
   @Input() title :string = ''
+  @Input() defaultFoldState : boolean = false;
   isContentVisible = true;
+
+  ngOnInit() {
+    this.isContentVisible = !this.defaultFoldState;
+  }
 
   toggleContentVisibility(): void {
     this.isContentVisible = !this.isContentVisible
