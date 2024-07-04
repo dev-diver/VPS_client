@@ -67,46 +67,69 @@ export class ApproverVacationPlanCardComponent {
   }
 
   private updateState(){
-    this.editable = true
-      if(this.vacationPlanData.reject_state) {
-        this.rejectCancelable = true
-      }else{
-        this.rejectCancelable = false
-        if(this.vacationPlanData.approve_stage == this.approvalAuth.approval_stage-1) {
-          this.approveCancelable = false
-        }else if(this.vacationPlanData.approve_stage == this.approvalAuth.approval_stage){
-          this.approveCancelable = true
-        }else{
-          this.editable = false
-        }
-      }
+    
+    this.editable = false;
+    if(this.approvalAuth.approval_stage == this.vacationPlanData.approve_stage ||
+      this.approvalAuth.approval_stage == this.vacationPlanData.approve_stage + 1
+    ){
+      this.editable = true;
+    }
+
+    if(this.approvalAuth.approval_stage == this.vacationPlanData.approve_stage + 1 &&
+      this.vacationPlanData.reject_state == true
+    ){
+      this.editable = false;
+    }
+
+    if(
+      this.vacationPlanData.approve_stage == this.approvalAuth.approval_stage &&
+      this.vacationPlanData.reject_state == false
+    ){
+      this.approveCancelable = true
+    }else{
+      this.approveCancelable = false
+    }
+
+    if(
+      this.vacationPlanData.reject_state == true
+    ){
+      this.rejectCancelable = true
+    }else{
+      this.rejectCancelable = false
+    }
   }
 
   onApprove = () => {
     this.vacationService.approveVacationPlan(this.vacationPlanData.id, this.approvalAuth).then((data) => {
-      this.vacationPlanData.approve_stage = this.approvalAuth.approval_stage
-      this.updateState();
+      // this.vacationPlanData.approve_stage = this.approvalAuth.approval_stage
+      // this.updateState();
+      this.vacationService.notifyVacationReferesh()
     })
   }
 
   onCancelApprove = () => {
     this.vacationService.cancelApproveVacationPlan(this.vacationPlanData.id, this.approvalAuth).then((data) => {
-      this.vacationPlanData.approve_stage = this.approvalAuth.approval_stage - 1
-      this.updateState();
+      // this.vacationPlanData.approve_stage = this.approvalAuth.approval_stage - 1
+      // this.updateState();
+      this.vacationService.notifyVacationReferesh()
     })
   }
 
   onReject = () => {
     this.vacationService.rejectVacationPlan(this.vacationPlanData.id, this.approvalAuth).then((data) => {
-      this.vacationPlanData.reject_state = true
-      this.updateState();
+      // this.vacationPlanData.approve_stage = this.approvalAuth.approval_stage
+      // this.vacationPlanData.reject_state = true
+      // this.updateState();
+      this.vacationService.notifyVacationReferesh()
     })
   }
 
   onCancelReject = () => {
     this.vacationService.cancelRejectVacationPlan(this.vacationPlanData.id, this.approvalAuth).then((data) => {
-      this.vacationPlanData.reject_state = false
-      this.updateState();
+      // this.vacationPlanData.approve_stage = this.approvalAuth.approval_stage - 1
+      // this.vacationPlanData.reject_state = false
+      // this.updateState();
+      this.vacationService.notifyVacationReferesh()
     })
   }
 }
