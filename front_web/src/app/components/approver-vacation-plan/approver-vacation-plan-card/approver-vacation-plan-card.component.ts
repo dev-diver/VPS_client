@@ -67,19 +67,18 @@ export class ApproverVacationPlanCardComponent {
   }
 
   private updateState(){
-      if(this.vacationPlanData.approve_stage == this.approvalAuth.approval_stage-1) {
-        this.editable = true
-        this.approveCancelable = false
-      }else if(this.vacationPlanData.approve_stage == this.approvalAuth.approval_stage){
-        this.editable = true
-        this.approveCancelable = true
-      }else{
-        this.editable = false
-      }
+    this.editable = true
       if(this.vacationPlanData.reject_state) {
         this.rejectCancelable = true
       }else{
         this.rejectCancelable = false
+        if(this.vacationPlanData.approve_stage == this.approvalAuth.approval_stage-1) {
+          this.approveCancelable = false
+        }else if(this.vacationPlanData.approve_stage == this.approvalAuth.approval_stage){
+          this.approveCancelable = true
+        }else{
+          this.editable = false
+        }
       }
   }
 
