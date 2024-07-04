@@ -1,41 +1,33 @@
 <nz-card>
   <p>{{vacationPlanData.member_name}}</p>
-  <app-approver-list 
-    [approverList]="vacationPlanData.approver_order"
-    [approveStage]="vacationPlanData.approve_stage"
-    [rejectState]="vacationPlanData.reject_state"
-    [approvalAuth]="approvalAuth"
-  ></app-approver-list>
+  <app-approver-list [approverList]="vacationPlanData.approver_order" [approveStage]="vacationPlanData.approve_stage"
+    [rejectState]="vacationPlanData.reject_state" [approvalAuth]="approvalAuth"></app-approver-list>
   <nz-list [nzDataSource]="vacationPlanData.vacations">
     @for (item of vacationPlanData.vacations; track item) {
     <nz-list-item>
-      <app-approver-vacation-card 
-        [planApproveCancelable]="approveCancelable"
-        [planRejectCancelable]="rejectCancelable" 
-        [planEditable]="editable" 
-        [contents]="item"
-      />
+      <app-approver-vacation-card [approvalAuth]="approvalAuth" [planApproveCancelable]="approveCancelable"
+        [planRejectCancelable]="rejectCancelable" [planEditable]="editable" [contents]="item" />
     </nz-list-item>
     }
   </nz-list>
   @if(editable) {
-    @if (!approveCancelable) {
-      <button nz-button nzType="primary" [disabled]="rejectCancelable" (click)="onApprove()">
-        승인
-      </button>
-    } @else{
-      <button nz-button nzType="primary" (click)="onCancelApprove()">
-        승인 취소
-      </button>
-    }
-    @if (!rejectCancelable) {
-      <button nz-button nzType="primary" [disabled]="approveCancelable" nzDanger (click)="onReject()">
-        반려
-      </button>
-    } @else {
-      <button nz-button nzType="primary" (click)="onCancelReject()">
-        반려 취소
-      </button>
-    }
+  @if (!approveCancelable) {
+  <button nz-button nzType="primary" [disabled]="rejectCancelable" (click)="onApprove()">
+    승인
+  </button>
+  } @else{
+  <button nz-button nzType="primary" (click)="onCancelApprove()">
+    승인 취소
+  </button>
+  }
+  @if (!rejectCancelable) {
+  <button nz-button nzType="primary" [disabled]="approveCancelable" nzDanger (click)="onReject()">
+    반려
+  </button>
+  } @else {
+  <button nz-button nzType="primary" (click)="onCancelReject()">
+    반려 취소
+  </button>
+  }
   }
 </nz-card>

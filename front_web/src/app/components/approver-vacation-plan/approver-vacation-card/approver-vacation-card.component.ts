@@ -4,6 +4,7 @@ import { NzCardModule } from 'ng-zorro-antd/card';
 import { CommonModule } from '@angular/common';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { VacationService } from '../../../services/vacation.service';
+import { ApprovalAuth } from '../../../interfaces/approval-auth';
 
 @Component({
   selector: 'app-approver-vacation-card',
@@ -17,6 +18,7 @@ export class ApproverVacationCardComponent {
   @Input() planEditable = false;
   @Input() planRejectCancelable = false;
   @Input() planApproveCancelable = false;
+  @Input() approvalAuth = {} as ApprovalAuth;
 
   editable = true;
   rejectCancelable = false;
@@ -41,14 +43,14 @@ export class ApproverVacationCardComponent {
   }
 
   onReject = () => {
-    this.vacationService.rejectVacation(this.contents.id).then((data) => {
+    this.vacationService.rejectVacation(this.contents.id, this.approvalAuth).then((data) => {
       this.contents.reject_state = true
       this.updateState()
     })
   }
 
   onCancelReject = () => {
-    this.vacationService.cancelRejectVacation(this.contents.id).then((data) => {
+    this.vacationService.cancelRejectVacation(this.contents.id, this.approvalAuth).then((data) => {
       this.contents.reject_state = false
       this.updateState()
     })
