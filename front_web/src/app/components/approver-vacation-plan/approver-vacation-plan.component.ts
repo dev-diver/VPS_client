@@ -4,6 +4,7 @@ import { VacationPlan } from '../../interfaces/vacation-plan';
 import { NzListModule } from 'ng-zorro-antd/list';
 import { ApproverVacationPlanCardComponent } from './approver-vacation-plan-card/approver-vacation-plan-card.component';
 
+export type Mode = 'process' | 'approved'
 @Component({
   selector: 'app-approver-vacation-plan',
   standalone: true,
@@ -14,15 +15,23 @@ import { ApproverVacationPlanCardComponent } from './approver-vacation-plan-card
 export class ApproverVacationPlanComponent {
 
   @Input() year: number = 0
+  @Input() mode: Mode = 'process'
+
   data: VacationPlan[] = []
 
   constructor(private vacationService : VacationService) { }
 
 
   requestPeriodVacationPlans = () : void => {
-    this.vacationService.getApproverVacationPlansWithYear(this.year).then((data) => {
-      this.data = data
-    })
+    if (this.mode === 'process') {
+      this.vacationService.getApproverVacationPlansWithYear(this.year).then((data) => {
+        this.data = data
+      })
+    } else if (this.mode === 'approved'){
+      this.vacationService.getApproverApprovedVacationPlansWithYear(this.year).then((data) => {
+        this.data = data
+      })
+    }
   }
   
   ngOnChanges(changes: SimpleChanges): void {

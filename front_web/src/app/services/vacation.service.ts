@@ -77,6 +77,12 @@ export class VacationService {
     return response.data
   }
 
+  async getApproverApprovedVacationPlansWithYear(year: number): Promise<VacationPlan[]> {
+    this.checkAuth();
+    const response = await this.axiosInstance.get(`/vacations/plans?approverID=${this.memberId}&year=${year}&approved=true`);
+    return response.data
+  }
+
   async getVacationPlanById(vacationPlanId: ID): Promise<VacationPlan> {
     this.checkAuth();
     const response = await this.axiosInstance.get(`/vacations/plans/${vacationPlanId}`);
