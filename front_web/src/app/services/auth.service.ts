@@ -20,7 +20,7 @@ export class AuthService {
 
   constructor(private router: Router, private cookieService : CookieService) {
     this.axiosInstance = new AxiosInstanceService().getAxiosInstance()
-    
+    this.loadAuthFromToken();
   }
 
   async login(email: string, password: string): Promise<void> {
