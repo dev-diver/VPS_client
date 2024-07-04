@@ -62,4 +62,9 @@ export const routes: Routes = [
     canActivate: [authGuard],
     title: '휴가 촉진',
   },
+  {
+    path: '**',
+    redirectTo: '/dashboard',
+    pathMatch: 'full',
+  },
 ];
