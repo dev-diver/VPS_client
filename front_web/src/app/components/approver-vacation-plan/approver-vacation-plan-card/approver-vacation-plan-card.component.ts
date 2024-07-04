@@ -34,6 +34,8 @@ export class ApproverVacationPlanCardComponent {
   approveCancelable = false;
   rejectCancelable = false;
 
+  private initialized = false;
+
   constructor(private authService : AuthService,private vacationService : VacationService) {
     this.authSubscription = this.authService.auth$.subscribe(auth => {
       this.auth = auth;
@@ -42,11 +44,13 @@ export class ApproverVacationPlanCardComponent {
       }else {
         this.memberId = 0;
       }
-      this.initializeApprovalAuth();
     })
   }
 
   ngOnChanges() {
+    if(!this.initialized){
+      this.initializePlanApprovalAuth();
+    }
     this.updateState();
   }
 
@@ -56,7 +60,7 @@ export class ApproverVacationPlanCardComponent {
     }
   }
 
-  private initializeApprovalAuth() {
+  private initializePlanApprovalAuth() {
     this.approvalAuth.member_id = this.memberId;
     this.approvalAuth.approval_stage = this.vacationPlanData.approver_order.
       find((a) => a.member_id == this.memberId)?.order || 0;
