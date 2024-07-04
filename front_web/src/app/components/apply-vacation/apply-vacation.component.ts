@@ -92,7 +92,9 @@ export class ApplyVacationComponent {
       await this.vacationService.postVacationPlan({
         approver_order: this.approver.value.map((approver: any) => approver.id),
         vacations: vacationPlans
-      });
+      })
+      this.vacationService.notifyVacationReferesh();
+
     }catch(error : any){
       if(error instanceof Error){
         throw new Error('휴가 신청에 실패했습니다. : '+ error.message);

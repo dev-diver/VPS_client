@@ -9,7 +9,7 @@ import { AxiosInstanceService } from './axios-instance.service';
 import { Vacation } from '../interfaces/vacation';
 import { Auth } from '../interfaces/auth';
 import { AuthService } from './auth.service';
-import { Subscription } from 'rxjs';
+import { BehaviorSubject, Subscription } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -21,6 +21,12 @@ export class VacationService {
   private memberId : ID = 0;
   private axiosInstance: AxiosInstance;
   private authSubscription: Subscription
+  private vacationRefresh = new BehaviorSubject<void>(undefined);
+  vacationRefresh$ = this.vacationRefresh.asObservable();
+
+  notifyVacationReferesh = () => {
+    this.vacationRefresh.next()
+  }
 
   constructor(private authService: AuthService) {
     this.axiosInstance = new AxiosInstanceService().getAxiosInstance()

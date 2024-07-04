@@ -3,6 +3,7 @@ import { NzListModule } from 'ng-zorro-antd/list';
 import { VacationPlan } from '../../interfaces/vacation-plan';
 import { VacationService } from '../../services/vacation.service';
 import { ApplierVacationPlanCardComponent } from './applier-vacation-plan-card/applier-vacation-plan-card.component';
+import { Subscription } from 'rxjs';
 
 type Mode = 'process' | 'rejected'
 @Component({
@@ -16,6 +17,8 @@ export class ApplierVacationPlanComponent {
 
   @Input() year: number = 0
   @Input() mode: Mode = 'process'
+  private refreshSubscription : Subscription | null = null
+
   data: VacationPlan[] = []
 
   constructor(private vacationService : VacationService) { }
@@ -29,6 +32,18 @@ export class ApplierVacationPlanComponent {
       this.vacationService.getRejectedVacationPlansWithYear(this.year).then((data) => {
         this.data = data
       })
+    }
+  }
+
+  ngOnInit(): void {
+    this.refreshSubscription = this.vacationService.vacationRefresh$.subscribe(() => {
+      this.requestPeriodVacationPlans();
+    })
+  }
+
+  ngOnDestroy(): void {
+    if(this.refreshSubscription){
+      this.refreshSubscription.unsubscribe();
     }
   }
   
