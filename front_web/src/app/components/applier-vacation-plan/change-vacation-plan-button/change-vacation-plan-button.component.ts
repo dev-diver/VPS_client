@@ -62,9 +62,8 @@ export class ChangeVacationPlanButtonComponent {
     }
 
     try{
-      await this.vacationService.changeVacationPlan(this.vacationPlanData.id, editVacationPlan).then((data) => {
-        console.log(data)
-      })
+      await this.vacationService.changeVacationPlan(this.vacationPlanData.id, editVacationPlan)
+      this.vacationService.notifyVacationReferesh()
     }catch(error: any){
       if(error instanceof Error){
         throw new Error('결재라인 변경에 실패했습니다. : ' + error.message)
