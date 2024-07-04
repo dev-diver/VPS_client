@@ -9,12 +9,13 @@ import { VacationService } from '../../../services/vacation.service';
 import { ID } from '../../../interfaces/id';
 import { ApproverListComponent } from '../../approver-list/approver-list.component';
 import { ChangeVacationPlanButtonComponent } from '../change-vacation-plan-button/change-vacation-plan-button.component';
+import { NzTypographyModule } from 'ng-zorro-antd/typography';
 
 @Component({
   selector: 'app-applier-vacation-plan-card',
   standalone: true,
   imports: [
-    NzButtonModule, NzCardModule, NzListModule, 
+    NzButtonModule, NzCardModule, NzListModule, NzTypographyModule,
     ApplierVacationCardComponent, ApproverListComponent, ChangeVacationPlanButtonComponent
   ],
   templateUrl: './applier-vacation-plan-card.component.html',
@@ -26,12 +27,16 @@ export class ApplierVacationPlanCardComponent {
   @Input() vacationPlanData: VacationPlan = {} as VacationPlan;
   @Input() onVacationPlanChange = (id: number): void => {};
   @Output() vacationPlanDelete = new EventEmitter<number>();
+  
   disabled = false;
 
   constructor(private vacationService : VacationService) {}
 
   ngOnInit() {
-    if(this.vacationPlanData.approve_stage != 0) {
+    if(
+      this.vacationPlanData.approve_stage != 0 ||
+      this.vacationPlanData.reject_state
+    ) {
       this.disabled = true
     }
   }

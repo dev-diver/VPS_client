@@ -1,5 +1,8 @@
 <nz-card>
     <p>{{vacationPlanData.member_name}}</p>
+    @if (disabled) {
+        <p nz-typography nzType="danger">반려됨</p>
+    }
     <app-approver-list 
         [approverList]="vacationPlanData.approver_order"
         [approveStage]="vacationPlanData.approve_stage"
@@ -9,7 +12,10 @@
     <nz-list [nzDataSource]="vacationPlanData.vacations">
       @for (item of vacationPlanData.vacations; track item) {
       <nz-list-item>
-        <app-applier-vacation-card [vacationPlanId]="vacationPlanData.id" [contents]="item" 
+        <app-applier-vacation-card 
+            [vacationPlanId]="vacationPlanData.id" 
+            [contents]="item"
+            [planDisabled]="disabled"
             (vacationChange)="onVacationChange(item.id)"
             (vacationPlanChange)="onVacationPlanChange($event)" 
         />

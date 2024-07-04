@@ -20,6 +20,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class ApplierVacationCardComponent {
 
   @Input() vacationPlanId :ID = 0;
+  @Input() planDisabled = false;
   @Input() contents : Vacation = {} as Vacation;
   @Output() vacationChange = new EventEmitter<number>();
   @Output() vacationPlanChange = new EventEmitter<number>();
@@ -35,7 +36,9 @@ export class ApplierVacationCardComponent {
   }
 
   ngOnInit() {
-    if(this.contents.approve_stage != 0) {
+    if(this.contents.approve_stage != 0 ||
+      this.planDisabled
+    ) {
       this.disabled = true
     }
     if(this.contents.reject_state) {
