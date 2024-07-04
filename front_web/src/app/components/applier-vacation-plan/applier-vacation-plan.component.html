@@ -1,5 +1,5 @@
 <nz-list [nzDataSource]="data" nzBordered>
-    <nz-list-header>{{mode=="process"?'결재중':'반려'}}</nz-list-header>
+    <nz-list-header>{{mode=="process"?'결재상태':'반려'}}</nz-list-header>
     @for (item of data; track item) {
     <nz-list-item>
         <app-applier-vacation-plan-card 
