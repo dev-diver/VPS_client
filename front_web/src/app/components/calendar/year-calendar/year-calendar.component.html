@@ -1,12 +1,13 @@
 <div class="year-calendar">
-  <app-year-change [(year)]="year"/>
+  <app-year-change [(year)]="year" />
   <div class="month-calendars">
-    @for (month of months; track month) {
-    <div class="calendar-container">
-      <app-mini-calendar [year]="year" [month]="month"></app-mini-calendar>
+
+    <div *ngFor="let month of getKeys(monthlyOccupiedDates);">
+      <div class="calendar-container">
+        <app-mini-calendar [year]="year" [month]="month"
+          [occupiedDates]="monthlyOccupiedDates[month]"></app-mini-calendar>
+      </div>
     </div>
-    } @empty {
-    <li>There are no items.</li>
-    }
+
   </div>
 </div>

@@ -2,6 +2,13 @@
   [ngStyle]="{ width: '300px', border: '1px solid #d9d9d9', borderRadius: '4px', margin: '10px' }">
   <nz-calendar [nzFullscreen]="false" [nzCustomHeader]="customHeader" [(ngModel)]="date"
     [nzDisabledDate]="disableOtherMonths">
+    <div *nzDateFullCell="let date">
+      <div class="ant-picker-cell-inner"
+        [ngStyle]="{'background-color': occupiedDates[date.getDate()] ? occupiedDates[date.getDate()] : 'transparent'}"
+        [ngClass]="{'occupied': occupiedDates[date.getDate()]}">
+        <div>{{ date.getDate() }}</div>
+      </div>
+    </div>
   </nz-calendar>
   <ng-template #customHeader>
     <div style="padding: 8px">

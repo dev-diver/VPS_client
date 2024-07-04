@@ -15,6 +15,7 @@ import { NzDatePickerModule } from 'ng-zorro-antd/date-picker';
 export class MiniCalendarComponent {
   @Input() year: number = new Date().getFullYear()
   @Input() month: number = 1;
+  @Input() occupiedDates: { [day: number]: string } = {};
   date: Date = new Date;
 
   constructor() {
