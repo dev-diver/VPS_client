@@ -34,7 +34,7 @@ export class YearCalendarComponent {
   }
 
   requestPeriodVacations = () : void => {
-      this.vacationService.getCompanyVacationsWithYear(this.year).then((data) => {
+      this.vacationService.getCompanyCompletedVacationsWithYear(this.year).then((data) => {
         console.log(data)
         this.data = data
         this.aggregateMonthlyOccupiedDates()
