@@ -31,14 +31,13 @@ export class ApproverListComponent {
   }
   
   updateApproveState(){
-    this.approveState = this.approverList.map((a,i) => {
+    this.approveState = this.approverList.map((a) => {
       let state = undefined
       if(a.order <= this.approveStage){
-        return "success"
-      }else if(a.order == this.approveStage + 1){
-        if(this.rejectState){
-          return "danger"
-        }
+        state = "success" as NzType
+      }
+      if(a.order == this.approveStage && this.rejectState){
+        state = "danger" as NzType
       }
       return state
     })
