@@ -23,13 +23,12 @@ import { MemberListComponent } from '../member-list/member-list.component';
 
 export class CompanyMembersCardComponent {
 
-  @Input() auth : Auth = {} as Auth;
   members : Member[] = []
 
   constructor(private companyService: CompanyService) {}
 
   ngOnInit() {
-    this.companyService.getCompanyMembers(this.auth.company_id).then((data) => {
+    this.companyService.getCompanyMembers().then((data) => {
       this.members = data;
     })
   }

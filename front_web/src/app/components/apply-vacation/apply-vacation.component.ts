@@ -4,7 +4,6 @@ import { NzDatePickerModule } from 'ng-zorro-antd/date-picker';
 import { CommonModule } from '@angular/common';
 import { FormArray, FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { VacationService } from '../../services/vacation.service';
-import { Auth } from '../../interfaces/auth';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { SearchAndSelectComponent } from '../search-and-select/search-and-select.component';
 
@@ -21,7 +20,6 @@ import { SearchAndSelectComponent } from '../search-and-select/search-and-select
 })
 export class ApplyVacationComponent {
   
-  @Input() auth : Auth = {} as Auth
   vacations: FormArray<FormGroup>
   approver: FormArray<FormGroup>
 
@@ -91,7 +89,7 @@ export class ApplyVacationComponent {
     }));
 
     try{
-      await this.vacationService.postVacationPlan(this.auth.member.id, {
+      await this.vacationService.postVacationPlan({
         approver_order: this.approver.value.map((approver: any) => approver.id),
         vacations: vacationPlans
       });

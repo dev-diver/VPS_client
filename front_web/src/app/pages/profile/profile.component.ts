@@ -12,8 +12,4 @@ import { AuthService } from '../../services/auth.service';
   styleUrl: './profile.component.less'
 })
 export class ProfileComponent {
-  auth: Auth = {} as Auth;
-  constructor(private authService: AuthService) {
-    this.auth = this.authService.getAuth();
-  }
 }

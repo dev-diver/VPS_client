@@ -6,6 +6,8 @@ import { ID } from '../interfaces/id';
 import { Group } from '../interfaces/group';
 import { AxiosInstanceService } from './axios-instance.service';
 import { Organize } from '../interfaces/organize';
+import { AuthService } from './auth.service';
+import { Auth } from '../interfaces/auth';
 
 
 @Injectable({
@@ -13,34 +15,41 @@ import { Organize } from '../interfaces/organize';
 })
 export class CompanyService {
 
+  auth : Auth | null;
+  companyId : ID;
   private axiosInstance: AxiosInstance;
 
-  constructor() {
+  constructor(private authService: AuthService) {
     this.axiosInstance = new AxiosInstanceService().getAxiosInstance()
+    this.auth = this.authService.getAuth();
+    if(!this.auth){
+      throw new Error('로그인이 필요합니다')
+    }
+    this.companyId = this.auth.company_id;
   }
 
-  async getCompanyInfo(companyId : ID): Promise<Company> {
-    const response = await this.axiosInstance.get<Company>(`/companies/${companyId}`);
+  async getCompanyInfo(): Promise<Company> {
+    const response = await this.axiosInstance.get<Company>(`/companies/${this.companyId}`);
     return response.data
   }
 
-  async getCompanyMembers(companyId : ID): Promise<Member[]> {
-    const response = await this.axiosInstance.get<Member[]>(`/companies/${companyId}/members`);
+  async getCompanyMembers(): Promise<Member[]> {
+    const response = await this.axiosInstance.get<Member[]>(`/companies/${this.companyId}/members`);
     return response.data
   }
 
-  async getCompanyMembersWithKeyword(companyId : ID, keyword : string): Promise<Member[]> {
-    const response = await this.axiosInstance.get<Member[]>(`/companies/${companyId}/members/search?keyword=${keyword}`);
+  async getCompanyMembersWithKeyword(keyword : string): Promise<Member[]> {
+    const response = await this.axiosInstance.get<Member[]>(`/companies/${this.companyId}/members/search?keyword=${keyword}`);
     return response.data
   }
 
-  async getCompanyGroups(companyId : ID): Promise<Group[]> {
-    const response = await this.axiosInstance.get<Group[]>(`/companies/${companyId}/groups`);
+  async getCompanyGroups(): Promise<Group[]> {
+    const response = await this.axiosInstance.get<Group[]>(`/companies/${this.companyId}/groups`);
     return response.data
   }
 
-  async getCompanyOrganizes(companyId : ID): Promise<Organize> {
-    const response = await this.axiosInstance.get<Organize>(`/companies/${companyId}/organizes`);
+  async getCompanyOrganizes(): Promise<Organize> {
+    const response = await this.axiosInstance.get<Organize>(`/companies/${this.companyId}/organizes`);
     return response.data
   }
   

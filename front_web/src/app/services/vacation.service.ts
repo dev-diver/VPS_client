@@ -7,32 +7,42 @@ import { Vacation as VacationRequest } from '../interfaces/request/vacation';
 import { ApprovalAuth } from '../interfaces/approval-auth';
 import { AxiosInstanceService } from './axios-instance.service';
 import { Vacation } from '../interfaces/vacation';
+import { Auth } from '../interfaces/auth';
+import { AuthService } from './auth.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class VacationService {
 
+  auth : Auth | null;
+  companyId : ID;
+  memberId : ID;
   private axiosInstance: AxiosInstance;
 
-  constructor() {
+  constructor(private authService: AuthService) {
     this.axiosInstance = new AxiosInstanceService().getAxiosInstance()
+    this.auth = this.authService.getAuth();
+    if(!this.auth){
+      throw new Error('로그인이 필요합니다')
+    }
+    this.companyId = this.auth.company_id;
+    this.memberId = this.auth.member.id;
   }
 
-  async getCompanyVacationPlansWithYear(companyId :ID, year: number): Promise<VacationPlan[]> {
-    const response = await this.axiosInstance.get(`/companies/${companyId}/vacations/plans?year=${year}`);
+  async getCompanyVacationPlansWithYear(year: number): Promise<VacationPlan[]> {
+    const response = await this.axiosInstance.get(`/companies/${this.companyId}/vacations/plans?year=${year}`);
+    return response.data
+  }
+
+  async getMemberVacationPlansWithYear(year: number): Promise<VacationPlan[]> {
+    const response = await this.axiosInstance.get(`/members/${this.memberId}/vacations/plans?year=${year}`);
     console.log(response.data)
     return response.data
   }
 
-  async getMemberVacationPlansWithYear(memberId :ID, year: number): Promise<VacationPlan[]> {
-    const response = await this.axiosInstance.get(`/members/${memberId}/vacations/plans?year=${year}`);
-    console.log(response.data)
-    return response.data
-  }
-
-  async getApproverVacationPlansWithYear(memberId :ID, year: number): Promise<VacationPlan[]> {
-    const response = await this.axiosInstance.get(`/vacations/plans?approverID=${memberId}&year=${year}`);
+  async getApproverVacationPlansWithYear(year: number): Promise<VacationPlan[]> {
+    const response = await this.axiosInstance.get(`/vacations/plans?approverID=${this.memberId}&year=${year}`);
     console.log(response.data)
     return response.data
   }
@@ -47,8 +57,8 @@ export class VacationService {
     return response.data
   }
 
-  async postVacationPlan(memberId :ID, vacations: VacationPlanRequest): Promise<VacationPlan> {
-    const response = await this.axiosInstance.post(`/members/${memberId}/vacations/plans`, vacations);
+  async postVacationPlan(vacations: VacationPlanRequest): Promise<VacationPlan> {
+    const response = await this.axiosInstance.post(`/members/${this.memberId}/vacations/plans`, vacations);
     return response.data
   }
 

@@ -1,3 +1,4 @@
+@if(auth){
 <nz-card [nzTitle]="auth.member.name">
     <form nz-form [formGroup]="validateForm">
         <!-- <p>회사명 : {{auth.company.name}}</p> -->
@@ -19,3 +20,4 @@
         </nz-form-item>
     </form>
 </nz-card>
+}

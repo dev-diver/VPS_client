@@ -5,8 +5,6 @@ import { SearchAndSelectComponent } from '../../search-and-select/search-and-sel
 import { CommonModule } from '@angular/common';
 import { FormArray, FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { VacationService } from '../../../services/vacation.service';
-import { Auth } from '../../../interfaces/auth';
-import { AuthService } from '../../../services/auth.service';
 import { VacationPlan } from '../../../interfaces/vacation-plan';
 import { EditVacationPlan } from '../../../interfaces/request/vacation-plan';
 
@@ -23,19 +21,16 @@ import { EditVacationPlan } from '../../../interfaces/request/vacation-plan';
 })
 export class ChangeVacationPlanButtonComponent {
 
-  auth : Auth = {} as Auth
   approver: FormArray<FormGroup>
   @Input() vacationPlanData: VacationPlan = {} as VacationPlan
 
   constructor(
     private fb: FormBuilder, 
     private vacationService : VacationService,
-    private authService: AuthService
   ) { 
     this.approver = this.fb.array([
       this.createApproverFormGroup()
     ])
-    this.auth = this.authService.getAuth()
   }
 
   createApproverFormGroup(): FormGroup {

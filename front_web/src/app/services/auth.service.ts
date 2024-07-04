@@ -5,6 +5,7 @@ import { Auth } from '../interfaces/auth';
 import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
 import { JwtHelperService } from '@auth0/angular-jwt';
+import { BehaviorSubject } from 'rxjs';
 
 
 @Injectable({
@@ -14,6 +15,8 @@ export class AuthService {
 
   private axiosInstance: AxiosInstance;
   private jwtHelper :JwtHelperService = new JwtHelperService();
+  private authSubject = new BehaviorSubject<Auth | null>(null);
+  auth$ = this.authSubject.asObservable();
 
   constructor(private router: Router, private cookieService : CookieService) {
     this.axiosInstance = new AxiosInstanceService().getAxiosInstance()
@@ -23,31 +26,44 @@ export class AuthService {
   async login(email: string, password: string): Promise<void> {
     try{
       await this.axiosInstance.post('/auth/login', { email, password });
-      const isLoggedin = this.getAuth()
-      if(isLoggedin){
-        this.router.navigate(['/dashboard'])
-      }else{
-        throw new Error('로그인 실패')
-      }
+      this.loadAuthFromToken();
+      this.router.navigate(['/dashboard'])
     }catch(e){
       console.log(e)
     }
   }
 
-  public getAuth(): Auth {
-    const token = this.cookieService.get('authToken_info')
-    const decodedToken = this.jwtHelper.decodeToken(token)
-    return decodedToken.auth
+  public getAuth(): Auth | null {
+    return this.authSubject.value;
   }
 
+  private loadAuthFromToken(): void {
+    const token = this.cookieService.get('authToken_info');
+    if (token) {
+      const decodedToken = this.jwtHelper.decodeToken(token);
+      if (decodedToken) {
+        this.authSubject.next(decodedToken.auth);
+        return;
+      }
+    }
+    this.authSubject.next(null);
+  }
+
+
   async logout(): Promise<void> {
-    await this.axiosInstance.post('/auth/logout');
-    this.clearAuth();
-    this.router.navigate(['/login']);
+    try {
+      await this.axiosInstance.post('/auth/logout');
+    } catch (e) {
+      console.log(e);
+    } finally {
+      this.clearAuth();
+      this.router.navigate(['/login']);
+    }
   }
 
   private clearAuth() {
     this.cookieService.delete('authToken_info')
+    this.authSubject.next(null);
   }
   
 }

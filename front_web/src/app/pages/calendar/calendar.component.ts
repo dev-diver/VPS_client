@@ -4,8 +4,7 @@ import { VacationCardComponent } from '../../components/vacation-card/vacation-c
 import { GroupFilterComponent } from '../../components/group-manage-card/group-filter/group-filter.component';
 import { PageLayoutComponent } from '../../page-layout/page-layout.component';
 import { ApplyVacationComponent } from '../../components/apply-vacation/apply-vacation.component';
-import { Auth } from '../../interfaces/auth';
-import { AuthService } from '../../services/auth.service';
+
 @Component({
   selector: 'app-calendar',
   standalone: true,
@@ -15,8 +14,4 @@ import { AuthService } from '../../services/auth.service';
 })
 export class CalendarComponent {
   @Input() year: number =  new Date().getFullYear();
-  auth: Auth = {} as Auth;
-  constructor(private authService: AuthService) {
-    this.auth = this.authService.getAuth();
-  }
 }

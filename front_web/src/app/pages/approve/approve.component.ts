@@ -5,8 +5,6 @@ import { VacationDashboardComponent } from '../../components/vacation-dashboard/
 import { ModalButtonComponent } from '../../components/modal-button/modal-button.component';
 import { PageLayoutComponent } from '../../page-layout/page-layout.component';
 import { ApplyVacationComponent } from '../../components/apply-vacation/apply-vacation.component';
-import { Auth } from '../../interfaces/auth';
-import { AuthService } from '../../services/auth.service';
 import { YearChangeComponent } from '../../components/year-change/year-change.component';
 import { ApproverVacationPlanComponent } from '../../components/approver-vacation-plan/approver-vacation-plan.component';
 @Component({
@@ -20,11 +18,6 @@ import { ApproverVacationPlanComponent } from '../../components/approver-vacatio
 export class ApproveComponent {
   @Input() year: number = new Date().getFullYear();
   
-  auth: Auth = {} as Auth;
-  constructor(private authService: AuthService) {
-    this.auth = this.authService.getAuth();
-  }
-
   onYearChange = (newYear: number): void  => {
     this.year = newYear;
   }

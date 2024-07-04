@@ -9,6 +9,7 @@ import { NzAvatarModule } from 'ng-zorro-antd/avatar';
 import { NzBadgeModule } from 'ng-zorro-antd/badge';
 import { Auth } from '../../interfaces/auth';
 import { AuthService } from '../../services/auth.service';
+import { Subscription } from 'rxjs';
 @Component({
   selector: 'app-header',
   standalone: true,
@@ -17,20 +18,24 @@ import { AuthService } from '../../services/auth.service';
   styleUrl: './header.component.less'
 })
 export class HeaderComponent {
-  auth: Auth = {} as Auth;
-  showNavigate: boolean = true;
+  auth: Auth | null = null;
   notificationCount : number = 1;
+  private authSubscription: Subscription;
+
   constructor(private router: Router, private authService: AuthService) {
-    this.router.events.subscribe((event) => {
-      if (event instanceof NavigationEnd) {
-        this.auth = this.authService.getAuth();
-        this.showNavigate = event.url !== '/login';
-      }
+    this.authSubscription = this.authService.auth$.subscribe((auth) => {
+      this.auth = auth;
     });
   }
 
   logout(){
     this.authService.logout();
     this.router.navigate(['/login']);
+  }
+
+  ngOnDestroy() {
+    if(this.authSubscription){
+      this.authSubscription.unsubscribe();
+    }
   }
 }

@@ -2,7 +2,6 @@ import { Component, Input, SimpleChanges } from '@angular/core';
 import { NzListModule } from 'ng-zorro-antd/list';
 import { VacationPlan } from '../../interfaces/vacation-plan';
 import { VacationService } from '../../services/vacation.service';
-import { Auth } from '../../interfaces/auth';
 import { ApplierVacationPlanCardComponent } from './applier-vacation-plan-card/applier-vacation-plan-card.component';
 
 @Component({
@@ -13,14 +12,13 @@ import { ApplierVacationPlanCardComponent } from './applier-vacation-plan-card/a
   styleUrl: './applier-vacation-plan.component.less'
 })
 export class ApplierVacationPlanComponent {
-  @Input() auth : Auth = {} as Auth
   @Input() year: number = 0
   data: VacationPlan[] = []
 
   constructor(private vacationService : VacationService) { }
 
   requestPeriodVacationPlans = () : void => {
-    this.vacationService.getMemberVacationPlansWithYear(this.auth.member.id, this.year).then((data) => {
+    this.vacationService.getMemberVacationPlansWithYear(this.year).then((data) => {
       this.data = data
     })
   }

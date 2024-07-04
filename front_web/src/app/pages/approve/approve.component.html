@@ -4,9 +4,9 @@
     </div>
     <div>
         <app-year-change [year]="year" (yearChange)="onYearChange($event)" />
-        <app-approver-vacation-plan [year]="year" [auth]="auth" />
+        <app-approver-vacation-plan [year]="year" />
     </div>
     <div right>
-        <app-apply-vacation [auth]="auth"/>
+        <app-apply-vacation />
     </div>
 </app-page-layout>

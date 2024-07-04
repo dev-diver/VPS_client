@@ -2,8 +2,6 @@ import { Component, Input } from '@angular/core';
 import { Company } from '../../interfaces/company';
 import { CompanyService } from '../../services/company.service';
 import { CommonModule } from '@angular/common';
-import { Auth } from '../../interfaces/auth';
-
 @Component({
   selector: 'app-company-card',
   standalone: true,
@@ -13,13 +11,12 @@ import { Auth } from '../../interfaces/auth';
 })
 export class CompanyCardComponent {
 
-  @Input() auth : Auth = {} as Auth;
   companyInfo : Company = {} as Company;
 
   constructor(private companyService: CompanyService) {}
 
   ngOnInit() {
-    this.companyService.getCompanyInfo(this.auth.company_id).then((data) => {
+    this.companyService.getCompanyInfo().then((data) => {
       this.companyInfo = data;
     })
   }

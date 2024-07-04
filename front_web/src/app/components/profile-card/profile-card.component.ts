@@ -1,11 +1,11 @@
 import { Component, Input } from '@angular/core';
 import { NzCardComponent } from 'ng-zorro-antd/card';
-import { Member } from '../../interfaces/member';
 import { NzFormModule } from 'ng-zorro-antd/form';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { FormControl, FormGroup, FormsModule, NonNullableFormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { Auth } from '../../interfaces/auth';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-profile-card',
@@ -15,7 +15,8 @@ import { Auth } from '../../interfaces/auth';
   styleUrl: './profile-card.component.less'
 })
 export class ProfileCardComponent {
-  @Input() auth: Auth = {} as Auth;
+  
+  auth: Auth | null;
 
   validateForm: FormGroup<{
     password: FormControl<string>;
@@ -25,7 +26,9 @@ export class ProfileCardComponent {
 
   password : string = ''
 
-  constructor(private fb: NonNullableFormBuilder) {}
+  constructor(private authService : AuthService ,private fb: NonNullableFormBuilder) {
+    this.auth = this.authService.getAuth();
+  }
 
   deactivate(){
     alert('퇴사 처리')

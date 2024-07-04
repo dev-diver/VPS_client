@@ -4,7 +4,6 @@ import { NzListModule } from 'ng-zorro-antd/list';
 import { CommonModule } from '@angular/common';
 import { YearChangeComponent } from '../year-change/year-change.component';
 import { ApproverVacationPlanCardComponent } from '../approver-vacation-plan/approver-vacation-plan-card/approver-vacation-plan-card.component';
-import { Auth } from '../../interfaces/auth';
 import { ApplierVacationPlanComponent } from '../applier-vacation-plan/applier-vacation-plan.component';
 import { ApproverVacationPlanComponent } from '../approver-vacation-plan/approver-vacation-plan.component';
 
@@ -17,7 +16,6 @@ import { ApproverVacationPlanComponent } from '../approver-vacation-plan/approve
   encapsulation: ViewEncapsulation.None
 })
 export class VacationDashboardComponent {
-  @Input() auth : Auth = {} as Auth
   @Input() year: number = 0
   @Input() yearChange = (newYear:number): void => {}
 }
