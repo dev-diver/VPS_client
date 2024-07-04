@@ -27,9 +27,7 @@ export class SearchInputComponent {
 
   onSearch() : void {
     this.search.emit(this.searchText);
-    if(this.items.length > 0){
-      this.dropdownVisible = true;
-    }
+    this.dropdownVisible = true;
   }
 
   onSelectItem(item: any) : void {
