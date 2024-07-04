@@ -1,7 +1,11 @@
 <nz-card>
     <p>{{vacationPlanData.member_name}}</p>
-    @if (disabled) {
-        <p nz-typography nzType="danger">반려됨</p>
+    @if(disabled){
+        @if (rejected) {
+            <p nz-typography nzType="danger">반려됨</p>
+        } @else {
+            <p nz-typography nzType="success">결재중</p>
+        } 
     }
     <app-approver-list 
         [approverList]="vacationPlanData.approver_order"

@@ -29,15 +29,19 @@ export class ApplierVacationPlanCardComponent {
   @Output() vacationPlanDelete = new EventEmitter<number>();
   
   disabled = false;
+  rejected = false;
 
   constructor(private vacationService : VacationService) {}
 
   ngOnInit() {
     if(
-      this.vacationPlanData.approve_stage != 0 ||
-      this.vacationPlanData.reject_state
+      this.vacationPlanData.approve_stage != 0
     ) {
       this.disabled = true
+    }
+    if(this.vacationPlanData.reject_state) {
+      this.disabled = true
+      this.rejected = true
     }
   }
 
