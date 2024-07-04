@@ -4,7 +4,8 @@
     </div>
     <div>
         <app-year-change [year]="year" (yearChange)="onYearChange($event)" />
-    <app-applier-vacation-plan [year]="year"/>
+    <app-applier-vacation-plan [year]="year" [mode]="'process'"/>
+    <app-applier-vacation-plan [year]="year" [mode]="'rejected'"/>
     </div>
     <div right>
         <app-apply-vacation/>
