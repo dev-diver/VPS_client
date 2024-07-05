@@ -94,6 +94,7 @@ export class YearCalendarComponent {
           const greenValue = Math.max(160 - (applyCount - 1) * 10, 120);
           color = `rgba(0, ${greenValue}, 0, 0.25)`;
         }
+        
         this.monthlyOccupiedDates[parseInt(month)][parseInt(day)] = {color: color, applied: data.apply_count, completed: data.complete_count};
       }
     }
