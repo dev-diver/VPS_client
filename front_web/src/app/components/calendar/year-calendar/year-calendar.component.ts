@@ -18,7 +18,7 @@ export class YearCalendarComponent {
   @Input() year: number = new Date().getFullYear()
 
   data: Vacation[] = []
-  monthlyOccupiedDates: { [key: number]: { [day: number]: string } } = {};
+  monthlyOccupiedDates: { [key: number]: { [day: number]: {color:string, applied: number, completed: number} } } = {};
 
   constructor(private vacationService : VacationService, private datePipe : DatePipe) { }
 
@@ -66,7 +66,7 @@ export class YearCalendarComponent {
         const day = current.getDate();
         
         if (!monthlyDates[month][day]) {
-          monthlyDates[month][day] = { apply_count: 0, complete_count:0 };
+          monthlyDates[month][day] = { apply_count: 0, complete_count: 0 };
         }
         
         if(complete_state){
@@ -83,24 +83,23 @@ export class YearCalendarComponent {
       this.monthlyOccupiedDates[parseInt(month)] = {};
       for (let day in monthlyDates[month]) {
         const data = monthlyDates[month][day];
-        const onlyApply = data.apply_count > 0 && data.complete_count === 0;
   
         let color;
-        if (onlyApply) {
-          const applyCount = Math.min(data.apply_count, 5);
-          const greenValue = Math.max(160 - (applyCount - 1) * 10, 120);
-          color = `rgba(0, ${greenValue}, 0, 0.25)`;
-        } else {
+        if (data.complete_count > 0) {
           const completeCount = Math.min(data.complete_count, 5);
           const greenValue = Math.max(160 - (completeCount - 1) * 10, 120);
           color = `rgb(0, ${greenValue}, 0)`;
+        } else {
+          const applyCount = Math.min(data.apply_count, 5);
+          const greenValue = Math.max(160 - (applyCount - 1) * 10, 120);
+          color = `rgba(0, ${greenValue}, 0, 0.25)`;
         }
-        this.monthlyOccupiedDates[parseInt(month)][parseInt(day)] = color;
+        this.monthlyOccupiedDates[parseInt(month)][parseInt(day)] = {color: color, applied: data.apply_count, completed: data.complete_count};
       }
     }
   }
 
-  getKeys(obj: { [key: number]: { [day: number]: string } }): number[] {
+  getKeys(obj: { [key: number]: { [day: number]:  {color:string, applied: number, completed: number} } }): number[] {
     return Object.keys(obj).map(Number);
   }
 }

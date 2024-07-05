@@ -3,11 +3,13 @@
   <nz-calendar [nzFullscreen]="false" [nzCustomHeader]="customHeader" [(ngModel)]="date"
     [nzDisabledDate]="disableOtherMonths">
     <div *nzDateFullCell="let date">
+      <div nz-tooltip [nzTooltipTitle]="getTooltipTitle(date.getDate())">
         <div class="ant-picker-cell-inner"
-          [ngStyle]="{'background-color': occupiedDates[date.getDate()] ? occupiedDates[date.getDate()] : 'transparent'}"
+          [ngStyle]="{'background-color': occupiedDates[date.getDate()] ? occupiedDates[date.getDate()].color : 'transparent'}"
           [ngClass]="{'occupied': occupiedDates[date.getDate()]}">
           <div>{{ date.getDate() }}</div>
         </div>
+      </div>
     </div>
   </nz-calendar>
   <ng-template #customHeader>

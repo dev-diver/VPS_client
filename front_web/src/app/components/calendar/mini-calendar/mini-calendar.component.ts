@@ -1,4 +1,4 @@
-import { Component, Input, SimpleChanges, ViewEncapsulation } from '@angular/core';
+import { Component, Input, SimpleChanges, TemplateRef, ViewChild, ViewEncapsulation } from '@angular/core';
 import { NzCalendarModule } from 'ng-zorro-antd/calendar';
 import { CommonModule } from '@angular/common'; 
 import { FormsModule } from '@angular/forms';
@@ -19,8 +19,12 @@ import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
 export class MiniCalendarComponent {
   @Input() year: number = new Date().getFullYear()
   @Input() month: number = 1;
-  @Input() occupiedDates: { [day: number]: string } = {};
+  @Input() occupiedDates: { [day: number]: {color : string, applied: number, completed: number } } = {};
   date: Date = new Date;
+
+  @ViewChild('defaultTooltipTemplate', { static: true }) defaultTooltipTemplate!: TemplateRef<void>;
+  @ViewChild('customTooltipTemplate', { static: true }) customTooltipTemplate!: TemplateRef<void>;
+
 
   constructor() {
     this.updateDate();
@@ -42,5 +46,13 @@ export class MiniCalendarComponent {
 
   getMonthName(): string {
     return this.month + '월';
+  }
+
+  getTooltipTitle(day: number) : string {
+
+    if (!this.occupiedDates[day]) {
+      return '휴가 없음'
+    }
+    return `신청: ${this.occupiedDates[day].applied}, 승인: ${this.occupiedDates[day].completed}`
   }
 }
