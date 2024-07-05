@@ -9,4 +9,5 @@ export interface Vacation{
     half_last: boolean,
     approve_stage: number,
     reject_state: boolean,
+    complete_state: boolean,
 }

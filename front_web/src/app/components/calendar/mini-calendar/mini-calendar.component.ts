@@ -3,11 +3,15 @@ import { NzCalendarModule } from 'ng-zorro-antd/calendar';
 import { CommonModule } from '@angular/common'; 
 import { FormsModule } from '@angular/forms';
 import { NzDatePickerModule } from 'ng-zorro-antd/date-picker';
+import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
 
 @Component({
   selector: 'app-mini-calendar',
   standalone: true,
-  imports: [NzDatePickerModule,NzCalendarModule, CommonModule, FormsModule],
+  imports: [
+    CommonModule, FormsModule,
+    NzToolTipModule, NzDatePickerModule,NzCalendarModule,
+  ],
   templateUrl: './mini-calendar.component.html',
   styleUrl: './mini-calendar.component.less',
   encapsulation: ViewEncapsulation.None

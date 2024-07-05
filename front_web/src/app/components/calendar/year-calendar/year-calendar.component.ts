@@ -34,7 +34,7 @@ export class YearCalendarComponent {
   }
 
   requestPeriodVacations = () : void => {
-      this.vacationService.getCompanyCompletedVacationsWithYear(this.year).then((data) => {
+      this.vacationService.getCompanyVacationsWithYear(this.year).then((data) => {
         console.log(data)
         this.data = data
         this.aggregateMonthlyOccupiedDates()
@@ -49,7 +49,7 @@ export class YearCalendarComponent {
 
   aggregateMonthlyOccupiedDates() {
 
-    const monthlyDates: { [key: number]: { [day: number]: string } } = Object.assign(
+    const monthlyDates: { [key: number]: { [day: number]: { apply_count: number, complete_count: number} } } = Object.assign(
       {},
       ...Array.from({ length: 12 }, (_, i) => ({ [i + 1]: {} }))
     );
@@ -57,19 +57,47 @@ export class YearCalendarComponent {
     this.data.forEach((vacation) => {
       const start = new Date(vacation.start_date);
       const end = new Date(vacation.end_date);
+      const complete_state = vacation.complete_state;
 
       let current = new Date(start);
 
       while (current <= end) {
         const month = current.getMonth() + 1; // 월은 0부터 시작하므로 1을 더해줍니다.
         const day = current.getDate();
-        monthlyDates[month][day] = '#1890ff';
+        
+        if (!monthlyDates[month][day]) {
+          monthlyDates[month][day] = { apply_count: 0, complete_count:0 };
+        }
+        
+        if(complete_state){
+          monthlyDates[month][day].complete_count += 1;
+        }else{
+          monthlyDates[month][day].apply_count += 1;
+        }
         current.setDate(current.getDate() + 1);
       }
     });
 
-    this.monthlyOccupiedDates = monthlyDates;
-    console.log(this.monthlyOccupiedDates);
+
+    for (let month in monthlyDates) {
+      this.monthlyOccupiedDates[parseInt(month)] = {};
+      for (let day in monthlyDates[month]) {
+        const data = monthlyDates[month][day];
+        const onlyApply = data.apply_count > 0 && data.complete_count === 0;
+  
+        let color;
+        if (onlyApply) {
+          const applyCount = Math.min(data.apply_count, 5);
+          const greenValue = Math.max(160 - (applyCount - 1) * 10, 120);
+          color = `rgba(0, ${greenValue}, 0, 0.25)`;
+        } else {
+          const completeCount = Math.min(data.complete_count, 5);
+          const greenValue = Math.max(160 - (completeCount - 1) * 10, 120);
+          color = `rgb(0, ${greenValue}, 0)`;
+        }
+        this.monthlyOccupiedDates[parseInt(month)][parseInt(day)] = color;
+      }
+    }
   }
 
   getKeys(obj: { [key: number]: { [day: number]: string } }): number[] {
