@@ -36,7 +36,7 @@ export const routes: Routes = [
     path: 'approve',
     component: ApproveComponent,
     canActivate: [authGuard],
-    title: '결재',
+    title: '결재!',
   },
   {
     path: 'profile',
