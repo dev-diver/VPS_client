@@ -18,7 +18,7 @@ export const routes: Routes = [
   {
     path: 'login',
     component: LoginComponent,
-    title: '로그인',
+    title: '!로그인',
   },
   {
     path: 'calendar',
@@ -36,7 +36,7 @@ export const routes: Routes = [
     path: 'approve',
     component: ApproveComponent,
     canActivate: [authGuard],
-    title: '결재!',
+    title: '결재',
   },
   {
     path: 'profile',
