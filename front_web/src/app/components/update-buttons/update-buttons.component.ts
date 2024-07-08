@@ -14,7 +14,17 @@ export class UpdateButtonsComponent {
   clientIsUpdating = false;
   serverIsUpdating = false;
 
-  constructor(private updateService : UpdateService) { }
+  clientHaveUpdate = false;
+  serverHaveUpdate = false;
+
+  constructor(private updateService : UpdateService) { 
+    this.updateService.haveUpdateClient().then(haveUpdate => {
+      this.clientHaveUpdate = haveUpdate;
+    });
+    this.updateService.haveUpdateServer().then(haveUpdate => {
+      this.serverHaveUpdate = haveUpdate;
+    });
+  }
 
   update_client = async () => {
     this.clientIsUpdating = true;

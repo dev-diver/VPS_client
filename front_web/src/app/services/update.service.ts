@@ -54,4 +54,14 @@ export class UpdateService {
     const response = await this.axiosInstance.post<void>(`/webhook`, requestBody);
     return response.data
   }
+
+  async haveUpdateClient(): Promise<boolean> {
+    const response = await this.axiosInstance.get<boolean>(`/have_update?service=client`);
+    return response.data
+  }
+
+  async haveUpdateServer(): Promise<boolean> {
+    const response = await this.axiosInstance.get<boolean>(`/have_update?service=server`);
+    return response.data
+  }
 }

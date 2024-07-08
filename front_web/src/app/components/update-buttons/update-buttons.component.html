@@ -1,6 +1,8 @@
 <div>
-  <button nz-button nzType="primary" nzSize="large" (click)="update_client()" [nzLoading]="clientIsUpdating">클라이언트
+  <button nz-button nzType="primary" nzSize="large" (click)="update_client()" [disabled]="!clientHaveUpdate"
+    [nzLoading]="clientIsUpdating">클라이언트
     업데이트</button>
-  <button nz-button nzType="primary" nzSize="large" (click)="update_server()" [nzLoading]="serverIsUpdating">서버
+  <button nz-button nzType="primary" nzSize="large" (click)="update_server()" [disabled]="!serverHaveUpdate"
+    [nzLoading]="serverIsUpdating">서버
     업데이트</button>
 </div>
