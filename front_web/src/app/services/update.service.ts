@@ -34,7 +34,7 @@ export class UpdateService {
             "media_type": "none"
         },
         "repository": {
-            "repo_name" : "devdiver/vacation_promotion_cliet"
+            "repo_name" : "devdiver/vacation_promotion_client"
         }
     }
     const response = await this.axiosInstance.post<void>(`/webhook`, requestBody);
