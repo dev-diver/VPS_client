@@ -18,7 +18,7 @@ export const routes: Routes = [
   {
     path: 'login',
     component: LoginComponent,
-    title: '@로@그인',
+    title: '@로@그인@',
   },
   {
     path: 'calendar',
