@@ -5,7 +5,7 @@ import { Auth } from '../interfaces/auth';
 import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
 import { JwtHelperService } from '@auth0/angular-jwt';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable, Subscription, of } from 'rxjs';
 
 
 @Injectable({
@@ -15,11 +15,23 @@ export class AuthService {
 
   private axiosInstance: AxiosInstance;
   private jwtHelper :JwtHelperService = new JwtHelperService();
-  private authSubject = new BehaviorSubject<Auth | null>(null);
-  auth$ = this.authSubject.asObservable();
+  private AuthInfoSubject: BehaviorSubject<Auth | null> = new BehaviorSubject<Auth | null>(null);
+  public AuthInfo$: Observable<Auth | null> = this.AuthInfoSubject.asObservable();
+  public subscription: Subscription;
 
-  constructor(private router: Router, private cookieService : CookieService) {
-    this.axiosInstance = new AxiosInstanceService().getAxiosInstance()
+  constructor(
+    private router: Router, 
+    private cookieService : CookieService,
+    private axiosInstanceService: AxiosInstanceService
+  ) {
+    this.axiosInstance = axiosInstanceService.getAxiosInstance()
+    this.subscription = this.axiosInstanceService.unauthorizedError$.subscribe((isError) => {
+      if(isError){
+        console.log('로그아웃')
+        this.logout()
+      }
+    });
+
     this.loadAuthFromToken();
   }
 
@@ -32,9 +44,14 @@ export class AuthService {
       console.log(e)
     }
   }
+  
+  public getAuth(): Observable<Auth | null>{
+    return this.AuthInfo$;
+  }
 
-  public getAuth(): Auth | null {
-    return this.authSubject.value;
+  public resetAuth(){
+    this.AuthInfoSubject.next(null);
+    this.cookieService.delete('authToken_info');
   }
 
   private loadAuthFromToken(): void {
@@ -42,13 +59,12 @@ export class AuthService {
     if (token) {
       const decodedToken = this.jwtHelper.decodeToken(token);
       if (decodedToken) {
-        this.authSubject.next(decodedToken.auth);
+        this.AuthInfoSubject.next(decodedToken.auth);
         return;
       }
     }
-    this.authSubject.next(null);
+    this.AuthInfoSubject.next(null);
   }
-
 
   async logout(): Promise<void> {
     try {
@@ -56,14 +72,15 @@ export class AuthService {
     } catch (e) {
       console.log(e);
     } finally {
-      this.clearAuth();
+      this.resetAuth()
       this.router.navigate(['/login']);
     }
   }
 
-  private clearAuth() {
-    this.cookieService.delete('authToken_info')
-    this.authSubject.next(null);
+  ngOnDestroy(): void {
+    if(this.subscription){
+      this.subscription.unsubscribe();
+    }
   }
-  
+
 }

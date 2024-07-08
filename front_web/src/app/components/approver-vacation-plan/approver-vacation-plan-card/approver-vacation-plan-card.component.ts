@@ -24,7 +24,6 @@ import { ID } from '../../../interfaces/id';
 })
 export class ApproverVacationPlanCardComponent {
 
-  private auth: Auth | null = null;
   private memberId: ID = 0;
   private authSubscription: Subscription
   approvalAuth: ApprovalAuth = {} as ApprovalAuth;
@@ -37,10 +36,9 @@ export class ApproverVacationPlanCardComponent {
   private initialized = false;
 
   constructor(private authService : AuthService,private vacationService : VacationService) {
-    this.authSubscription = this.authService.auth$.subscribe(auth => {
-      this.auth = auth;
-      if(auth){
-        this.memberId = auth.member.id;
+    this.authSubscription = this.authService.getAuth().subscribe(authInfo => {
+      if(authInfo){
+        this.memberId = authInfo.member.id;
       }else {
         this.memberId = 0;
       }

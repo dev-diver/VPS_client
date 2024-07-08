@@ -6,6 +6,7 @@ import { FormControl, FormGroup, FormsModule, NonNullableFormBuilder, ReactiveFo
 import { CommonModule } from '@angular/common';
 import { Auth } from '../../interfaces/auth';
 import { AuthService } from '../../services/auth.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-profile-card',
@@ -16,7 +17,8 @@ import { AuthService } from '../../services/auth.service';
 })
 export class ProfileCardComponent {
   
-  auth: Auth | null;
+  authInfo: Auth | null = null;
+  private authSubscription: Subscription;
 
   validateForm: FormGroup<{
     password: FormControl<string>;
@@ -27,7 +29,9 @@ export class ProfileCardComponent {
   password : string = ''
 
   constructor(private authService : AuthService ,private fb: NonNullableFormBuilder) {
-    this.auth = this.authService.getAuth();
+    this.authSubscription = this.authService.getAuth().subscribe((authInfo) => {
+      this.authInfo = authInfo;
+    });
   }
 
   deactivate(){
@@ -36,5 +40,11 @@ export class ProfileCardComponent {
 
   submitEdit = () => {
     alert('변경'+ this.validateForm.value)
+  }
+
+  ngOnDestroy() {
+    if(this.authSubscription){
+      this.authSubscription.unsubscribe();
+    }
   }
 }

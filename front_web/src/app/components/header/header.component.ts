@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { NzMenuModule } from 'ng-zorro-antd/menu';
 import { NzButtonModule } from 'ng-zorro-antd/button';
-import { NavigationEnd, Router, RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { NzGridModule } from 'ng-zorro-antd/grid';
 import { NzFlexModule } from 'ng-zorro-antd/flex';
 import { NzIconModule } from 'ng-zorro-antd/icon';
@@ -18,19 +18,18 @@ import { Subscription } from 'rxjs';
   styleUrl: './header.component.less'
 })
 export class HeaderComponent {
-  auth: Auth | null = null;
+  authInfo: Auth | null = null;
   notificationCount : number = 1;
   private authSubscription: Subscription;
 
-  constructor(private router: Router, private authService: AuthService) {
-    this.authSubscription = this.authService.auth$.subscribe((auth) => {
-      this.auth = auth;
+  constructor(private authService: AuthService) {
+    this.authSubscription = this.authService.getAuth().subscribe((authInfo) => {
+      this.authInfo = authInfo;
     });
   }
 
   logout(){
     this.authService.logout();
-    this.router.navigate(['/login']);
   }
 
   ngOnDestroy() {
