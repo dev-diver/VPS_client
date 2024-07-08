@@ -20,6 +20,7 @@ export class UpdateButtonsComponent {
     this.clientIsUpdating = true;
     try {
       await this.updateService.updateClient();
+      window.location.reload();
     }catch(e){
       console.error(e);
     }finally{
