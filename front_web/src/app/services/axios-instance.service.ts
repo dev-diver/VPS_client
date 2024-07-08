@@ -8,12 +8,21 @@ import { BehaviorSubject, Observable } from 'rxjs';
 })
 export class AxiosInstanceService {
   private axiosInstance: AxiosInstance;
+  private hookInstance: AxiosInstance;
   private unauthorizedSubject: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
   public unauthorizedError$: Observable<boolean> = this.unauthorizedSubject.asObservable();
 
   constructor() {
     this.axiosInstance = axios.create({
       baseURL: environment.apiUrl,
+      withCredentials: true,
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    });
+
+    this.hookInstance = axios.create({
+      baseURL: environment.hookUrl,
       withCredentials: true,
       headers: {
         'Content-Type': 'application/json'
@@ -52,6 +61,10 @@ export class AxiosInstanceService {
   // Axios 인스턴스를 반환하는 메소드
   getAxiosInstance = (): AxiosInstance => {
     return this.axiosInstance;
+  }
+
+  getHookInstance = (): AxiosInstance => {
+    return this.hookInstance;
   }
 
 }
