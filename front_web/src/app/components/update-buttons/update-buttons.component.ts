@@ -18,11 +18,13 @@ export class UpdateButtonsComponent {
   serverHaveUpdate = false;
 
   constructor(private updateService : UpdateService) { 
-    this.updateService.haveUpdateClient().then(haveUpdate => {
-      this.clientHaveUpdate = haveUpdate;
+    this.updateService.haveUpdateClient().then((haveUpdate :any) => {
+      console.log(haveUpdate);
+      this.clientHaveUpdate = haveUpdate.update;
     });
-    this.updateService.haveUpdateServer().then(haveUpdate => {
-      this.serverHaveUpdate = haveUpdate;
+    this.updateService.haveUpdateServer().then((haveUpdate :any) => {
+      console.log(haveUpdate);
+      this.serverHaveUpdate = haveUpdate.update;
     });
   }
 
