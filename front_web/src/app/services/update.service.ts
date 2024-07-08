@@ -11,11 +11,13 @@ import { Auth } from '../interfaces/auth';
 export class UpdateService {
 
   private auth : Auth | null = null;
+  private hookInstance: AxiosInstance;
   private axiosInstance: AxiosInstance;
   private authSubscription: Subscription
 
   constructor(private authService: AuthService, private axiosInstanceService: AxiosInstanceService) {
-    this.axiosInstance = this.axiosInstanceService.getHookInstance();
+    this.hookInstance = this.axiosInstanceService.getHookInstance();
+    this.axiosInstance = this.axiosInstanceService.getAxiosInstance();
     this.authSubscription = this.authService.getAuth().subscribe(authInfo => {
       this.auth = authInfo;
     })
@@ -37,7 +39,7 @@ export class UpdateService {
             "repo_name" : "devdiver/vacation_promotion_client"
         }
     }
-    const response = await this.axiosInstance.post<void>(`/webhook`, requestBody);
+    const response = await this.hookInstance.post<void>(`/webhook`, requestBody);
     return response.data
   }
 
@@ -51,17 +53,17 @@ export class UpdateService {
           "repo_name" : "devdiver/vacation_promotion_server"
       }
   }
-    const response = await this.axiosInstance.post<void>(`/webhook`, requestBody);
+    const response = await this.hookInstance.post<void>(`/webhook`, requestBody);
     return response.data
   }
 
   async haveUpdateClient(): Promise<boolean> {
-    const response = await this.axiosInstance.get<boolean>(`/have_update?service=client`);
+    const response = await this.axiosInstance.get<boolean>(`/have-update?service=client`);
     return response.data
   }
 
   async haveUpdateServer(): Promise<boolean> {
-    const response = await this.axiosInstance.get<boolean>(`/have_update?service=server`);
+    const response = await this.axiosInstance.get<boolean>(`/have-update?service=server`);
     return response.data
   }
 }
