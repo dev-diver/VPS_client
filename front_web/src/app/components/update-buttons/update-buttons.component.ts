@@ -11,20 +11,35 @@ import { UpdateService } from '../../services/update.service';
 })
 export class UpdateButtonsComponent {
 
-  clientIsUpdating = false;
-  serverIsUpdating = false;
+  clientIsUpdating = true;
+  serverIsUpdating = true;
 
   clientHaveUpdate = false;
   serverHaveUpdate = false;
 
   constructor(private updateService : UpdateService) { 
-    this.updateService.haveUpdateClient().then((haveUpdate :any) => {
+    this.updateService.haveUpdateClient()
+    .then((haveUpdate: any) => {
       console.log(haveUpdate);
       this.clientHaveUpdate = haveUpdate.update;
+    })
+    .catch((error) => {
+      console.error('Error fetching client update:', error);
+    })
+    .finally(() => {
+      this.clientIsUpdating = false;
     });
-    this.updateService.haveUpdateServer().then((haveUpdate :any) => {
+
+  this.updateService.haveUpdateServer()
+    .then((haveUpdate: any) => {
       console.log(haveUpdate);
       this.serverHaveUpdate = haveUpdate.update;
+    })
+    .catch((error) => {
+      console.error('Error fetching server update:', error);
+    })
+    .finally(() => {
+      this.serverIsUpdating = false;
     });
   }
 
