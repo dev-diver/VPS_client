@@ -1,14 +1,12 @@
 FROM node:22 as build
 
+#for caching
 RUN npm install -g @angular/cli@17
-
-# 작업 디렉토리 설정
-COPY /front_web /app/front_web
-
-WORKDIR /app/front_web
-
-#의존성 설치
+COPY /front_web/package.json /app/front_web/package.json
+COPY /front_web/package-lock.json /app/front_web/package-lock.json
 RUN npm install --force
+
+COPY /front_web /app/front_web
 
 RUN ng build
 
