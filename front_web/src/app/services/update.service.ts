@@ -39,7 +39,7 @@ export class UpdateService {
             "repo_name" : "devdiver/vacation_promotion_client"
         }
     }
-    const response = await this.hookInstance.post<void>(`/update`, requestBody);
+    const response = await this.axiosInstance.post<void>(`/update`, requestBody);
     return response.data
   }
 
@@ -53,7 +53,7 @@ export class UpdateService {
           "repo_name" : "devdiver/vacation_promotion_server"
       }
   }
-    const response = await this.hookInstance.post<void>(`/update`, requestBody);
+    const response = await this.axiosInstance.post<void>(`/update`, requestBody);
     return response.data
   }
 
