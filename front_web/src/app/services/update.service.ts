@@ -57,13 +57,13 @@ export class UpdateService {
     return response.data
   }
 
-  async haveUpdateClient(): Promise<boolean> {
-    const response = await this.axiosInstance.get<boolean>(`/have-update?service=client`);
+  async haveUpdateClient(): Promise<any> {
+    const response = await this.axiosInstance.get(`/have-update?service=client`);
     return response.data
   }
 
-  async haveUpdateServer(): Promise<boolean> {
-    const response = await this.axiosInstance.get<boolean>(`/have-update?service=server`);
+  async haveUpdateServer(): Promise<any> {
+    const response = await this.axiosInstance.get(`/have-update?service=server`);
     return response.data
   }
 }
